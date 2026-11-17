@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -57,6 +57,27 @@ jobs:
           name: screenshots
           path: screenshots/
           if-no-files-found: error
+
+      # Keeps the latest screenshots on a branch so the README can show them: "screenshots" for
+      # main, "screenshots-pr-<number>" for pull requests from this repository.
+      - name: Publish screenshots to a branch
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        shell: pwsh
+        env:
+          TARGET: ${{ github.event_name == 'push' && 'screenshots' || format('screenshots-pr-{0}', github.event.pull_request.number) }}
+        run: |
+          $work = Join-Path $env:RUNNER_TEMP "screenshots-branch"
+          New-Item -ItemType Directory -Path $work | Out-Null
+          Copy-Item screenshots/*.png $work
+          Push-Location $work
+          git init -q -b $env:TARGET
+          git config user.name "Duško Žigić"
+          git config user.email "duskozi@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Gallery screenshots for ${{ github.sha }}"
+          $auth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("x-access-token:${{ github.token }}"))
+          git -c http.extraheader="AUTHORIZATION: basic $auth" push -q -f "https://github.com/${{ github.repository }}.git" "HEAD:refs/heads/$env:TARGET"
+          Pop-Location
 
       - name: Upload test results
         if: always()

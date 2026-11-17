@@ -15,13 +15,13 @@ Button, TextBox, DataGrid, Menu and the rest of the built-in controls pick up th
 
 ## Screenshots
 
-These are rendered by CI from the gallery app on every build.
+These are rendered by CI from the gallery app on every push to `main`.
 
 | Dark | Light |
 | --- | --- |
-| ![Dark theme](docs/screenshots/gallery-dark.png) | ![Light theme](docs/screenshots/gallery-light.png) |
+| ![Dark theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-dark.png) | ![Light theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-light.png) |
 | **High Contrast** (with a dark Windows high contrast palette) | **Hardware** |
-| ![High Contrast theme](docs/screenshots/gallery-high-contrast.png) | ![Hardware theme](docs/screenshots/gallery-hardware.png) |
+| ![High Contrast theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-high-contrast.png) | ![Hardware theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-hardware.png) |
 
 ## Install
 
