@@ -1,0 +1,106 @@
+<!--
+  High Contrast theme
+
+  Takes every colour from the Windows system colours, so it follows the high contrast
+  palette the user picked in Windows. ThemeManager switches to it automatically when Windows
+  high contrast is turned on (see ThemeManager.FollowSystemHighContrast).
+  Every theme defines the same keys (see ThemeKeys.cs). To make your own theme, copy this
+  file into your app, change the values, and apply it with ThemeManager.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- Identity -->
+    <sys:String x:Key="NwtThemeName">High Contrast</sys:String>
+
+    <!-- Typography -->
+    <FontFamily x:Key="NwtFontFamily">Segoe UI</FontFamily>
+    <FontFamily x:Key="NwtInputFontFamily">Segoe UI</FontFamily>
+    <sys:Double x:Key="NwtFontSize">13</sys:Double>
+    <sys:Double x:Key="NwtFontSizeSmall">11.5</sys:Double>
+    <sys:Double x:Key="NwtFontSizeLarge">16</sys:Double>
+
+    <!-- Shape and spacing -->
+    <CornerRadius x:Key="NwtControlCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="NwtOverlayCornerRadius">0</CornerRadius>
+    <Thickness x:Key="NwtControlBorderThickness">2</Thickness>
+    <Thickness x:Key="NwtControlPadding">10,5</Thickness>
+    <sys:Double x:Key="NwtControlMinHeight">32</sys:Double>
+    <sys:Double x:Key="NwtFocusStrokeThickness">3</sys:Double>
+
+    <!-- Colours -->
+    <x:Static x:Key="NwtBackgroundColor" Member="SystemColors.WindowColor" />
+    <x:Static x:Key="NwtSurfaceColor" Member="SystemColors.WindowColor" />
+    <x:Static x:Key="NwtForegroundColor" Member="SystemColors.WindowTextColor" />
+    <x:Static x:Key="NwtAccentColor" Member="SystemColors.HighlightColor" />
+    <x:Static x:Key="NwtBorderColor" Member="SystemColors.WindowTextColor" />
+    <Color x:Key="NwtShadowColor">#00000000</Color>
+
+    <!-- Window and text -->
+    <SolidColorBrush x:Key="NwtBackgroundBrush" Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" />
+    <SolidColorBrush x:Key="NwtSurfaceBrush" Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" />
+    <SolidColorBrush x:Key="NwtSurfaceAltBrush" Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" />
+    <SolidColorBrush x:Key="NwtForegroundBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtForegroundSecondaryBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtForegroundDisabledBrush" Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtBorderBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtBorderHoverBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtSeparatorBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+
+    <!-- Control faces -->
+    <SolidColorBrush x:Key="NwtControlBackgroundBrush" Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" />
+    <SolidColorBrush x:Key="NwtControlHoverBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtControlPressedBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtControlDisabledBrush" Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" />
+    <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="{DynamicResource {x:Static SystemColors.ControlTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtControlBevelBrush" Color="Transparent" />
+
+    <!-- Inputs and displays -->
+    <SolidColorBrush x:Key="NwtInputBackgroundBrush" Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" />
+    <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtInputBorderBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtInputBevelBrush" Color="Transparent" />
+
+    <!-- Accent -->
+    <SolidColorBrush x:Key="NwtAccentBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtAccentHoverBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtAccentPressedBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtAccentForegroundBrush" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
+
+    <!-- Selection, hover and focus -->
+    <SolidColorBrush x:Key="NwtSelectionBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtSelectionForegroundBrush" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveForegroundBrush" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtHoverBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtHoverForegroundBrush" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtFocusBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtGlyphBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+
+    <!-- Tracks and thumbs -->
+    <SolidColorBrush x:Key="NwtTrackBrush" Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" />
+    <SolidColorBrush x:Key="NwtThumbBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+
+    <!-- Tooltips -->
+    <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="{DynamicResource {x:Static SystemColors.InfoColorKey}}" />
+    <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="{DynamicResource {x:Static SystemColors.InfoTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtToolTipBorderBrush" Color="{DynamicResource {x:Static SystemColors.InfoTextColorKey}}" />
+
+    <!-- Window chrome -->
+    <SolidColorBrush x:Key="NwtTitleBarBackgroundBrush" Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}" />
+    <SolidColorBrush x:Key="NwtTitleBarForegroundBrush" Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveBackgroundBrush" Color="{DynamicResource {x:Static SystemColors.InactiveCaptionColorKey}}" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveForegroundBrush" Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverForegroundBrush" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverForegroundBrush" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="NwtErrorBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
+
+</ResourceDictionary>
