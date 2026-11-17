@@ -111,7 +111,7 @@
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Data="M 0,0 L 4,4 L 8,0"
-                                  Stroke="{DynamicResource NwtGlyphBrush}"
+                                  Stroke="{TemplateBinding Foreground}"
                                   StrokeThickness="1.5" />
                         </Grid>
                     </Border>
@@ -193,6 +193,7 @@
                                       Background="{TemplateBinding Background}"
                                       BorderBrush="{TemplateBinding BorderBrush}"
                                       BorderThickness="{TemplateBinding BorderThickness}"
+                                      Foreground="{TemplateBinding Foreground}"
                                       IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                       Style="{StaticResource NwtComboBoxToggleButtonStyle}" />
                         <Border x:Name="Bevel"

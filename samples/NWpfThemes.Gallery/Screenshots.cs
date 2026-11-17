@@ -17,15 +17,13 @@ internal static class Screenshots
     public static void CaptureAll(string folder)
     {
         Directory.CreateDirectory(folder);
-        foreach (Theme theme in ThemeManager.Themes)
+        foreach (Theme theme in Theme.BuiltInThemes)
         {
-            ThemeManager.ApplyTheme(theme);
-            HighContrastPreview.IsEnabled = ReferenceEquals(theme, Theme.HighContrast);
+            // The build machine does not run in high contrast, so show the theme with a typical palette.
+            ThemeManager.ApplyTheme(ReferenceEquals(theme, Theme.HighContrast) ? HighContrastPreview.Theme : theme);
             string file = Path.Combine(folder, $"gallery-{Slug(theme.Name)}.png");
             Save(Render(), file);
         }
-
-        HighContrastPreview.IsEnabled = false;
     }
 
     private static BitmapSource Render()

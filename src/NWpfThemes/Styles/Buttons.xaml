@@ -368,4 +368,21 @@
         <Setter Property="Margin" Value="4,0" />
     </Style>
 
+    <!--
+      DataGridCheckBoxColumn gives its check boxes an explicit style, so they skip the implicit one.
+      Set ElementStyle="{StaticResource NwtDataGridCheckBoxStyle}" and
+      EditingElementStyle="{StaticResource NwtDataGridEditingCheckBoxStyle}" on the column to theme them.
+    -->
+    <Style x:Key="NwtDataGridEditingCheckBoxStyle" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style x:Key="NwtDataGridCheckBoxStyle" TargetType="CheckBox" BasedOn="{StaticResource NwtDataGridEditingCheckBoxStyle}">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+    </Style>
+
 </ResourceDictionary>

@@ -1,20 +1,103 @@
 <!--
-  A dark high contrast palette for previewing the High Contrast theme on a machine where Windows
-  high contrast is off. It overrides the Windows system colour keys that the theme reads.
+  Simulated High Contrast theme (gallery only)
+
+  The High Contrast theme with a fixed dark high contrast palette, for previewing it on a
+  machine where Windows high contrast is off. It is also an example of a custom theme.
 -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Color x:Key="{x:Static SystemColors.WindowColorKey}">#FF000000</Color>
-    <Color x:Key="{x:Static SystemColors.WindowTextColorKey}">#FFFFFFFF</Color>
-    <Color x:Key="{x:Static SystemColors.GrayTextColorKey}">#FF3FF23F</Color>
-    <Color x:Key="{x:Static SystemColors.HighlightColorKey}">#FF1AEBFF</Color>
-    <Color x:Key="{x:Static SystemColors.HighlightTextColorKey}">#FF000000</Color>
-    <Color x:Key="{x:Static SystemColors.ControlColorKey}">#FF000000</Color>
-    <Color x:Key="{x:Static SystemColors.ControlTextColorKey}">#FFFFFFFF</Color>
-    <Color x:Key="{x:Static SystemColors.InfoColorKey}">#FF000000</Color>
-    <Color x:Key="{x:Static SystemColors.InfoTextColorKey}">#FFFFFF00</Color>
-    <Color x:Key="{x:Static SystemColors.ActiveCaptionColorKey}">#FF000000</Color>
-    <Color x:Key="{x:Static SystemColors.ActiveCaptionTextColorKey}">#FFFFFFFF</Color>
-    <Color x:Key="{x:Static SystemColors.InactiveCaptionColorKey}">#FF000000</Color>
-    <Color x:Key="{x:Static SystemColors.InactiveCaptionTextColorKey}">#FF3FF23F</Color>
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- Identity -->
+    <sys:String x:Key="NwtThemeName">High Contrast (simulated)</sys:String>
+
+    <!-- Typography -->
+    <FontFamily x:Key="NwtFontFamily">Segoe UI</FontFamily>
+    <FontFamily x:Key="NwtInputFontFamily">Segoe UI</FontFamily>
+    <sys:Double x:Key="NwtFontSize">13</sys:Double>
+    <sys:Double x:Key="NwtFontSizeSmall">11.5</sys:Double>
+    <sys:Double x:Key="NwtFontSizeLarge">16</sys:Double>
+
+    <!-- Shape and spacing -->
+    <CornerRadius x:Key="NwtControlCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="NwtOverlayCornerRadius">0</CornerRadius>
+    <Thickness x:Key="NwtControlBorderThickness">2</Thickness>
+    <Thickness x:Key="NwtControlPadding">10,5</Thickness>
+    <sys:Double x:Key="NwtControlMinHeight">32</sys:Double>
+    <sys:Double x:Key="NwtFocusStrokeThickness">3</sys:Double>
+
+    <!-- Colours -->
+    <Color x:Key="NwtBackgroundColor">#FF000000</Color>
+    <Color x:Key="NwtSurfaceColor">#FF000000</Color>
+    <Color x:Key="NwtForegroundColor">#FFFFFFFF</Color>
+    <Color x:Key="NwtAccentColor">#FF1AEBFF</Color>
+    <Color x:Key="NwtBorderColor">#FFFFFFFF</Color>
+    <Color x:Key="NwtShadowColor">#00000000</Color>
+
+    <!-- Window and text -->
+    <SolidColorBrush x:Key="NwtBackgroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtSurfaceBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtSurfaceAltBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtForegroundSecondaryBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtForegroundDisabledBrush" Color="#FF3FF23F" />
+    <SolidColorBrush x:Key="NwtBorderBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtBorderHoverBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtSeparatorBrush" Color="#FFFFFFFF" />
+
+    <!-- Control faces -->
+    <SolidColorBrush x:Key="NwtControlBackgroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtControlHoverBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtControlPressedBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtControlDisabledBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtControlBevelBrush" Color="Transparent" />
+
+    <!-- Inputs and displays -->
+    <SolidColorBrush x:Key="NwtInputBackgroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtInputBorderBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtInputBevelBrush" Color="Transparent" />
+
+    <!-- Accent -->
+    <SolidColorBrush x:Key="NwtAccentBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtAccentHoverBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtAccentPressedBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtAccentForegroundBrush" Color="#FF000000" />
+
+    <!-- Selection, hover and focus -->
+    <SolidColorBrush x:Key="NwtSelectionBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtSelectionForegroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveForegroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtHoverBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtHoverForegroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtFocusBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtGlyphBrush" Color="#FFFFFFFF" />
+
+    <!-- Tracks and thumbs -->
+    <SolidColorBrush x:Key="NwtTrackBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtThumbBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FF1AEBFF" />
+
+    <!-- Tooltips -->
+    <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="#FFFFFF00" />
+    <SolidColorBrush x:Key="NwtToolTipBorderBrush" Color="#FFFFFF00" />
+
+    <!-- Window chrome -->
+    <SolidColorBrush x:Key="NwtTitleBarBackgroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtTitleBarForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveBackgroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveForegroundBrush" Color="#FF3FF23F" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverForegroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverBrush" Color="#FF1AEBFF" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverForegroundBrush" Color="#FF000000" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="NwtErrorBrush" Color="#FFFFFFFF" />
+
 </ResourceDictionary>

@@ -20,7 +20,7 @@ These are rendered by CI from the gallery app on every push to `main`.
 | Dark | Light |
 | --- | --- |
 | ![Dark theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-dark.png) | ![Light theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-light.png) |
-| **High Contrast** (with a dark Windows high contrast palette) | **Hardware** |
+| **High Contrast** (shown with a dark high contrast palette) | **Hardware** |
 | ![High Contrast theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-high-contrast.png) | ![Hardware theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-hardware.png) |
 
 ## Install
@@ -118,6 +118,7 @@ In XAML, theme part of a window with the attached property:
 | `NwtAccentButtonStyle` | A button filled with the accent colour. Buttons with `IsDefault="True"` look the same. |
 | `NwtWindowStyle` | Theme background, text colour and font for a plain `Window`. |
 | `NwtFocusVisualStyle` | The keyboard focus ring, for your own controls. |
+| `NwtDataGridCheckBoxStyle`, `NwtDataGridEditingCheckBoxStyle` | `ElementStyle` and `EditingElementStyle` for a `DataGridCheckBoxColumn`, whose check boxes otherwise keep the Windows look. |
 
 ## High contrast and accessibility
 

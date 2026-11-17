@@ -260,7 +260,11 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="*" Binding="{Binding Name}" Header="Name" SortDirection="Ascending" />
                             <DataGridTextColumn Width="60" Binding="{Binding Age}" Header="Age" />
-                            <DataGridCheckBoxColumn Width="70" Binding="{Binding Active}" Header="Active" />
+                            <DataGridCheckBoxColumn Width="70"
+                                                    Binding="{Binding Active}"
+                                                    EditingElementStyle="{StaticResource NwtDataGridEditingCheckBoxStyle}"
+                                                    ElementStyle="{StaticResource NwtDataGridCheckBoxStyle}"
+                                                    Header="Active" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </GroupBox>

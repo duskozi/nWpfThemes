@@ -19,12 +19,21 @@ public partial class MainWindow : ThemedWindow
             return;
         }
 
-        ThemeManager.ApplyTheme(theme);
         bool isHighContrast = ReferenceEquals(theme, Theme.HighContrast);
         SimulateHighContrast.Visibility = isHighContrast && !SystemParameters.HighContrast ? Visibility.Visible : Visibility.Collapsed;
-        HighContrastPreview.IsEnabled = isHighContrast && SimulateHighContrast.IsChecked == true;
+        ApplySelectedTheme();
     }
 
-    private void OnSimulateChanged(object sender, RoutedEventArgs e) =>
-        HighContrastPreview.IsEnabled = ReferenceEquals(ThemePicker.SelectedItem, Theme.HighContrast) && SimulateHighContrast.IsChecked == true;
+    private void OnSimulateChanged(object sender, RoutedEventArgs e) => ApplySelectedTheme();
+
+    private void ApplySelectedTheme()
+    {
+        if (ThemePicker.SelectedItem is not Theme theme)
+        {
+            return;
+        }
+
+        bool simulate = ReferenceEquals(theme, Theme.HighContrast) && SimulateHighContrast.IsChecked == true;
+        ThemeManager.ApplyTheme(simulate ? HighContrastPreview.Theme : theme);
+    }
 }
