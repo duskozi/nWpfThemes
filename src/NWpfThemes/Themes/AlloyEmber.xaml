@@ -86,7 +86,7 @@
     <!-- Tracks and thumbs -->
     <SolidColorBrush x:Key="NwtTrackBrush" Color="#FF1A1715" />
     <LinearGradientBrush x:Key="NwtThumbBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFFBF8F3" Offset="0" /><GradientStop Color="#FFA9A094" Offset="1" /></LinearGradientBrush>
-    <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="#FFFBF9F4@0 #FFB3ABA1@1" />
+    <LinearGradientBrush x:Key="NwtThumbHoverBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFFBF9F4" Offset="0" /><GradientStop Color="#FFB3ABA1" Offset="1" /></LinearGradientBrush>
     <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FFFF8A1F" />
 
     <!-- Tooltips -->
