@@ -8,6 +8,18 @@ namespace NWpfThemes.Tests;
 /// <summary>One of each control in scope, in a few interesting states.</summary>
 internal static class SampleControls
 {
+    /// <summary>
+    /// A context menu cannot have a parent, so it is returned separately and laid out on its own.
+    /// </summary>
+    public static ContextMenu CreateContextMenu()
+    {
+        var contextMenu = new ContextMenu();
+        contextMenu.Items.Add(new MenuItem { Header = "Copy", IsCheckable = true, IsChecked = true });
+        contextMenu.Items.Add(new Separator());
+        contextMenu.Items.Add(new MenuItem { Header = "More", Items = { new MenuItem { Header = "Inside" } } });
+        return contextMenu;
+    }
+
     public static List<FrameworkElement> Create()
     {
         var gridView = new GridView();
@@ -21,11 +33,6 @@ internal static class SampleControls
         file.Items.Add(new MenuItem { Header = "Recent", Items = { new MenuItem { Header = "a.txt" } } });
         menu.Items.Add(file);
         menu.Items.Add(new MenuItem { Header = "Help" });
-
-        var contextMenu = new ContextMenu();
-        contextMenu.Items.Add(new MenuItem { Header = "Copy", IsCheckable = true, IsChecked = true });
-        contextMenu.Items.Add(new Separator());
-        contextMenu.Items.Add(new MenuItem { Header = "More", Items = { new MenuItem { Header = "Inside" } } });
 
         var tree = new TreeView();
         var node = new TreeViewItem { Header = "Root", IsExpanded = true };
@@ -77,7 +84,6 @@ internal static class SampleControls
             dataGrid,
             tabs,
             menu,
-            contextMenu,
             new ToolTip { Content = "Tip" },
             new GroupBox { Header = "Group", Content = "Content" },
             new Expander { Header = "Expander", Content = "Content", IsExpanded = true },

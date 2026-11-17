@@ -79,9 +79,14 @@ public class ControlStyleTests
             .Concat(elements.OfType<ToolBarTray>().SelectMany(t => t.ToolBars))
             .ToArray();
 
+        ContextMenu contextMenu = SampleControls.CreateContextMenu();
+        controls = controls.Append(contextMenu).ToArray();
+
         root.Measure(new Size(800, double.PositiveInfinity));
         root.Arrange(new Rect(root.DesiredSize));
         root.UpdateLayout();
+        contextMenu.Measure(new Size(300, 300));
+        contextMenu.Arrange(new Rect(contextMenu.DesiredSize));
         UiThread.DoEvents();
 
         var failures = controls
@@ -110,17 +115,25 @@ public class ControlStyleTests
     [Fact]
     public void Switching_theme_restyles_existing_controls() => UiThread.Run(() =>
     {
+        // The application only tells elements inside its windows about resource changes.
         UiThread.ResetApplicationResources(Theme.Dark);
         var button = new Button();
-        var panel = new StackPanel { Children = { button } };
-        panel.Measure(new Size(200, 200));
-        object darkBackground = button.Background;
+        var window = new Window { Content = button };
+        try
+        {
+            button.Measure(new Size(200, 200));
+            object darkBackground = button.Background;
 
-        ThemeManager.ApplyTheme(Theme.Light);
-        panel.Measure(new Size(200, 200));
+            ThemeManager.ApplyTheme(Theme.Light);
+            UiThread.DoEvents();
 
-        Assert.NotSame(darkBackground, button.Background);
-        Assert.Same(Application.Current.FindResource(ThemeKeys.ControlBackgroundBrush), button.Background);
+            Assert.NotSame(darkBackground, button.Background);
+            Assert.Same(Application.Current.FindResource(ThemeKeys.ControlBackgroundBrush), button.Background);
+        }
+        finally
+        {
+            window.Close();
+        }
     });
 
     [Fact]

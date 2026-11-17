@@ -140,19 +140,23 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Header="Popups (shown inline)" Style="{StaticResource Card}">
+                <GroupBox Header="Tooltip and context menu" Style="{StaticResource Card}">
                     <StackPanel>
-                        <ToolTip Content="A tooltip" HorizontalAlignment="Left" Margin="0,0,0,10" />
-                        <ContextMenu HorizontalAlignment="Left" HasDropShadow="False">
-                            <MenuItem Header="Cut" InputGestureText="Ctrl+X" />
-                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" />
-                            <MenuItem Header="Word wrap" IsCheckable="True" IsChecked="True" />
-                            <Separator />
-                            <MenuItem Header="More">
-                                <MenuItem Header="Inside" />
-                            </MenuItem>
-                            <MenuItem Header="Unavailable" IsEnabled="False" />
-                        </ContextMenu>
+                        <ToolTip Content="A tooltip, shown inline" HorizontalAlignment="Left" Margin="0,0,0,10" />
+                        <Button Content="Right-click for a context menu" HorizontalAlignment="Left" ToolTip="Tooltips look like the one above">
+                            <Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Cut" InputGestureText="Ctrl+X" />
+                                    <MenuItem Header="Copy" InputGestureText="Ctrl+C" />
+                                    <MenuItem Header="Word wrap" IsCheckable="True" IsChecked="True" />
+                                    <Separator />
+                                    <MenuItem Header="More">
+                                        <MenuItem Header="Inside" />
+                                    </MenuItem>
+                                    <MenuItem Header="Unavailable" IsEnabled="False" />
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                        </Button>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
