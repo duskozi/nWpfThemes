@@ -1,0 +1,130 @@
+<!-- Focus visuals, validation template, Label, Separator and ToolTip. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- Keyboard focus: a solid ring just outside the control. -->
+    <Style x:Key="NwtFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="-3"
+                               RadiusX="3"
+                               RadiusY="3"
+                               SnapsToDevicePixels="True"
+                               Stroke="{DynamicResource NwtFocusBrush}"
+                               StrokeThickness="{DynamicResource NwtFocusStrokeThickness}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Focus ring drawn inside the bounds, for items in lists, menus and grids. -->
+    <Style x:Key="NwtInnerFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="1"
+                               SnapsToDevicePixels="True"
+                               Stroke="{DynamicResource NwtFocusBrush}"
+                               StrokeDashArray="2 1"
+                               StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="NwtValidationErrorTemplate">
+        <DockPanel LastChildFill="True">
+            <Border DockPanel.Dock="Right"
+                    Width="16"
+                    Height="16"
+                    Margin="4,0,0,0"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource NwtErrorBrush}"
+                    CornerRadius="8"
+                    ToolTip="{Binding [0].ErrorContent}">
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="11"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource NwtBackgroundBrush}"
+                           Text="!" />
+            </Border>
+            <Border BorderBrush="{DynamicResource NwtErrorBrush}"
+                    BorderThickness="2"
+                    CornerRadius="{DynamicResource NwtControlCornerRadius}">
+                <AdornedElementPlaceholder />
+            </Border>
+        </DockPanel>
+    </ControlTemplate>
+
+    <Style TargetType="Label">
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="0,4" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Separator">
+        <Setter Property="Background" Value="{DynamicResource NwtSeparatorBrush}" />
+        <Setter Property="Margin" Value="0,4" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Border Height="1"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ToolTip">
+        <Setter Property="Background" Value="{DynamicResource NwtToolTipBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtToolTipForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtToolTipBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSizeSmall}" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="HasDropShadow" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{DynamicResource NwtOverlayCornerRadius}"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
