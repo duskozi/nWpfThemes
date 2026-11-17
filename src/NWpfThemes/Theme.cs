@@ -44,8 +44,39 @@ public sealed class Theme
     /// <summary>A hardware-style theme with lit metal keys, bevels and recessed displays.</summary>
     public static Theme Hardware { get; } = BuiltIn("Hardware", "Themes/Hardware.xaml");
 
+    /// <summary>Lit brushed silver with dark recessed displays and orange accents (the nDAWControls Alloy skin).</summary>
+    public static Theme Alloy { get; } = BuiltIn("Alloy", "Themes/Alloy.xaml");
+
+    /// <summary>Dark anodised metal with dark displays and orange accents (the nDAWControls AlloyNight skin).</summary>
+    public static Theme AlloyNight { get; } = BuiltIn("Alloy Night", "Themes/AlloyNight.xaml");
+
+    /// <summary>Champagne metal with amber displays (the nDAWControls AlloyEmber skin).</summary>
+    public static Theme AlloyEmber { get; } = BuiltIn("Alloy Ember", "Themes/AlloyEmber.xaml");
+
+    /// <summary>Dark graphite with an orange accent (the nDAWControls Graphite skin).</summary>
+    public static Theme Graphite { get; } = BuiltIn("Graphite", "Themes/Graphite.xaml");
+
+    /// <summary>Dark blue-grey with a blue accent (the nDAWControls Studio skin).</summary>
+    public static Theme Studio { get; } = BuiltIn("Studio", "Themes/Studio.xaml");
+
+    /// <summary>Warm dark brown with amber displays (the nDAWControls RetroHardware skin).</summary>
+    public static Theme RetroHardware { get; } = BuiltIn("Retro Hardware", "Themes/RetroHardware.xaml");
+
+    /// <summary>Light grey with a blue accent (the nDAWControls LightClassic skin).</summary>
+    public static Theme LightClassic { get; } = BuiltIn("Light Classic", "Themes/LightClassic.xaml");
+
+    /// <summary>
+    /// Black and white with a yellow accent, as a fixed palette (the nDAWControls HighContrast skin).
+    /// <see cref="HighContrast"/> follows the Windows colours instead.
+    /// </summary>
+    public static Theme HighContrastBlack { get; } = BuiltIn("High Contrast Black", "Themes/HighContrastBlack.xaml");
+
     /// <summary>The themes that ship with the library.</summary>
-    public static IReadOnlyList<Theme> BuiltInThemes { get; } = new[] { Dark, Light, HighContrast, Hardware };
+    public static IReadOnlyList<Theme> BuiltInThemes { get; } = new[]
+    {
+        Dark, Light, HighContrast, Hardware,
+        Alloy, AlloyNight, AlloyEmber, Graphite, Studio, RetroHardware, LightClassic, HighContrastBlack,
+    };
 
     /// <summary>The location of the dictionary with the control styles.</summary>
     public static Uri ControlStylesSource { get; } = new(AssemblyPath + "Styles/Controls.xaml", UriKind.Relative);

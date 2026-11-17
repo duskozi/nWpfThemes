@@ -64,7 +64,7 @@
                             SnapsToDevicePixels="True">
                         <Grid>
                             <Border BorderBrush="{DynamicResource NwtControlBevelBrush}"
-                                    BorderThickness="1"
+                                    BorderThickness="{DynamicResource NwtControlBevelThickness}"
                                     CornerRadius="8" />
                             <Ellipse x:Name="Centre"
                                      Width="6"
@@ -115,7 +115,7 @@
                         VerticalAlignment="Center"
                         Background="{DynamicResource NwtTrackBrush}"
                         BorderBrush="{DynamicResource NwtInputBevelBrush}"
-                        BorderThickness="1"
+                        BorderThickness="{DynamicResource NwtInputBevelThickness}"
                         CornerRadius="2">
                     <Canvas Margin="8,-1">
                         <Rectangle x:Name="PART_SelectionRange"
@@ -185,7 +185,7 @@
                         HorizontalAlignment="Center"
                         Background="{DynamicResource NwtTrackBrush}"
                         BorderBrush="{DynamicResource NwtInputBevelBrush}"
-                        BorderThickness="1"
+                        BorderThickness="{DynamicResource NwtInputBevelThickness}"
                         CornerRadius="2">
                     <Canvas Margin="-1,8">
                         <Rectangle x:Name="PART_SelectionRange"
@@ -287,7 +287,7 @@
                                 </Rectangle.OpacityMask>
                             </Rectangle>
                             <Border BorderBrush="{DynamicResource NwtInputBevelBrush}"
-                                    BorderThickness="1"
+                                    BorderThickness="{DynamicResource NwtInputBevelThickness}"
                                     CornerRadius="{DynamicResource NwtControlCornerRadius}" />
                         </Grid>
                     </Border>

@@ -55,13 +55,18 @@
     <SolidColorBrush x:Key="NwtControlDisabledBrush" Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" />
     <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="{DynamicResource {x:Static SystemColors.ControlTextColorKey}}" />
     <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="{DynamicResource {x:Static SystemColors.HighlightTextColorKey}}" />
+    <SolidColorBrush x:Key="NwtControlBorderBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
     <SolidColorBrush x:Key="NwtControlBevelBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtControlPressedBevelBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtControlCheckedBevelBrush" Color="Transparent" />
+    <Thickness x:Key="NwtControlBevelThickness">1</Thickness>
 
     <!-- Inputs and displays -->
     <SolidColorBrush x:Key="NwtInputBackgroundBrush" Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" />
     <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
     <SolidColorBrush x:Key="NwtInputBorderBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
     <SolidColorBrush x:Key="NwtInputBevelBrush" Color="Transparent" />
+    <Thickness x:Key="NwtInputBevelThickness">1</Thickness>
 
     <!-- Accent -->
     <SolidColorBrush x:Key="NwtAccentBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />

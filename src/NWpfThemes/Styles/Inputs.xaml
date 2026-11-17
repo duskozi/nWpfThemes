@@ -32,7 +32,7 @@
                 SnapsToDevicePixels="True">
             <Grid>
                 <Border BorderBrush="{DynamicResource NwtInputBevelBrush}"
-                        BorderThickness="1"
+                        BorderThickness="{DynamicResource NwtInputBevelThickness}"
                         CornerRadius="{DynamicResource NwtControlCornerRadius}" />
                 <Border x:Name="FocusLine"
                         BorderBrush="{DynamicResource NwtAccentBrush}"
@@ -165,7 +165,7 @@
         <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtFocusVisualStyle}" />
         <Setter Property="Background" Value="{DynamicResource NwtControlBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource NwtControlForegroundBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource NwtControlBorderThickness}" />
         <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
@@ -200,7 +200,7 @@
                                 Grid.ColumnSpan="2"
                                 Margin="{TemplateBinding BorderThickness}"
                                 BorderBrush="{DynamicResource NwtControlBevelBrush}"
-                                BorderThickness="1"
+                                BorderThickness="{DynamicResource NwtControlBevelThickness}"
                                 CornerRadius="{DynamicResource NwtControlCornerRadius}"
                                 IsHitTestVisible="False" />
                         <ContentPresenter x:Name="ContentSite"
@@ -260,6 +260,7 @@
                             <Setter Property="IsTabStop" Value="False" />
                             <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
                             <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtInputBevelBrush}" />
+                            <Setter TargetName="Bevel" Property="BorderThickness" Value="{DynamicResource NwtInputBevelThickness}" />
                             <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden" />
                         </Trigger>
                         <Trigger Property="IsKeyboardFocusWithin" Value="True">

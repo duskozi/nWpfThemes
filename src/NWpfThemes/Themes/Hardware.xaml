@@ -54,13 +54,18 @@
     <LinearGradientBrush x:Key="NwtControlDisabledBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF5A5D62" Offset="0" /><GradientStop Color="#FF4C4F54" Offset="1" /></LinearGradientBrush>
     <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="#FF16181B" />
     <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtControlBorderBrush" Color="#FF101113" />
     <LinearGradientBrush x:Key="NwtControlBevelBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#E6FFFFFF" Offset="0" /><GradientStop Color="#33FFFFFF" Offset="0.5" /><GradientStop Color="#66000000" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtControlPressedBevelBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#CC000000" Offset="0" /><GradientStop Color="#33000000" Offset="0.5" /><GradientStop Color="#40FFFFFF" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtControlCheckedBevelBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#CC000000" Offset="0" /><GradientStop Color="#33000000" Offset="0.5" /><GradientStop Color="#40FFFFFF" Offset="1" /></LinearGradientBrush>
+    <Thickness x:Key="NwtControlBevelThickness">1</Thickness>
 
     <!-- Inputs and displays -->
     <LinearGradientBrush x:Key="NwtInputBackgroundBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF0B0904" Offset="0" /><GradientStop Color="#FF17120A" Offset="1" /></LinearGradientBrush>
     <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="#FFFFB547" />
     <SolidColorBrush x:Key="NwtInputBorderBrush" Color="#FF8D9198" />
     <LinearGradientBrush x:Key="NwtInputBevelBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#CC000000" Offset="0" /><GradientStop Color="#33000000" Offset="0.5" /><GradientStop Color="#40FFFFFF" Offset="1" /></LinearGradientBrush>
+    <Thickness x:Key="NwtInputBevelThickness">1</Thickness>
 
     <!-- Accent -->
     <SolidColorBrush x:Key="NwtAccentBrush" Color="#FFFFA51F" />

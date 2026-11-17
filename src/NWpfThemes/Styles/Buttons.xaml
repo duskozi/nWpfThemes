@@ -12,7 +12,7 @@
                 SnapsToDevicePixels="True">
             <Border x:Name="Bevel"
                     BorderBrush="{DynamicResource NwtControlBevelBrush}"
-                    BorderThickness="1"
+                    BorderThickness="{DynamicResource NwtControlBevelThickness}"
                     CornerRadius="{DynamicResource NwtControlCornerRadius}">
                 <ContentPresenter x:Name="Content"
                                   Margin="{TemplateBinding Padding}"
@@ -25,10 +25,10 @@
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtInputBevelBrush}" />
+                <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtControlPressedBevelBrush}" />
             </Trigger>
             <Trigger Property="ToggleButton.IsChecked" Value="True">
-                <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtInputBevelBrush}" />
+                <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtControlCheckedBevelBrush}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -37,7 +37,7 @@
         <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtFocusVisualStyle}" />
         <Setter Property="Background" Value="{DynamicResource NwtControlBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource NwtControlForegroundBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource NwtControlBorderThickness}" />
         <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
         <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
@@ -78,7 +78,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" Value="{DynamicResource NwtControlDisabledBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource NwtControlBorderBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -107,7 +107,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" Value="{DynamicResource NwtControlDisabledBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource NwtControlBorderBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -138,7 +138,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" Value="{DynamicResource NwtControlDisabledBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource NwtControlBorderBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -175,7 +175,7 @@
                             <Grid>
                                 <Border x:Name="Bevel"
                                         BorderBrush="{DynamicResource NwtInputBevelBrush}"
-                                        BorderThickness="1"
+                                        BorderThickness="{DynamicResource NwtInputBevelThickness}"
                                         CornerRadius="2" />
                                 <Path x:Name="Check"
                                       HorizontalAlignment="Center"
@@ -272,7 +272,7 @@
                                 CornerRadius="9">
                             <Grid>
                                 <Border BorderBrush="{DynamicResource NwtInputBevelBrush}"
-                                        BorderThickness="1"
+                                        BorderThickness="{DynamicResource NwtInputBevelThickness}"
                                         CornerRadius="8" />
                                 <Ellipse x:Name="Dot"
                                          Width="8"

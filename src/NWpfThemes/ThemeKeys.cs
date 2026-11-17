@@ -114,8 +114,20 @@ public static class ThemeKeys
     /// <summary>Text on a control face that is under the mouse or pressed. Type: <see cref="Brush"/>.</summary>
     public const string ControlHoverForegroundBrush = "NwtControlHoverForegroundBrush";
 
+    /// <summary>The outline of buttons, combo boxes and other control faces. Type: <see cref="Brush"/>.</summary>
+    public const string ControlBorderBrush = "NwtControlBorderBrush";
+
     /// <summary>An inner edge that makes controls look raised. Transparent in flat themes. Type: <see cref="Brush"/>.</summary>
     public const string ControlBevelBrush = "NwtControlBevelBrush";
+
+    /// <summary>The inner edge of a control face while it is pressed. Type: <see cref="Brush"/>.</summary>
+    public const string ControlPressedBevelBrush = "NwtControlPressedBevelBrush";
+
+    /// <summary>The inner edge of a checked toggle button, which is filled with the accent colour. Type: <see cref="Brush"/>.</summary>
+    public const string ControlCheckedBevelBrush = "NwtControlCheckedBevelBrush";
+
+    /// <summary>How wide the control bevel is on each side, for example <c>0,1,0,1</c> for a top light and bottom shade only. Type: <see cref="Thickness"/>.</summary>
+    public const string ControlBevelThickness = "NwtControlBevelThickness";
 
     /// <summary>The background of text inputs, progress tracks and other displays. Type: <see cref="Brush"/>.</summary>
     public const string InputBackgroundBrush = "NwtInputBackgroundBrush";
@@ -128,6 +140,9 @@ public static class ThemeKeys
 
     /// <summary>An inner edge that makes inputs look recessed. Transparent in flat themes. Type: <see cref="Brush"/>.</summary>
     public const string InputBevelBrush = "NwtInputBevelBrush";
+
+    /// <summary>How wide the input bevel is on each side. Type: <see cref="Thickness"/>.</summary>
+    public const string InputBevelThickness = "NwtInputBevelThickness";
 
     /// <summary>The accent: checked states, default buttons, progress and slider fill. Type: <see cref="Brush"/>.</summary>
     public const string AccentBrush = "NwtAccentBrush";
@@ -249,11 +264,16 @@ public static class ThemeKeys
         new(ControlDisabledBrush, typeof(Brush)),
         new(ControlForegroundBrush, typeof(Brush)),
         new(ControlHoverForegroundBrush, typeof(Brush)),
+        new(ControlBorderBrush, typeof(Brush)),
         new(ControlBevelBrush, typeof(Brush)),
+        new(ControlPressedBevelBrush, typeof(Brush)),
+        new(ControlCheckedBevelBrush, typeof(Brush)),
+        new(ControlBevelThickness, typeof(Thickness)),
         new(InputBackgroundBrush, typeof(Brush)),
         new(InputForegroundBrush, typeof(Brush)),
         new(InputBorderBrush, typeof(Brush)),
         new(InputBevelBrush, typeof(Brush)),
+        new(InputBevelThickness, typeof(Thickness)),
         new(AccentBrush, typeof(Brush)),
         new(AccentHoverBrush, typeof(Brush)),
         new(AccentPressedBrush, typeof(Brush)),

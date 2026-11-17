@@ -32,7 +32,7 @@
                                 CornerRadius="{DynamicResource NwtControlCornerRadius}">
                             <Border Padding="{TemplateBinding Padding}"
                                     BorderBrush="{DynamicResource NwtControlBevelBrush}"
-                                    BorderThickness="1"
+                                    BorderThickness="{DynamicResource NwtControlBevelThickness}"
                                     CornerRadius="{DynamicResource NwtControlCornerRadius}">
                                 <ContentPresenter />
                             </Border>

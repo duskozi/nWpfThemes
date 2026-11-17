@@ -46,17 +46,48 @@ public class ContrastTests
         (ThemeKeys.GlyphBrush, ThemeKeys.SurfaceBrush, 3),
     };
 
+    /// <summary>
+    /// Pairs that the nDAWControls skin themes take unchanged from the skins they copy (dim labels,
+    /// display outlines and the accent on bare metal), so they are not held to the ratios above.
+    /// Text on every surface, control face, display and accent fill is still checked.
+    /// </summary>
+    private static readonly HashSet<(string, string)> SkinPalettePairs = new()
+    {
+        (ThemeKeys.ForegroundSecondaryBrush, ThemeKeys.BackgroundBrush),
+        (ThemeKeys.ForegroundSecondaryBrush, ThemeKeys.SurfaceBrush),
+        (ThemeKeys.ForegroundSecondaryBrush, ThemeKeys.SurfaceAltBrush),
+        (ThemeKeys.InputBorderBrush, ThemeKeys.BackgroundBrush),
+        (ThemeKeys.AccentBrush, ThemeKeys.BackgroundBrush),
+    };
+
     public static TheoryData<string> FixedPaletteThemes() => new() { Theme.Dark.Name, Theme.Light.Name, Theme.Hardware.Name };
+
+    public static TheoryData<string> SkinThemes() => new()
+    {
+        Theme.Alloy.Name, Theme.AlloyNight.Name, Theme.AlloyEmber.Name, Theme.Graphite.Name,
+        Theme.Studio.Name, Theme.RetroHardware.Name, Theme.LightClassic.Name, Theme.HighContrastBlack.Name,
+    };
 
     [Theory]
     [MemberData(nameof(FixedPaletteThemes))]
-    public void Text_and_indicators_meet_WCAG_AA(string name) => UiThread.Run(() =>
+    public void Text_and_indicators_meet_WCAG_AA(string name) => UiThread.Run(() => Check(name, skip: null));
+
+    [Theory]
+    [MemberData(nameof(SkinThemes))]
+    public void Skin_themes_keep_text_and_focus_readable(string name) => UiThread.Run(() => Check(name, SkinPalettePairs));
+
+    private static void Check(string name, HashSet<(string, string)>? skip)
     {
         ResourceDictionary dictionary = ThemeManager.Find(name)!.CreateDictionary();
 
         var failures = new List<string>();
         foreach ((string fg, string bg, double minimum) in Pairs)
         {
+            if (skip is not null && skip.Contains((fg, bg)))
+            {
+                continue;
+            }
+
             double worst = Colors((Brush)dictionary[fg])
                 .SelectMany(f => Colors((Brush)dictionary[bg]).Select(b => Ratio(f, b)))
                 .Min();
@@ -67,7 +98,7 @@ public class ContrastTests
         }
 
         Assert.Empty(failures);
-    });
+    }
 
     [Fact]
     public void Contrast_ratio_matches_known_values()

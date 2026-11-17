@@ -53,13 +53,18 @@
     <SolidColorBrush x:Key="NwtControlDisabledBrush" Color="#FFF3F3F3" />
     <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="#FF1B1B1F" />
     <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtControlBorderBrush" Color="#FFC9CBD0" />
     <SolidColorBrush x:Key="NwtControlBevelBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtControlPressedBevelBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtControlCheckedBevelBrush" Color="Transparent" />
+    <Thickness x:Key="NwtControlBevelThickness">1</Thickness>
 
     <!-- Inputs and displays -->
     <SolidColorBrush x:Key="NwtInputBackgroundBrush" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="#FF1B1B1F" />
     <SolidColorBrush x:Key="NwtInputBorderBrush" Color="#FF85888E" />
     <SolidColorBrush x:Key="NwtInputBevelBrush" Color="Transparent" />
+    <Thickness x:Key="NwtInputBevelThickness">1</Thickness>
 
     <!-- Accent -->
     <SolidColorBrush x:Key="NwtAccentBrush" Color="#FF0F5FC2" />

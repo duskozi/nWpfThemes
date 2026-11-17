@@ -42,7 +42,7 @@
                                 KeyboardNavigation.TabIndex="2"
                                 KeyboardNavigation.TabNavigation="Local">
                             <Border BorderBrush="{DynamicResource NwtControlBevelBrush}"
-                                    BorderThickness="1"
+                                    BorderThickness="{DynamicResource NwtControlBevelThickness}"
                                     CornerRadius="{DynamicResource NwtControlCornerRadius}">
                                 <ContentPresenter x:Name="PART_SelectedContentHost"
                                                   Margin="{TemplateBinding Padding}"

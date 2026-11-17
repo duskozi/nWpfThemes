@@ -6,7 +6,9 @@
 Themes for the standard WPF controls. Add the package, add one line to `App.xaml`, and every
 Button, TextBox, DataGrid, Menu and the rest of the built-in controls pick up the theme.
 
-- Four themes in the box: **Dark**, **Light**, **High Contrast** and **Hardware**.
+- Twelve themes in the box: **Dark**, **Light**, **High Contrast** and **Hardware**, plus eight that
+  match the skins of [nDAWControls](https://github.com/duskozi/nDAWControls): **Alloy**, **Alloy Night**,
+  **Alloy Ember**, **Graphite**, **Studio**, **Retro Hardware**, **Light Classic** and **High Contrast Black**.
 - Themes switch live while the app runs, for the whole app or for one part of a window.
 - Every theme is one `ResourceDictionary` filling the same public keys, so a custom theme is a copy of
   one file with new values.
@@ -22,6 +24,22 @@ These are rendered by CI from the gallery app on every push to `main`.
 | ![Dark theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-dark.png) | ![Light theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-light.png) |
 | **High Contrast** (shown with a dark high contrast palette) | **Hardware** |
 | ![High Contrast theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-high-contrast.png) | ![Hardware theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-hardware.png) |
+
+### nDAWControls skins
+
+These use the same colours, gradients and button bevels as the nDAWControls skins, so standard
+controls sit next to the DAW controls without a seam. Text boxes look like the skin's recessed displays.
+
+| | |
+| --- | --- |
+| **Alloy** | **Alloy Night** |
+| ![Alloy theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-alloy.png) | ![Alloy Night theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-alloy-night.png) |
+| **Alloy Ember** | **Graphite** |
+| ![Alloy Ember theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-alloy-ember.png) | ![Graphite theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-graphite.png) |
+| **Studio** | **Retro Hardware** |
+| ![Studio theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-studio.png) | ![Retro Hardware theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-retro-hardware.png) |
+| **Light Classic** | **High Contrast Black** |
+| ![Light Classic theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-light-classic.png) | ![High Contrast Black theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-high-contrast-black.png) |
 
 ## Install
 
@@ -131,6 +149,10 @@ In XAML, theme part of a window with the attached property:
   border for text inputs, and a dotted outline for items in lists, grids and menus.
 - The Dark, Light and Hardware palettes meet WCAG 2.1 AA: 4.5:1 for text and 3:1 for focus rings,
   input borders and indicators. A unit test checks every pair.
+- The nDAWControls skin themes keep the skins' own colours. Text on every surface, control face,
+  display and accent fill, and the focus ring, meet the same ratios; dim labels, display outlines and
+  the accent on bare metal are as dim as in the skins. In Alloy and Alloy Ember the focus ring is a
+  darker orange than the skin's, so it stays visible on silver.
 
 ## Make your own theme
 
@@ -194,11 +216,16 @@ Every theme defines all of these keys.
 | `NwtControlDisabledBrush` | Brush | The face of a disabled control. |
 | `NwtControlForegroundBrush` | Brush | Text on control faces. |
 | `NwtControlHoverForegroundBrush` | Brush | Text on a control face that is under the mouse or pressed. |
+| `NwtControlBorderBrush` | Brush | The outline of buttons, combo boxes and other control faces. |
 | `NwtControlBevelBrush` | Brush | An inner edge that makes controls look raised. Transparent in flat themes. |
+| `NwtControlPressedBevelBrush` | Brush | The inner edge of a control face while it is pressed. |
+| `NwtControlCheckedBevelBrush` | Brush | The inner edge of a checked toggle button, which is filled with the accent colour. |
+| `NwtControlBevelThickness` | Thickness | How wide the control bevel is on each side, for example `0,1,0,1` for a top light and bottom shade only. |
 | `NwtInputBackgroundBrush` | Brush | The background of text inputs, progress tracks and other displays. |
 | `NwtInputForegroundBrush` | Brush | Text inside inputs and displays. |
 | `NwtInputBorderBrush` | Brush | The border of inputs. |
 | `NwtInputBevelBrush` | Brush | An inner edge that makes inputs look recessed. Transparent in flat themes. |
+| `NwtInputBevelThickness` | Thickness | How wide the input bevel is on each side. |
 | `NwtAccentBrush` | Brush | The accent: checked states, default buttons, progress and slider fill. |
 | `NwtAccentHoverBrush` | Brush | The accent under the mouse. |
 | `NwtAccentPressedBrush` | Brush | The accent when pressed. |
