@@ -79,14 +79,17 @@ public class ControlStyleTests
             .Concat(elements.OfType<ToolBarTray>().SelectMany(t => t.ToolBars))
             .ToArray();
 
-        ContextMenu contextMenu = SampleControls.CreateContextMenu();
-        controls = controls.Append(contextMenu).ToArray();
+        Control[] popups = SampleControls.CreatePopupControls();
+        controls = controls.Concat(popups).ToArray();
 
         root.Measure(new Size(800, double.PositiveInfinity));
         root.Arrange(new Rect(root.DesiredSize));
         root.UpdateLayout();
-        contextMenu.Measure(new Size(300, 300));
-        contextMenu.Arrange(new Rect(contextMenu.DesiredSize));
+        foreach (Control popup in popups)
+        {
+            popup.Measure(new Size(300, 300));
+            popup.Arrange(new Rect(popup.DesiredSize));
+        }
         UiThread.DoEvents();
 
         var failures = controls

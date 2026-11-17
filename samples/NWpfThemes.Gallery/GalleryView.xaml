@@ -142,8 +142,19 @@
 
                 <GroupBox Header="Tooltip and context menu" Style="{StaticResource Card}">
                     <StackPanel>
-                        <ToolTip Content="A tooltip, shown inline" HorizontalAlignment="Left" Margin="0,0,0,10" />
-                        <Button Content="Right-click for a context menu" HorizontalAlignment="Left" ToolTip="Tooltips look like the one above">
+                        <!-- A tooltip cannot sit in a panel, so this preview draws one from the same theme keys. -->
+                        <Border Margin="0,0,0,10"
+                                Padding="8,4"
+                                HorizontalAlignment="Left"
+                                Background="{DynamicResource NwtToolTipBackgroundBrush}"
+                                BorderBrush="{DynamicResource NwtToolTipBorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="{DynamicResource NwtOverlayCornerRadius}">
+                            <TextBlock FontSize="{DynamicResource NwtFontSizeSmall}"
+                                       Foreground="{DynamicResource NwtToolTipForegroundBrush}"
+                                       Text="What a tooltip looks like" />
+                        </Border>
+                        <Button Content="Right-click for a context menu" HorizontalAlignment="Left" ToolTip="A real tooltip">
                             <Button.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Cut" InputGestureText="Ctrl+X" />

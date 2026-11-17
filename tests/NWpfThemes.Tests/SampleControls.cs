@@ -9,9 +9,11 @@ namespace NWpfThemes.Tests;
 internal static class SampleControls
 {
     /// <summary>
-    /// A context menu cannot have a parent, so it is returned separately and laid out on its own.
+    /// Popup controls cannot have a parent, so they are returned separately and laid out on their own.
     /// </summary>
-    public static ContextMenu CreateContextMenu()
+    public static Control[] CreatePopupControls() => new Control[] { CreateContextMenu(), new ToolTip { Content = "Tip" } };
+
+    private static ContextMenu CreateContextMenu()
     {
         var contextMenu = new ContextMenu();
         contextMenu.Items.Add(new MenuItem { Header = "Copy", IsCheckable = true, IsChecked = true });
@@ -84,7 +86,6 @@ internal static class SampleControls
             dataGrid,
             tabs,
             menu,
-            new ToolTip { Content = "Tip" },
             new GroupBox { Header = "Group", Content = "Content" },
             new Expander { Header = "Expander", Content = "Content", IsExpanded = true },
             new Expander { Header = "Up", ExpandDirection = ExpandDirection.Up },
