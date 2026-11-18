@@ -1,0 +1,347 @@
+<!-- TextBox, PasswordBox, ComboBox and ComboBoxItem. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <Style x:Key="NwtTextInputStyle" TargetType="Control">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="{DynamicResource NwtInputBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtInputForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtInputBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource NwtControlBorderThickness}" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtInputFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="Padding" Value="6,0" />
+        <Setter Property="MinHeight" Value="{DynamicResource NwtControlMinHeight}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource NwtValidationErrorTemplate}" />
+    </Style>
+
+    <!--
+      Shared by TextBox and PasswordBox. The focused state draws a thicker accent border, which is the
+      keyboard focus indicator for text inputs.
+    -->
+    <ControlTemplate x:Key="NwtTextInputTemplate" TargetType="Control">
+        <Border x:Name="Bd"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                SnapsToDevicePixels="True">
+            <Grid>
+                <Border BorderBrush="{DynamicResource NwtInputBevelBrush}"
+                        BorderThickness="{DynamicResource NwtInputBevelThickness}"
+                        CornerRadius="{DynamicResource NwtControlCornerRadius}" />
+                <Border x:Name="FocusLine"
+                        BorderBrush="{DynamicResource NwtAccentBrush}"
+                        BorderThickness="0,0,0,2"
+                        CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                        Visibility="Collapsed" />
+                <ScrollViewer x:Name="PART_ContentHost"
+                              Margin="{TemplateBinding Padding}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Focusable="False"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Hidden" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource NwtBorderHoverBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource NwtAccentBrush}" />
+                <Setter TargetName="FocusLine" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtControlDisabledBrush}" />
+                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="TextBox" BasedOn="{StaticResource NwtTextInputStyle}">
+        <Setter Property="CaretBrush" Value="{DynamicResource NwtInputForegroundBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource NwtAccentBrush}" />
+        <Setter Property="SelectionOpacity" Value="0.45" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Template" Value="{StaticResource NwtTextInputTemplate}" />
+    </Style>
+
+    <Style TargetType="PasswordBox" BasedOn="{StaticResource NwtTextInputStyle}">
+        <Setter Property="CaretBrush" Value="{DynamicResource NwtInputForegroundBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource NwtAccentBrush}" />
+        <Setter Property="SelectionOpacity" Value="0.45" />
+        <Setter Property="PasswordChar" Value="●" />
+        <Setter Property="Template" Value="{StaticResource NwtTextInputTemplate}" />
+    </Style>
+
+    <Style x:Key="{x:Static ToolBar.TextBoxStyleKey}" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="MinHeight" Value="26" />
+        <Setter Property="Margin" Value="2,0" />
+    </Style>
+
+    <!-- The button part of a ComboBox: the whole face plus the drop-down arrow. -->
+    <Style x:Key="NwtComboBoxToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="ClickMode" Value="Press" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="28" />
+                            </Grid.ColumnDefinitions>
+                            <Path x:Name="Arrow"
+                                  Grid.Column="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="M 0,0 L 4,4 L 8,0"
+                                  Stroke="{TemplateBinding Foreground}"
+                                  StrokeThickness="1.5" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource NwtBorderHoverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Arrow" Property="RenderTransformOrigin" Value="0.5,0.5" />
+                            <Setter TargetName="Arrow" Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="180" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Arrow" Property="Stroke" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- The text part of an editable ComboBox. -->
+    <Style x:Key="NwtComboBoxEditableTextBoxStyle" TargetType="TextBox">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtInputForegroundBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource NwtInputForegroundBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource NwtAccentBrush}" />
+        <Setter Property="SelectionOpacity" Value="0.45" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <ScrollViewer x:Name="PART_ContentHost"
+                                  Background="Transparent"
+                                  Focusable="False"
+                                  HorizontalScrollBarVisibility="Hidden"
+                                  VerticalScrollBarVisibility="Hidden" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtFocusVisualStyle}" />
+        <Setter Property="Background" Value="{DynamicResource NwtControlBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtControlForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtControlBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource NwtControlBorderThickness}" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="Padding" Value="10,0,4,0" />
+        <Setter Property="MinHeight" Value="{DynamicResource NwtControlMinHeight}" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource NwtValidationErrorTemplate}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid x:Name="Root" SnapsToDevicePixels="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="28" />
+                        </Grid.ColumnDefinitions>
+                        <ToggleButton x:Name="ToggleButton"
+                                      Grid.ColumnSpan="2"
+                                      Background="{TemplateBinding Background}"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                      Style="{StaticResource NwtComboBoxToggleButtonStyle}" />
+                        <Border x:Name="Bevel"
+                                Grid.ColumnSpan="2"
+                                Margin="{TemplateBinding BorderThickness}"
+                                BorderBrush="{DynamicResource NwtControlBevelBrush}"
+                                BorderThickness="{DynamicResource NwtControlBevelThickness}"
+                                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                                IsHitTestVisible="False" />
+                        <ContentPresenter x:Name="ContentSite"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding SelectionBoxItem}"
+                                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                          IsHitTestVisible="False" />
+                        <TextBox x:Name="PART_EditableTextBox"
+                                 Margin="7,0,0,0"
+                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                 FontFamily="{DynamicResource NwtInputFontFamily}"
+                                 IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                 Style="{StaticResource NwtComboBoxEditableTextBoxStyle}"
+                                 Visibility="Collapsed" />
+                        <Popup x:Name="PART_Popup"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                               Placement="Bottom"
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                            <Border x:Name="DropDownBorder"
+                                    MinWidth="{Binding ActualWidth, ElementName=Root}"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                    Margin="0,2,8,8"
+                                    Padding="2"
+                                    Background="{DynamicResource NwtSurfaceBrush}"
+                                    BorderBrush="{DynamicResource NwtBorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="{DynamicResource NwtOverlayCornerRadius}"
+                                    TextElement.FontFamily="{DynamicResource NwtFontFamily}"
+                                    TextElement.Foreground="{DynamicResource NwtForegroundBrush}">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10"
+                                                      Opacity="1"
+                                                      ShadowDepth="2"
+                                                      Color="{DynamicResource NwtShadowColor}" />
+                                </Border.Effect>
+                                <ScrollViewer SnapsToDevicePixels="True">
+                                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasItems" Value="False">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="32" />
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEditable" Value="True">
+                            <Setter Property="IsTabStop" Value="False" />
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtInputBevelBrush}" />
+                            <Setter TargetName="Bevel" Property="BorderThickness" Value="{DynamicResource NwtInputBevelThickness}" />
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter TargetName="ToggleButton" Property="BorderBrush" Value="{DynamicResource NwtAccentBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                            <Setter TargetName="ToggleButton" Property="Background" Value="{DynamicResource NwtControlDisabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEditable" Value="True">
+                <Setter Property="Background" Value="{DynamicResource NwtInputBackgroundBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtInputForegroundBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource NwtInputBorderBrush}" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource NwtControlHoverForegroundBrush}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEditable" Value="False" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{DynamicResource NwtControlHoverBrush}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEditable" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource NwtInputForegroundBrush}" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{x:Static ToolBar.ComboBoxStyleKey}" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+        <Setter Property="MinHeight" Value="26" />
+        <Setter Property="Margin" Value="2,0" />
+    </Style>
+
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtInnerFocusVisualStyle}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+        <Setter Property="Padding" Value="8,5" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border x:Name="Bd"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="2"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtSelectionBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource NwtSelectionForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

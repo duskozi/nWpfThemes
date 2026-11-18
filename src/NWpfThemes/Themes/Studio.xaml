@@ -1,0 +1,110 @@
+<!--
+  Studio theme
+
+  Dark blue-grey with a blue accent.
+  Matches the Studio skin of nDAWControls.
+  Every theme defines the same keys (see ThemeKeys.cs). To make your own theme, copy this
+  file into your app, change the values, and apply it with ThemeManager.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- Identity -->
+    <sys:String x:Key="NwtThemeName">Studio</sys:String>
+
+    <!-- Typography -->
+    <FontFamily x:Key="NwtFontFamily">Segoe UI</FontFamily>
+    <FontFamily x:Key="NwtInputFontFamily">Consolas</FontFamily>
+    <sys:Double x:Key="NwtFontSize">13</sys:Double>
+    <sys:Double x:Key="NwtFontSizeSmall">11.5</sys:Double>
+    <sys:Double x:Key="NwtFontSizeLarge">16</sys:Double>
+
+    <!-- Shape and spacing -->
+    <CornerRadius x:Key="NwtControlCornerRadius">3</CornerRadius>
+    <CornerRadius x:Key="NwtOverlayCornerRadius">3</CornerRadius>
+    <Thickness x:Key="NwtControlBorderThickness">1</Thickness>
+    <Thickness x:Key="NwtControlPadding">10,4</Thickness>
+    <sys:Double x:Key="NwtControlMinHeight">28</sys:Double>
+    <sys:Double x:Key="NwtFocusStrokeThickness">2</sys:Double>
+
+    <!-- Colours -->
+    <Color x:Key="NwtBackgroundColor">#FF131417</Color>
+    <Color x:Key="NwtSurfaceColor">#FF1B1C20</Color>
+    <Color x:Key="NwtForegroundColor">#FFE4E6EA</Color>
+    <Color x:Key="NwtAccentColor">#FF2D8CFF</Color>
+    <Color x:Key="NwtBorderColor">#FF34353B</Color>
+    <Color x:Key="NwtShadowColor">#99000000</Color>
+
+    <!-- Window and text -->
+    <SolidColorBrush x:Key="NwtBackgroundBrush" Color="#FF131417" />
+    <SolidColorBrush x:Key="NwtSurfaceBrush" Color="#FF1B1C20" />
+    <SolidColorBrush x:Key="NwtSurfaceAltBrush" Color="#FF24252A" />
+    <SolidColorBrush x:Key="NwtForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtForegroundSecondaryBrush" Color="#FF8D919A" />
+    <SolidColorBrush x:Key="NwtForegroundDisabledBrush" Color="#FF6B6D71" />
+    <SolidColorBrush x:Key="NwtBorderBrush" Color="#FF34353B" />
+    <SolidColorBrush x:Key="NwtBorderHoverBrush" Color="#FF34353B" />
+    <SolidColorBrush x:Key="NwtSeparatorBrush" Color="#FF34353B" />
+
+    <!-- Control faces -->
+    <SolidColorBrush x:Key="NwtControlBackgroundBrush" Color="#FF24252A" />
+    <SolidColorBrush x:Key="NwtControlHoverBrush" Color="#FF2F3036" />
+    <SolidColorBrush x:Key="NwtControlPressedBrush" Color="#FF131417" />
+    <SolidColorBrush x:Key="NwtControlDisabledBrush" Color="#FF24252A" />
+    <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtControlBorderBrush" Color="#FF34353B" />
+    <LinearGradientBrush x:Key="NwtControlBevelBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#24FFFFFF" Offset="0" /><GradientStop Color="#24FFFFFF" Offset="0.5" /><GradientStop Color="#38000000" Offset="0.5" /><GradientStop Color="#38000000" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtControlPressedBevelBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#24FFFFFF" Offset="0" /><GradientStop Color="#24FFFFFF" Offset="0.5" /><GradientStop Color="#38000000" Offset="0.5" /><GradientStop Color="#38000000" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtControlCheckedBevelBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#73FFFFFF" Offset="0" /><GradientStop Color="#73FFFFFF" Offset="0.5" /><GradientStop Color="#26000000" Offset="0.5" /><GradientStop Color="#26000000" Offset="1" /></LinearGradientBrush>
+    <Thickness x:Key="NwtControlBevelThickness">0,1,0,1</Thickness>
+
+    <!-- Inputs and displays -->
+    <LinearGradientBrush x:Key="NwtInputBackgroundBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF0F1114" Offset="0" /><GradientStop Color="#FF0A0B0D" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="#FF7FD4FF" />
+    <SolidColorBrush x:Key="NwtInputBorderBrush" Color="#FF34353B" />
+    <LinearGradientBrush x:Key="NwtInputBevelBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#73000000" Offset="0" /><GradientStop Color="#73000000" Offset="0.5" /><GradientStop Color="#0FFFFFFF" Offset="0.5" /><GradientStop Color="#0FFFFFFF" Offset="1" /></LinearGradientBrush>
+    <Thickness x:Key="NwtInputBevelThickness">0,1,0,1</Thickness>
+
+    <!-- Accent -->
+    <SolidColorBrush x:Key="NwtAccentBrush" Color="#FF2D8CFF" />
+    <SolidColorBrush x:Key="NwtAccentHoverBrush" Color="#FF4C9DFF" />
+    <SolidColorBrush x:Key="NwtAccentPressedBrush" Color="#FF2B85F2" />
+    <SolidColorBrush x:Key="NwtAccentForegroundBrush" Color="#FF0B1A2E" />
+
+    <!-- Selection, hover and focus -->
+    <SolidColorBrush x:Key="NwtSelectionBrush" Color="#FF1B2433" />
+    <SolidColorBrush x:Key="NwtSelectionForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveBrush" Color="#FF1B212B" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtHoverBrush" Color="#FF2F3036" />
+    <SolidColorBrush x:Key="NwtHoverForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtFocusBrush" Color="#FF2D8CFF" />
+    <SolidColorBrush x:Key="NwtGlyphBrush" Color="#FFE4E6EA" />
+
+    <!-- Tracks and thumbs -->
+    <SolidColorBrush x:Key="NwtTrackBrush" Color="#FF0B0C0E" />
+    <LinearGradientBrush x:Key="NwtThumbBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF5A5D66" Offset="0" /><GradientStop Color="#FF33353C" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtThumbHoverBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF6E7078" Offset="0" /><GradientStop Color="#FF4B4D53" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FF2D8CFF" />
+
+    <!-- Tooltips -->
+    <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF24252A" />
+    <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtToolTipBorderBrush" Color="#FF34353B" />
+
+    <!-- Window chrome -->
+    <SolidColorBrush x:Key="NwtTitleBarBackgroundBrush" Color="#FF1B1C20" />
+    <SolidColorBrush x:Key="NwtTitleBarForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveBackgroundBrush" Color="#FF131417" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveForegroundBrush" Color="#FF8D919A" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverBrush" Color="#FF2F3036" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverForegroundBrush" Color="#FFE4E6EA" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverBrush" Color="#FFC42B1C" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverForegroundBrush" Color="#FFFFFFFF" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="NwtErrorBrush" Color="#FFF3576C" />
+
+</ResourceDictionary>

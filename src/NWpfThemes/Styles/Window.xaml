@@ -1,0 +1,198 @@
+<!-- Window styles and the ThemedWindow template with a themed title bar. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:NWpfThemes">
+
+    <!--
+      Apply to any Window with Style="{DynamicResource NwtWindowStyle}" to get the theme background,
+      text colour and font. ThemedWindow uses it automatically.
+    -->
+    <Style x:Key="NwtWindowStyle" TargetType="Window">
+        <Setter Property="Background" Value="{DynamicResource NwtBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+    </Style>
+
+    <Style x:Key="NwtCaptionButtonStyle" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Width" Value="46" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource NwtCaptionButtonHoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtCaptionButtonHoverForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" Value="0.8" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="NwtCloseButtonStyle" TargetType="Button" BasedOn="{StaticResource NwtCaptionButtonStyle}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource NwtCloseButtonHoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtCloseButtonHoverForegroundBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="local:ThemedWindow" BasedOn="{StaticResource NwtWindowStyle}">
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="32"
+                              CornerRadius="0"
+                              GlassFrameThickness="0"
+                              NonClientFrameEdges="None"
+                              ResizeBorderThickness="6"
+                              UseAeroCaptionButtons="False" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ThemedWindow">
+                    <Border x:Name="Frame"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="32" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border x:Name="TitleBar"
+                                    Background="{DynamicResource NwtTitleBarBackgroundBrush}"
+                                    TextElement.Foreground="{DynamicResource NwtTitleBarForegroundBrush}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="Icon"
+                                           Width="16"
+                                           Height="16"
+                                           Margin="10,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Source="{TemplateBinding Icon}" />
+                                    <TextBlock x:Name="TitleText"
+                                               Grid.Column="1"
+                                               Margin="10,0"
+                                               VerticalAlignment="Center"
+                                               FontSize="{DynamicResource NwtFontSize}"
+                                               Text="{TemplateBinding Title}"
+                                               TextTrimming="CharacterEllipsis" />
+                                    <ContentPresenter Grid.Column="2"
+                                                      VerticalAlignment="Center"
+                                                      Content="{TemplateBinding TitleBarContent}"
+                                                      WindowChrome.IsHitTestVisibleInChrome="True" />
+                                    <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                        <Button x:Name="MinimizeButton"
+                                                AutomationProperties.Name="Minimize"
+                                                Command="{x:Static SystemCommands.MinimizeWindowCommand}"
+                                                Style="{StaticResource NwtCaptionButtonStyle}"
+                                                ToolTip="Minimize">
+                                            <Path Data="M 0,0.5 H 10"
+                                                  SnapsToDevicePixels="True"
+                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                  StrokeThickness="1" />
+                                        </Button>
+                                        <Button x:Name="MaximizeButton"
+                                                AutomationProperties.Name="Maximize"
+                                                Command="{x:Static SystemCommands.MaximizeWindowCommand}"
+                                                Style="{StaticResource NwtCaptionButtonStyle}"
+                                                ToolTip="Maximize">
+                                            <Path Data="M 0.5,0.5 H 9.5 V 9.5 H 0.5 Z"
+                                                  SnapsToDevicePixels="True"
+                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                  StrokeThickness="1" />
+                                        </Button>
+                                        <Button x:Name="RestoreButton"
+                                                AutomationProperties.Name="Restore"
+                                                Command="{x:Static SystemCommands.RestoreWindowCommand}"
+                                                Style="{StaticResource NwtCaptionButtonStyle}"
+                                                ToolTip="Restore"
+                                                Visibility="Collapsed">
+                                            <Path Data="M 2.5,2.5 V 0.5 H 9.5 V 7.5 H 7.5 M 0.5,2.5 H 7.5 V 9.5 H 0.5 Z"
+                                                  SnapsToDevicePixels="True"
+                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                  StrokeThickness="1" />
+                                        </Button>
+                                        <Button x:Name="CloseButton"
+                                                AutomationProperties.Name="Close"
+                                                Command="{x:Static SystemCommands.CloseWindowCommand}"
+                                                Style="{StaticResource NwtCloseButtonStyle}"
+                                                ToolTip="Close">
+                                            <Path Data="M 0,0 L 10,10 M 10,0 L 0,10"
+                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                  StrokeThickness="1" />
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <AdornerDecorator Grid.Row="1">
+                                <ContentPresenter />
+                            </AdornerDecorator>
+                            <ResizeGrip x:Name="Grip"
+                                        Grid.Row="1"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        IsTabStop="False"
+                                        Visibility="Collapsed"
+                                        WindowChrome.ResizeGripDirection="BottomRight" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter TargetName="TitleBar" Property="Background" Value="{DynamicResource NwtTitleBarInactiveBackgroundBrush}" />
+                            <Setter TargetName="TitleBar" Property="TextElement.Foreground" Value="{DynamicResource NwtTitleBarInactiveForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="Icon" Value="{x:Null}">
+                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="Frame" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="Frame" Property="Padding" Value="{Binding MaximizedBorderThickness, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="MaximizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanMinimize">
+                            <Setter TargetName="MaximizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="MinimizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="MaximizeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
+                                <Condition Property="WindowState" Value="Normal" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Grip" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

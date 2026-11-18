@@ -1,0 +1,514 @@
+<!-- TabControl, TabItem, Menu, MenuItem and ContextMenu. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <Style TargetType="TabControl">
+        <Setter Property="Background" Value="{DynamicResource NwtSurfaceBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource NwtControlBorderThickness}" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="Padding" Value="12" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid KeyboardNavigation.TabNavigation="Local" SnapsToDevicePixels="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="Column0" Width="*" />
+                            <ColumnDefinition x:Name="Column1" Width="0" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="Row0" Height="Auto" />
+                            <RowDefinition x:Name="Row1" Height="*" />
+                        </Grid.RowDefinitions>
+                        <TabPanel x:Name="HeaderPanel"
+                                  Margin="0,0,0,4"
+                                  Panel.ZIndex="1"
+                                  Background="Transparent"
+                                  IsItemsHost="True"
+                                  KeyboardNavigation.TabIndex="1" />
+                        <Border x:Name="ContentPanel"
+                                Grid.Row="1"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                KeyboardNavigation.TabIndex="2"
+                                KeyboardNavigation.TabNavigation="Local">
+                            <Border BorderBrush="{DynamicResource NwtControlBevelBrush}"
+                                    BorderThickness="{DynamicResource NwtControlBevelThickness}"
+                                    CornerRadius="{DynamicResource NwtControlCornerRadius}">
+                                <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  ContentSource="SelectedContent"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="HeaderPanel" Property="Margin" Value="0,4,0,0" />
+                            <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="Row0" Property="Height" Value="*" />
+                            <Setter TargetName="Row1" Property="Height" Value="Auto" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="HeaderPanel" Property="Margin" Value="0,0,4,0" />
+                            <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="ContentPanel" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="Column0" Property="Width" Value="Auto" />
+                            <Setter TargetName="Column1" Property="Width" Value="*" />
+                            <Setter TargetName="Row0" Property="Height" Value="*" />
+                            <Setter TargetName="Row1" Property="Height" Value="0" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter TargetName="HeaderPanel" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="HeaderPanel" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="HeaderPanel" Property="Margin" Value="4,0,0,0" />
+                            <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="ContentPanel" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="Column0" Property="Width" Value="*" />
+                            <Setter TargetName="Column1" Property="Width" Value="Auto" />
+                            <Setter TargetName="Row0" Property="Height" Value="*" />
+                            <Setter TargetName="Row1" Property="Height" Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Tabs are marked by an accent bar on the side that faces the content. -->
+    <Style TargetType="TabItem">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtFocusVisualStyle}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundSecondaryBrush}" />
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Grid x:Name="Root" Margin="0,0,2,0" SnapsToDevicePixels="True">
+                        <Border x:Name="Bd"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{DynamicResource NwtControlCornerRadius}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              ContentSource="Header"
+                                              Focusable="False"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <Border x:Name="Indicator"
+                                Height="3"
+                                Margin="8,0"
+                                VerticalAlignment="Bottom"
+                                Background="{DynamicResource NwtAccentBrush}"
+                                CornerRadius="1.5"
+                                Visibility="Hidden" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Panel.ZIndex" Value="1" />
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+                            <Setter TargetName="Indicator" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
+                        </MultiTrigger>
+                        <Trigger Property="TabStripPlacement" Value="Bottom">
+                            <Setter TargetName="Indicator" Property="VerticalAlignment" Value="Top" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Left">
+                            <Setter TargetName="Root" Property="Margin" Value="0,0,0,2" />
+                            <Setter TargetName="Indicator" Property="Height" Value="NaN" />
+                            <Setter TargetName="Indicator" Property="Width" Value="3" />
+                            <Setter TargetName="Indicator" Property="Margin" Value="0,6" />
+                            <Setter TargetName="Indicator" Property="VerticalAlignment" Value="Stretch" />
+                            <Setter TargetName="Indicator" Property="HorizontalAlignment" Value="Right" />
+                        </Trigger>
+                        <Trigger Property="TabStripPlacement" Value="Right">
+                            <Setter TargetName="Root" Property="Margin" Value="0,0,0,2" />
+                            <Setter TargetName="Indicator" Property="Height" Value="NaN" />
+                            <Setter TargetName="Indicator" Property="Width" Value="3" />
+                            <Setter TargetName="Indicator" Property="Margin" Value="0,6" />
+                            <Setter TargetName="Indicator" Property="VerticalAlignment" Value="Stretch" />
+                            <Setter TargetName="Indicator" Property="HorizontalAlignment" Value="Left" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Menu">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Menu">
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="Separator">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Border Height="1"
+                            Margin="8,4"
+                            Background="{DynamicResource NwtSeparatorBrush}"
+                            SnapsToDevicePixels="True" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- A top-level menu item that opens a submenu. -->
+    <ControlTemplate x:Key="NwtMenuItemTopLevelHeaderTemplate" TargetType="MenuItem">
+        <Border x:Name="Bd"
+                Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                SnapsToDevicePixels="True">
+            <Grid>
+                <ContentPresenter VerticalAlignment="Center"
+                                  ContentSource="Header"
+                                  RecognizesAccessKey="True" />
+                <Popup x:Name="PART_Popup"
+                       AllowsTransparency="True"
+                       Focusable="False"
+                       HorizontalOffset="-4"
+                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                       Placement="Bottom"
+                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                       VerticalOffset="6">
+                    <Border x:Name="SubmenuBorder"
+                                    Margin="0,0,8,8"
+                                    Padding="4"
+                                    Background="{DynamicResource NwtSurfaceBrush}"
+                                    BorderBrush="{DynamicResource NwtBorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="{DynamicResource NwtOverlayCornerRadius}"
+                                    TextElement.Foreground="{DynamicResource NwtForegroundBrush}">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10"
+                                                      Opacity="1"
+                                                      ShadowDepth="2"
+                                                      Color="{DynamicResource NwtShadowColor}" />
+                                </Border.Effect>
+                                <ScrollViewer CanContentScroll="True">
+                                    <ItemsPresenter Grid.IsSharedSizeScope="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                    KeyboardNavigation.TabNavigation="Cycle" />
+                                </ScrollViewer>
+                            </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsSubmenuOpen" Value="True">
+                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- A top-level menu item without a submenu. -->
+    <ControlTemplate x:Key="NwtMenuItemTopLevelItemTemplate" TargetType="MenuItem">
+        <Border x:Name="Bd"
+                Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                SnapsToDevicePixels="True">
+            <ContentPresenter VerticalAlignment="Center"
+                              ContentSource="Header"
+                              RecognizesAccessKey="True" />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- An item inside a submenu. -->
+    <ControlTemplate x:Key="NwtMenuItemSubmenuItemTemplate" TargetType="MenuItem">
+        <Border x:Name="Bd"
+                Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                CornerRadius="2"
+                SnapsToDevicePixels="True">
+            <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="24" SharedSizeGroup="NwtMenuItemIcon" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="NwtMenuItemGesture" />
+                        <ColumnDefinition Width="18" />
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter x:Name="Icon"
+                                      Width="16"
+                                      Height="16"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      ContentSource="Icon" />
+                    <Path x:Name="CheckMark"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Data="M 0,4.5 L 3.5,8 L 10,1"
+                          Stroke="{TemplateBinding Foreground}"
+                          StrokeEndLineCap="Round"
+                          StrokeStartLineCap="Round"
+                          StrokeThickness="2"
+                          Visibility="Collapsed" />
+                    <ContentPresenter Grid.Column="1"
+                                      Margin="6,0,16,0"
+                                      VerticalAlignment="Center"
+                                      ContentSource="Header"
+                                      RecognizesAccessKey="True" />
+                    <TextBlock x:Name="Gesture"
+                               Grid.Column="2"
+                               Margin="8,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="{TemplateBinding InputGestureText}" />
+                    
+                </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- An item inside a submenu that opens another submenu. -->
+    <ControlTemplate x:Key="NwtMenuItemSubmenuHeaderTemplate" TargetType="MenuItem">
+        <Border x:Name="Bd"
+                Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                CornerRadius="2"
+                SnapsToDevicePixels="True">
+            <Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="24" SharedSizeGroup="NwtMenuItemIcon" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="NwtMenuItemGesture" />
+                        <ColumnDefinition Width="18" />
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter x:Name="Icon"
+                                      Width="16"
+                                      Height="16"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      ContentSource="Icon" />
+                    <Path x:Name="CheckMark"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Data="M 0,4.5 L 3.5,8 L 10,1"
+                          Stroke="{TemplateBinding Foreground}"
+                          StrokeEndLineCap="Round"
+                          StrokeStartLineCap="Round"
+                          StrokeThickness="2"
+                          Visibility="Collapsed" />
+                    <ContentPresenter Grid.Column="1"
+                                      Margin="6,0,16,0"
+                                      VerticalAlignment="Center"
+                                      ContentSource="Header"
+                                      RecognizesAccessKey="True" />
+                    <TextBlock x:Name="Gesture"
+                               Grid.Column="2"
+                               Margin="8,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="{TemplateBinding InputGestureText}" />
+                    <Path Grid.Column="3"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Data="M 0,0 L 4,4 L 0,8"
+                          Stroke="{TemplateBinding Foreground}"
+                          StrokeThickness="1.5" />
+                </Grid>
+                <Popup x:Name="PART_Popup"
+                       AllowsTransparency="True"
+                       Focusable="False"
+                       HorizontalOffset="2"
+                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                       Placement="Right"
+                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                       VerticalOffset="-5">
+                    <Border x:Name="SubmenuBorder"
+                                    Margin="0,0,8,8"
+                                    Padding="4"
+                                    Background="{DynamicResource NwtSurfaceBrush}"
+                                    BorderBrush="{DynamicResource NwtBorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="{DynamicResource NwtOverlayCornerRadius}"
+                                    TextElement.Foreground="{DynamicResource NwtForegroundBrush}">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10"
+                                                      Opacity="1"
+                                                      ShadowDepth="2"
+                                                      Color="{DynamicResource NwtShadowColor}" />
+                                </Border.Effect>
+                                <ScrollViewer CanContentScroll="True">
+                                    <ItemsPresenter Grid.IsSharedSizeScope="True"
+                                                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                    KeyboardNavigation.TabNavigation="Cycle" />
+                                </ScrollViewer>
+                            </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="MenuItem">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="Padding" Value="4,6" />
+        <Setter Property="MinWidth" Value="120" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="Template" Value="{StaticResource NwtMenuItemSubmenuItemTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Padding" Value="10,4" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Template" Value="{StaticResource NwtMenuItemTopLevelHeaderTemplate}" />
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Padding" Value="10,4" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Template" Value="{StaticResource NwtMenuItemTopLevelItemTemplate}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="Template" Value="{StaticResource NwtMenuItemSubmenuHeaderTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ContextMenu">
+        <Setter Property="Background" Value="{DynamicResource NwtSurfaceBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+        <Setter Property="HasDropShadow" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Border x:Name="Bd"
+                            Margin="0,0,8,8"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{DynamicResource NwtOverlayCornerRadius}">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10"
+                                              Opacity="1"
+                                              ShadowDepth="2"
+                                              Color="{DynamicResource NwtShadowColor}" />
+                        </Border.Effect>
+                        <ScrollViewer CanContentScroll="True">
+                            <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasDropShadow" Value="False">
+                            <Setter TargetName="Bd" Property="Margin" Value="0" />
+                            <Setter TargetName="Bd" Property="Effect" Value="{x:Null}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

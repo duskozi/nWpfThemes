@@ -1,0 +1,35 @@
+<nwt:ThemedWindow x:Class="NWpfThemes.Gallery.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:local="clr-namespace:NWpfThemes.Gallery"
+                  xmlns:nwt="https://github.com/duskozi/nWpfThemes"
+                  Title="NWpfThemes Gallery"
+                  Width="1320"
+                  Height="900"
+                  MinWidth="640"
+                  MinHeight="400"
+                  ResizeMode="CanResizeWithGrip"
+                  WindowStartupLocation="CenterScreen">
+    <nwt:ThemedWindow.TitleBarContent>
+        <StackPanel Margin="0,0,8,0" Orientation="Horizontal">
+            <TextBlock Margin="0,0,8,0" VerticalAlignment="Center" Text="Theme" />
+            <ComboBox x:Name="ThemePicker"
+                      Width="150"
+                      MinHeight="24"
+                      AutomationProperties.Name="Theme"
+                      DisplayMemberPath="Name"
+                      SelectionChanged="OnThemeSelected" />
+            <CheckBox x:Name="SimulateHighContrast"
+                      Margin="12,0,0,0"
+                      Checked="OnSimulateChanged"
+                      Content="Simulate high contrast colours"
+                      IsChecked="True"
+                      Unchecked="OnSimulateChanged"
+                      Visibility="Collapsed" />
+        </StackPanel>
+    </nwt:ThemedWindow.TitleBarContent>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <local:GalleryView MinWidth="1100" />
+    </ScrollViewer>
+</nwt:ThemedWindow>

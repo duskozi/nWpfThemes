@@ -1,0 +1,23 @@
+<!--
+  All control styles. Merge this once, next to one theme dictionary:
+
+    <ResourceDictionary Source="/NWpfThemes;component/Themes/Dark.xaml" />
+    <ResourceDictionary Source="/NWpfThemes;component/Styles/Controls.xaml" />
+
+  or use <nwt:ThemeResources Theme="Dark" />, which does both.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Common.xaml" />
+        <ResourceDictionary Source="Buttons.xaml" />
+        <ResourceDictionary Source="Inputs.xaml" />
+        <ResourceDictionary Source="Range.xaml" />
+        <ResourceDictionary Source="Scrolling.xaml" />
+        <ResourceDictionary Source="Lists.xaml" />
+        <ResourceDictionary Source="DataGrid.xaml" />
+        <ResourceDictionary Source="Navigation.xaml" />
+        <ResourceDictionary Source="Containers.xaml" />
+        <ResourceDictionary Source="Window.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

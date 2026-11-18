@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-windows;net10.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>NWpfThemes</RootNamespace>
+    <AssemblyName>NWpfThemes</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <PackageId>NWpfThemes</PackageId>
+    <Title>NWpfThemes</Title>
+    <Description>Themes for the standard WPF controls: dark, light, high contrast and a hardware-style theme. Every theme fills the same public resource keys and every style uses DynamicResource, so themes switch live and custom themes are a single file.</Description>
+    <PackageTags>wpf;theme;themes;dark;light;high-contrast;styles;xaml</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/duskozi/nWpfThemes</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+</Project>
