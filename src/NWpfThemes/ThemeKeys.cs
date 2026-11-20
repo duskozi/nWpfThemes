@@ -213,6 +213,9 @@ public static class ThemeKeys
     /// <summary>The bar that marks the selected tab. Transparent when the selected tab is marked by its background only. Type: <see cref="Brush"/>.</summary>
     public const string TabIndicatorBrush = "NwtTabIndicatorBrush";
 
+    /// <summary>The translucent fill over the blurred backdrop of glass panels (see <see cref="Glass"/>). Type: <see cref="Brush"/>.</summary>
+    public const string GlassTintBrush = "NwtGlassTintBrush";
+
     /// <summary>The tooltip background. Type: <see cref="Brush"/>.</summary>
     public const string ToolTipBackgroundBrush = "NwtToolTipBackgroundBrush";
 
@@ -318,6 +321,7 @@ public static class ThemeKeys
         new(ThumbPressedBrush, typeof(Brush)),
         new(TabSelectedBrush, typeof(Brush)),
         new(TabIndicatorBrush, typeof(Brush)),
+        new(GlassTintBrush, typeof(Brush)),
         new(ToolTipBackgroundBrush, typeof(Brush)),
         new(ToolTipForegroundBrush, typeof(Brush)),
         new(ToolTipBorderBrush, typeof(Brush)),

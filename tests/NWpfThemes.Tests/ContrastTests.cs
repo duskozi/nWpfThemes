@@ -109,6 +109,37 @@ public class ContrastTests
         Assert.Empty(failures);
     }
 
+    public static TheoryData<string> ThemesWithFixedColours()
+    {
+        var data = new TheoryData<string>();
+        foreach (Theme theme in Theme.BuiltInThemes)
+        {
+            if (!ReferenceEquals(theme, Theme.HighContrast))
+            {
+                data.Add(theme.Name);
+            }
+        }
+
+        return data;
+    }
+
+    /// <summary>A glass panel can sit over any backdrop, so its tint must keep text readable over black and white alike.</summary>
+    [Theory]
+    [MemberData(nameof(ThemesWithFixedColours))]
+    public void Glass_tint_keeps_text_readable_over_any_backdrop(string name) => UiThread.Run(() =>
+    {
+        ResourceDictionary dictionary = ThemeManager.Find(name)!.CreateDictionary();
+        Color tint = ((SolidColorBrush)dictionary[ThemeKeys.GlassTintBrush]).Color;
+
+        double worst = (
+            from backdrop in new[] { System.Windows.Media.Colors.Black, System.Windows.Media.Colors.White }
+            let background = Over(tint, backdrop)
+            from f in Colors((Brush)dictionary[ThemeKeys.ForegroundBrush])
+            select Ratio(Over(f, background), background)).Min();
+
+        Assert.True(worst >= 4.5, $"Text on the glass tint: {worst:0.00} (needs 4.5)");
+    });
+
     [Fact]
     public void Contrast_ratio_matches_known_values()
     {

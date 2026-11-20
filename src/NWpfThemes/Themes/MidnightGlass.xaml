@@ -101,6 +101,9 @@
     <LinearGradientBrush x:Key="NwtTabSelectedBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#2EFFFFFF" Offset="0" /><GradientStop Color="#14FFFFFF" Offset="1" /></LinearGradientBrush>
     <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="Transparent" />
 
+    <!-- Glass: the surface colour at about 72 %, so a blurred backdrop shows through -->
+    <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#B8181A30" />
+
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF1E2140" />
     <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="#FFE6E8F5" />

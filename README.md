@@ -147,6 +147,31 @@ In XAML, theme part of a window with the attached property:
 | `NwtFocusVisualStyle` | The keyboard focus ring, for your own controls. |
 | `NwtDataGridCheckBoxStyle`, `NwtDataGridEditingCheckBoxStyle` | `ElementStyle` and `EditingElementStyle` for a `DataGridCheckBoxColumn`, whose check boxes otherwise keep the Windows look. |
 
+## Frosted glass
+
+Group boxes, expanders and tab pages can show a blurred copy of what is behind them. Point
+`nwt:Glass.Backdrop` at the element that draws the background art, on a container of the panels:
+
+```xml
+<Grid>
+    <Image x:Name="Art" Source="wallpaper.jpg" Stretch="UniformToFill" />
+    <StackPanel nwt:Glass.Backdrop="{Binding ElementName=Art}" nwt:Glass.BlurRadius="24">
+        <GroupBox Header="Frosted">...</GroupBox>
+    </StackPanel>
+</Grid>
+```
+
+- The blur is drawn by the library, not by Windows, so it looks the same on Windows 10 and 11 and in
+  any window, with no flicker or lag while the window moves.
+- It is fast: the backdrop is rendered once at a quarter of its size, blurred, and shared by every panel
+  over it. Moving or scrolling a panel only shows a different part of that image. The image is rebuilt
+  when the backdrop changes size or the theme changes; call `Glass.Refresh(backdrop)` if it changes
+  in other ways, such as an animation.
+- The backdrop must sit behind the panels, not contain them.
+- The tint over the blur is `NwtGlassTintBrush`. Midnight Glass lets the most show through; the high
+  contrast themes use an opaque tint, so they never show a blur. Without a backdrop, panels look as usual.
+- In your own templates, add a `nwt:GlassBackdropLayer` under the content.
+
 ## High contrast and accessibility
 
 - When Windows high contrast is on, `ThemeManager` uses the **High Contrast** theme everywhere and
@@ -258,6 +283,7 @@ Every theme defines all of these keys.
 | `NwtThumbPressedBrush` | Brush | A scroll bar thumb being dragged. |
 | `NwtTabSelectedBrush` | Brush | The background of the selected tab. Transparent when tabs are marked by the indicator only. |
 | `NwtTabIndicatorBrush` | Brush | The bar that marks the selected tab. Transparent when the selected tab is marked by its background only. |
+| `NwtGlassTintBrush` | Brush | The translucent fill over the blurred backdrop of glass panels (see Glass). |
 | `NwtToolTipBackgroundBrush` | Brush | The tooltip background. |
 | `NwtToolTipForegroundBrush` | Brush | The tooltip text. |
 | `NwtToolTipBorderBrush` | Brush | The tooltip border. |

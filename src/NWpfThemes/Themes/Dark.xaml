@@ -97,6 +97,9 @@
     <SolidColorBrush x:Key="NwtTabSelectedBrush" Color="Transparent" />
     <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="#FF2D6BD6" />
 
+    <!-- Glass: the surface colour at 80 %, used only when an app sets a blurred backdrop -->
+    <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#CC2B2D31" />
+
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF111214" />
     <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="#FFF2F3F5" />

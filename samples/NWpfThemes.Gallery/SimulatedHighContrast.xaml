@@ -96,6 +96,9 @@
     <SolidColorBrush x:Key="NwtTabSelectedBrush" Color="Transparent" />
     <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="#FF1AEBFF" />
 
+    <!-- Glass: opaque, so high contrast never shows a blurred backdrop -->
+    <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#FF000000" />
+
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF000000" />
     <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="#FFFFFF00" />
