@@ -15,6 +15,8 @@
     <!-- Typography -->
     <FontFamily x:Key="NwtFontFamily">Segoe UI</FontFamily>
     <FontFamily x:Key="NwtInputFontFamily">Segoe UI</FontFamily>
+    <FontFamily x:Key="NwtHeaderFontFamily">Segoe UI</FontFamily>
+    <FontWeight x:Key="NwtHeaderFontWeight">SemiBold</FontWeight>
     <sys:Double x:Key="NwtFontSize">13</sys:Double>
     <sys:Double x:Key="NwtFontSizeSmall">11.5</sys:Double>
     <sys:Double x:Key="NwtFontSizeLarge">16</sys:Double>
@@ -22,10 +24,13 @@
     <!-- Shape and spacing -->
     <CornerRadius x:Key="NwtControlCornerRadius">4</CornerRadius>
     <CornerRadius x:Key="NwtOverlayCornerRadius">6</CornerRadius>
+    <CornerRadius x:Key="NwtPanelCornerRadius">4</CornerRadius>
     <Thickness x:Key="NwtControlBorderThickness">1</Thickness>
     <Thickness x:Key="NwtControlPadding">10,5</Thickness>
     <sys:Double x:Key="NwtControlMinHeight">30</sys:Double>
+    <sys:Double x:Key="NwtProgressBarThickness">10</sys:Double>
     <sys:Double x:Key="NwtFocusStrokeThickness">2</sys:Double>
+    <sys:Double x:Key="NwtFocusCornerRadius">3</sys:Double>
 
     <!-- Colours -->
     <Color x:Key="NwtBackgroundColor">#FF1E1F22</Color>
@@ -87,6 +92,10 @@
     <SolidColorBrush x:Key="NwtThumbBrush" Color="#FF6D7178" />
     <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="#FF8A8E96" />
     <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FFA3A7AE" />
+
+    <!-- Tabs -->
+    <SolidColorBrush x:Key="NwtTabSelectedBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="#FF2D6BD6" />
 
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF111214" />

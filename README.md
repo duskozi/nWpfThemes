@@ -6,9 +6,10 @@
 Themes for the standard WPF controls. Add the package, add one line to `App.xaml`, and every
 Button, TextBox, DataGrid, Menu and the rest of the built-in controls pick up the theme.
 
-- Twelve themes in the box: **Dark**, **Light**, **High Contrast** and **Hardware**, plus eight that
-  match the skins of [nDAWControls](https://github.com/duskozi/nDAWControls): **Alloy**, **Alloy Night**,
-  **Alloy Ember**, **Graphite**, **Studio**, **Retro Hardware**, **Light Classic** and **High Contrast Black**.
+- Thirteen themes in the box: **Dark**, **Light**, **High Contrast**, **Hardware** and **Midnight Glass**,
+  plus eight that match the skins of [nDAWControls](https://github.com/duskozi/nDAWControls): **Alloy**,
+  **Alloy Night**, **Alloy Ember**, **Graphite**, **Studio**, **Retro Hardware**, **Light Classic** and
+  **High Contrast Black**.
 - Themes switch live while the app runs, for the whole app or for one part of a window.
 - Every theme is one `ResourceDictionary` filling the same public keys, so a custom theme is a copy of
   one file with new values.
@@ -24,6 +25,14 @@ These are rendered by CI from the gallery app on every push to `main`.
 | ![Dark theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-dark.png) | ![Light theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-light.png) |
 | **High Contrast** (shown with a dark high contrast palette) | **Hardware** |
 | ![High Contrast theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-high-contrast.png) | ![Hardware theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-hardware.png) |
+
+### Midnight Glass
+
+A dark dashboard look: deep indigo backgrounds with a soft gradient, frosted glass panels with thin
+light edges and large rounded corners, pill-shaped buttons, inputs and tabs, muted lavender accents,
+monospaced headers and slim progress bars.
+
+![Midnight Glass theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-midnight-glass.png)
 
 ### nDAWControls skins
 
@@ -186,15 +195,20 @@ Every theme defines all of these keys.
 | `NwtThemeName` | String | The display name of the theme. Every theme dictionary defines it; ThemeManager uses it to find the active theme. |
 | `NwtFontFamily` | FontFamily | The font used for text in controls. |
 | `NwtInputFontFamily` | FontFamily | The font used inside text inputs and displays. |
+| `NwtHeaderFontFamily` | FontFamily | The font of group box titles, expander headers and column headers. |
+| `NwtHeaderFontWeight` | FontWeight | The weight of group box titles and column headers. |
 | `NwtFontSize` | Double | The normal font size. |
 | `NwtFontSizeSmall` | Double | A smaller font size for secondary text. |
 | `NwtFontSizeLarge` | Double | A larger font size for headers. |
 | `NwtControlCornerRadius` | CornerRadius | The corner radius of buttons, inputs and other controls. |
 | `NwtOverlayCornerRadius` | CornerRadius | The corner radius of menus, popups and tooltips. |
+| `NwtPanelCornerRadius` | CornerRadius | The corner radius of panels: group boxes, expanders, lists, trees, data grids, tab pages and toolbars. |
 | `NwtControlBorderThickness` | Thickness | The border thickness of controls. |
 | `NwtControlPadding` | Thickness | The inner padding of buttons and inputs. |
 | `NwtControlMinHeight` | Double | The minimum height of buttons, inputs and combo boxes. |
+| `NwtProgressBarThickness` | Double | The height of horizontal progress bars (the width of vertical ones). |
 | `NwtFocusStrokeThickness` | Double | The stroke thickness of the keyboard focus indicator. |
+| `NwtFocusCornerRadius` | Double | The corner radius of the keyboard focus ring drawn around buttons and other controls. |
 | `NwtBackgroundColor` | Color | The window background colour. |
 | `NwtSurfaceColor` | Color | The colour of panels, menus and popups. |
 | `NwtForegroundColor` | Color | The main text colour. |
@@ -242,6 +256,8 @@ Every theme defines all of these keys.
 | `NwtThumbBrush` | Brush | Scroll bar thumbs. |
 | `NwtThumbHoverBrush` | Brush | A scroll bar thumb under the mouse. |
 | `NwtThumbPressedBrush` | Brush | A scroll bar thumb being dragged. |
+| `NwtTabSelectedBrush` | Brush | The background of the selected tab. Transparent when tabs are marked by the indicator only. |
+| `NwtTabIndicatorBrush` | Brush | The bar that marks the selected tab. Transparent when the selected tab is marked by its background only. |
 | `NwtToolTipBackgroundBrush` | Brush | The tooltip background. |
 | `NwtToolTipForegroundBrush` | Brush | The tooltip text. |
 | `NwtToolTipBorderBrush` | Brush | The tooltip border. |

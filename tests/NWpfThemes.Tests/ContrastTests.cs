@@ -9,7 +9,8 @@ namespace NWpfThemes.Tests;
 
 /// <summary>
 /// Checks text and indicator colours against WCAG 2.1 AA: 4.5:1 for text and 3:1 for focus rings,
-/// input borders and other indicators. Gradients are checked stop by stop.
+/// input borders and other indicators. Gradients are checked stop by stop. Translucent colours are
+/// blended over every colour of the window background and of panels, since they can sit on either.
 /// </summary>
 public class ContrastTests
 {
@@ -60,7 +61,7 @@ public class ContrastTests
         (ThemeKeys.AccentBrush, ThemeKeys.BackgroundBrush),
     };
 
-    public static TheoryData<string> FixedPaletteThemes() => new() { Theme.Dark.Name, Theme.Light.Name, Theme.Hardware.Name };
+    public static TheoryData<string> FixedPaletteThemes() => new() { Theme.Dark.Name, Theme.Light.Name, Theme.Hardware.Name, Theme.MidnightGlass.Name };
 
     public static TheoryData<string> SkinThemes() => new()
     {
@@ -80,6 +81,11 @@ public class ContrastTests
     {
         ResourceDictionary dictionary = ThemeManager.Find(name)!.CreateDictionary();
 
+        Color[] backdrops = Colors((Brush)dictionary[ThemeKeys.BackgroundBrush])
+            .Concat(Colors((Brush)dictionary[ThemeKeys.SurfaceBrush]))
+            .Where(c => c.A == 255)
+            .ToArray();
+
         var failures = new List<string>();
         foreach ((string fg, string bg, double minimum) in Pairs)
         {
@@ -88,9 +94,12 @@ public class ContrastTests
                 continue;
             }
 
-            double worst = Colors((Brush)dictionary[fg])
-                .SelectMany(f => Colors((Brush)dictionary[bg]).Select(b => Ratio(f, b)))
-                .Min();
+            double worst = (
+                from backdrop in backdrops
+                from b in Colors((Brush)dictionary[bg])
+                let background = Over(b, backdrop)
+                from f in Colors((Brush)dictionary[fg])
+                select Ratio(Over(f, background), background)).Min();
             if (worst < minimum)
             {
                 failures.Add($"{fg} on {bg}: {worst:0.00} (needs {minimum})");
@@ -107,12 +116,29 @@ public class ContrastTests
         Assert.Equal(1, Ratio(System.Windows.Media.Colors.Gray, System.Windows.Media.Colors.Gray), 2);
     }
 
+    [Fact]
+    public void Translucent_colours_are_blended_over_the_backdrop()
+    {
+        Color half = Over(Color.FromArgb(128, 255, 255, 255), System.Windows.Media.Colors.Black);
+
+        Assert.Equal(Color.FromRgb(128, 128, 128), half);
+        Assert.Equal(System.Windows.Media.Colors.Red, Over(System.Windows.Media.Colors.Red, System.Windows.Media.Colors.Blue));
+    }
+
     private static IEnumerable<Color> Colors(Brush brush) => brush switch
     {
         SolidColorBrush solid => new[] { solid.Color },
         GradientBrush gradient => gradient.GradientStops.Select(s => s.Color),
         _ => throw new NotSupportedException(brush.GetType().Name),
     };
+
+    /// <summary>Blends a colour over an opaque one, as it shows on screen.</summary>
+    internal static Color Over(Color top, Color bottom)
+    {
+        double a = top.A / 255.0;
+        byte Mix(byte t, byte b) => (byte)Math.Round((t * a) + (b * (1 - a)));
+        return Color.FromRgb(Mix(top.R, bottom.R), Mix(top.G, bottom.G), Mix(top.B, bottom.B));
+    }
 
     internal static double Ratio(Color a, Color b)
     {

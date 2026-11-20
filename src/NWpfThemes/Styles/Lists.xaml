@@ -9,7 +9,7 @@
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                 SnapsToDevicePixels="True">
             <ScrollViewer Padding="{TemplateBinding Padding}" Focusable="False">
                 <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -181,7 +181,8 @@
         <Setter Property="Foreground" Value="{DynamicResource NwtForegroundSecondaryBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NwtSeparatorBrush}" />
         <Setter Property="BorderThickness" Value="0,0,1,1" />
-        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtHeaderFontFamily}" />
+        <Setter Property="FontWeight" Value="{DynamicResource NwtHeaderFontWeight}" />
         <Setter Property="Padding" Value="8,5" />
         <Setter Property="MinHeight" Value="28" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -256,7 +257,7 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
                         <ScrollViewer Padding="{TemplateBinding Padding}" Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -335,7 +336,7 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
                         <ScrollViewer x:Name="ScrollHost"
                                       Padding="{TemplateBinding Padding}"

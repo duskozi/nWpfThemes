@@ -16,6 +16,8 @@
     <!-- Typography -->
     <FontFamily x:Key="NwtFontFamily">Bahnschrift, Segoe UI</FontFamily>
     <FontFamily x:Key="NwtInputFontFamily">Cascadia Mono, Consolas, Courier New</FontFamily>
+    <FontFamily x:Key="NwtHeaderFontFamily">Bahnschrift, Segoe UI</FontFamily>
+    <FontWeight x:Key="NwtHeaderFontWeight">SemiBold</FontWeight>
     <sys:Double x:Key="NwtFontSize">13</sys:Double>
     <sys:Double x:Key="NwtFontSizeSmall">11.5</sys:Double>
     <sys:Double x:Key="NwtFontSizeLarge">16</sys:Double>
@@ -23,10 +25,13 @@
     <!-- Shape and spacing -->
     <CornerRadius x:Key="NwtControlCornerRadius">3</CornerRadius>
     <CornerRadius x:Key="NwtOverlayCornerRadius">3</CornerRadius>
+    <CornerRadius x:Key="NwtPanelCornerRadius">3</CornerRadius>
     <Thickness x:Key="NwtControlBorderThickness">1</Thickness>
     <Thickness x:Key="NwtControlPadding">12,5</Thickness>
     <sys:Double x:Key="NwtControlMinHeight">30</sys:Double>
+    <sys:Double x:Key="NwtProgressBarThickness">10</sys:Double>
     <sys:Double x:Key="NwtFocusStrokeThickness">2</sys:Double>
+    <sys:Double x:Key="NwtFocusCornerRadius">3</sys:Double>
 
     <!-- Colours -->
     <Color x:Key="NwtBackgroundColor">#FF26282B</Color>
@@ -88,6 +93,10 @@
     <LinearGradientBrush x:Key="NwtThumbBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#FFB9BDC2" Offset="0" /><GradientStop Color="#FF8E9399" Offset="1" /></LinearGradientBrush>
     <LinearGradientBrush x:Key="NwtThumbHoverBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#FFD5D8DC" Offset="0" /><GradientStop Color="#FFA7ABB1" Offset="1" /></LinearGradientBrush>
     <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FFE6E8EA" />
+
+    <!-- Tabs -->
+    <SolidColorBrush x:Key="NwtTabSelectedBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="#FFFFA51F" />
 
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF17120A" />

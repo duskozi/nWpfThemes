@@ -37,13 +37,13 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                                CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                                 KeyboardNavigation.DirectionalNavigation="Contained"
                                 KeyboardNavigation.TabIndex="2"
                                 KeyboardNavigation.TabNavigation="Local">
                             <Border BorderBrush="{DynamicResource NwtControlBevelBrush}"
                                     BorderThickness="{DynamicResource NwtControlBevelThickness}"
-                                    CornerRadius="{DynamicResource NwtControlCornerRadius}">
+                                    CornerRadius="{DynamicResource NwtPanelCornerRadius}">
                                 <ContentPresenter x:Name="PART_SelectedContentHost"
                                                   Margin="{TemplateBinding Padding}"
                                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -92,7 +92,7 @@
         </Setter>
     </Style>
 
-    <!-- Tabs are marked by an accent bar on the side that faces the content. -->
+    <!-- Tabs are marked by a bar on the side that faces the content, a filled background, or both, as the theme sets. -->
     <Style TargetType="TabItem">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtFocusVisualStyle}" />
         <Setter Property="Background" Value="Transparent" />
@@ -120,11 +120,15 @@
                                 Height="3"
                                 Margin="8,0"
                                 VerticalAlignment="Bottom"
-                                Background="{DynamicResource NwtAccentBrush}"
+                                Background="{DynamicResource NwtTabIndicatorBrush}"
                                 CornerRadius="1.5"
                                 Visibility="Hidden" />
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <!-- Comes before the hover trigger so that a selected tab still lights up under the mouse. -->
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtTabSelectedBrush}" />
+                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
                             <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />

@@ -24,6 +24,12 @@ public static class ThemeKeys
     /// <summary>The font used inside text inputs and displays. Type: <see cref="FontFamily"/>.</summary>
     public const string InputFontFamily = "NwtInputFontFamily";
 
+    /// <summary>The font of group box titles, expander headers and column headers. Type: <see cref="FontFamily"/>.</summary>
+    public const string HeaderFontFamily = "NwtHeaderFontFamily";
+
+    /// <summary>The weight of group box titles and column headers. Type: <see cref="System.Windows.FontWeight"/>.</summary>
+    public const string HeaderFontWeight = "NwtHeaderFontWeight";
+
     /// <summary>The normal font size. Type: <see cref="double"/>.</summary>
     public const string FontSize = "NwtFontSize";
 
@@ -39,6 +45,9 @@ public static class ThemeKeys
     /// <summary>The corner radius of menus, popups and tooltips. Type: <see cref="CornerRadius"/>.</summary>
     public const string OverlayCornerRadius = "NwtOverlayCornerRadius";
 
+    /// <summary>The corner radius of panels: group boxes, expanders, lists, trees, data grids, tab pages and toolbars. Type: <see cref="CornerRadius"/>.</summary>
+    public const string PanelCornerRadius = "NwtPanelCornerRadius";
+
     /// <summary>The border thickness of controls. Type: <see cref="Thickness"/>.</summary>
     public const string ControlBorderThickness = "NwtControlBorderThickness";
 
@@ -47,6 +56,12 @@ public static class ThemeKeys
 
     /// <summary>The minimum height of buttons, inputs and combo boxes. Type: <see cref="double"/>.</summary>
     public const string ControlMinHeight = "NwtControlMinHeight";
+
+    /// <summary>The height of horizontal progress bars (the width of vertical ones). Type: <see cref="double"/>.</summary>
+    public const string ProgressBarThickness = "NwtProgressBarThickness";
+
+    /// <summary>The corner radius of the keyboard focus ring drawn around buttons and other controls. Type: <see cref="double"/>.</summary>
+    public const string FocusCornerRadius = "NwtFocusCornerRadius";
 
     /// <summary>The stroke thickness of the keyboard focus indicator. Type: <see cref="double"/>.</summary>
     public const string FocusStrokeThickness = "NwtFocusStrokeThickness";
@@ -192,6 +207,12 @@ public static class ThemeKeys
     /// <summary>A scroll bar thumb being dragged. Type: <see cref="Brush"/>.</summary>
     public const string ThumbPressedBrush = "NwtThumbPressedBrush";
 
+    /// <summary>The background of the selected tab. Transparent when tabs are marked by the indicator only. Type: <see cref="Brush"/>.</summary>
+    public const string TabSelectedBrush = "NwtTabSelectedBrush";
+
+    /// <summary>The bar that marks the selected tab. Transparent when the selected tab is marked by its background only. Type: <see cref="Brush"/>.</summary>
+    public const string TabIndicatorBrush = "NwtTabIndicatorBrush";
+
     /// <summary>The tooltip background. Type: <see cref="Brush"/>.</summary>
     public const string ToolTipBackgroundBrush = "NwtToolTipBackgroundBrush";
 
@@ -234,15 +255,20 @@ public static class ThemeKeys
         new(ThemeName, typeof(string)),
         new(FontFamily, typeof(FontFamily)),
         new(InputFontFamily, typeof(FontFamily)),
+        new(HeaderFontFamily, typeof(FontFamily)),
+        new(HeaderFontWeight, typeof(FontWeight)),
         new(FontSize, typeof(double)),
         new(FontSizeSmall, typeof(double)),
         new(FontSizeLarge, typeof(double)),
         new(ControlCornerRadius, typeof(CornerRadius)),
         new(OverlayCornerRadius, typeof(CornerRadius)),
+        new(PanelCornerRadius, typeof(CornerRadius)),
         new(ControlBorderThickness, typeof(Thickness)),
         new(ControlPadding, typeof(Thickness)),
         new(ControlMinHeight, typeof(double)),
+        new(ProgressBarThickness, typeof(double)),
         new(FocusStrokeThickness, typeof(double)),
+        new(FocusCornerRadius, typeof(double)),
         new(BackgroundColor, typeof(Color)),
         new(SurfaceColor, typeof(Color)),
         new(ForegroundColor, typeof(Color)),
@@ -290,6 +316,8 @@ public static class ThemeKeys
         new(ThumbBrush, typeof(Brush)),
         new(ThumbHoverBrush, typeof(Brush)),
         new(ThumbPressedBrush, typeof(Brush)),
+        new(TabSelectedBrush, typeof(Brush)),
+        new(TabIndicatorBrush, typeof(Brush)),
         new(ToolTipBackgroundBrush, typeof(Brush)),
         new(ToolTipForegroundBrush, typeof(Brush)),
         new(ToolTipBorderBrush, typeof(Brush)),

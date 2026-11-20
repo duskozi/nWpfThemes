@@ -23,17 +23,18 @@
                         <ContentPresenter Margin="2,0,0,6"
                                           ContentSource="Header"
                                           RecognizesAccessKey="True"
-                                          TextElement.FontWeight="SemiBold"
+                                          TextElement.FontFamily="{DynamicResource NwtHeaderFontFamily}"
+                                          TextElement.FontWeight="{DynamicResource NwtHeaderFontWeight}"
                                           TextElement.Foreground="{DynamicResource NwtForegroundSecondaryBrush}" />
                         <Border Grid.Row="1"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{DynamicResource NwtControlCornerRadius}">
+                                CornerRadius="{DynamicResource NwtPanelCornerRadius}">
                             <Border Padding="{TemplateBinding Padding}"
                                     BorderBrush="{DynamicResource NwtControlBevelBrush}"
                                     BorderThickness="{DynamicResource NwtControlBevelThickness}"
-                                    CornerRadius="{DynamicResource NwtControlCornerRadius}">
+                                    CornerRadius="{DynamicResource NwtPanelCornerRadius}">
                                 <ContentPresenter />
                             </Border>
                         </Border>
@@ -116,7 +117,7 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
                         <DockPanel>
                             <ToggleButton x:Name="HeaderSite"
@@ -126,7 +127,7 @@
                                           ContentTemplate="{TemplateBinding HeaderTemplate}"
                                           ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                           DockPanel.Dock="Top"
-                                          FontFamily="{TemplateBinding FontFamily}"
+                                          FontFamily="{DynamicResource NwtHeaderFontFamily}"
                                           FontSize="{TemplateBinding FontSize}"
                                           Foreground="{TemplateBinding Foreground}"
                                           IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -310,7 +311,7 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
                         <DockPanel>
                             <Grid x:Name="OverflowGrid" DockPanel.Dock="Right">

@@ -9,8 +9,8 @@
 
     <PackageId>NWpfThemes</PackageId>
     <Title>NWpfThemes</Title>
-    <Description>Themes for the standard WPF controls: dark, light, high contrast and a hardware-style theme. Every theme fills the same public resource keys and every style uses DynamicResource, so themes switch live and custom themes are a single file.</Description>
-    <PackageTags>wpf;theme;themes;dark;light;high-contrast;styles;xaml</PackageTags>
+    <Description>Themes for the standard WPF controls: dark, light, high contrast, hardware-style and glass themes. Every theme fills the same public resource keys and every style uses DynamicResource, so themes switch live and custom themes are a single file.</Description>
+    <PackageTags>wpf;theme;themes;dark;light;high-contrast;glass;styles;xaml</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/duskozi/nWpfThemes</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
