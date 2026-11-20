@@ -255,7 +255,7 @@
         <Setter Property="Foreground" Value="{DynamicResource NwtAccentBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NwtInputBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource NwtControlBorderThickness}" />
-        <Setter Property="Height" Value="10" />
+        <Setter Property="Height" Value="{DynamicResource NwtProgressBarThickness}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -327,7 +327,7 @@
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="Height" Value="NaN" />
-                <Setter Property="Width" Value="10" />
+                <Setter Property="Width" Value="{DynamicResource NwtProgressBarThickness}" />
             </Trigger>
         </Style.Triggers>
     </Style>

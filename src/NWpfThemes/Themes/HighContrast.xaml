@@ -17,6 +17,8 @@
     <!-- Typography -->
     <FontFamily x:Key="NwtFontFamily">Segoe UI</FontFamily>
     <FontFamily x:Key="NwtInputFontFamily">Segoe UI</FontFamily>
+    <FontFamily x:Key="NwtHeaderFontFamily">Segoe UI</FontFamily>
+    <FontWeight x:Key="NwtHeaderFontWeight">SemiBold</FontWeight>
     <sys:Double x:Key="NwtFontSize">13</sys:Double>
     <sys:Double x:Key="NwtFontSizeSmall">11.5</sys:Double>
     <sys:Double x:Key="NwtFontSizeLarge">16</sys:Double>
@@ -24,10 +26,13 @@
     <!-- Shape and spacing -->
     <CornerRadius x:Key="NwtControlCornerRadius">0</CornerRadius>
     <CornerRadius x:Key="NwtOverlayCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="NwtPanelCornerRadius">0</CornerRadius>
     <Thickness x:Key="NwtControlBorderThickness">2</Thickness>
     <Thickness x:Key="NwtControlPadding">10,5</Thickness>
     <sys:Double x:Key="NwtControlMinHeight">32</sys:Double>
+    <sys:Double x:Key="NwtProgressBarThickness">10</sys:Double>
     <sys:Double x:Key="NwtFocusStrokeThickness">3</sys:Double>
+    <sys:Double x:Key="NwtFocusCornerRadius">3</sys:Double>
 
     <!-- Colours -->
     <x:Static x:Key="NwtBackgroundColor" Member="SystemColors.WindowColor" />
@@ -89,6 +94,14 @@
     <SolidColorBrush x:Key="NwtThumbBrush" Color="{DynamicResource {x:Static SystemColors.WindowTextColorKey}}" />
     <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
     <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+
+    <!-- Tabs -->
+    <SolidColorBrush x:Key="NwtTabSelectedBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}" />
+
+    <!-- Glass: opaque, so high contrast never shows a blurred backdrop -->
+    <SolidColorBrush x:Key="NwtGlassTintBrush" Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" />
+    <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}" />
 
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="{DynamicResource {x:Static SystemColors.InfoColorKey}}" />

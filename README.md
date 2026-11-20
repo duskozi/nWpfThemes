@@ -6,9 +6,10 @@
 Themes for the standard WPF controls. Add the package, add one line to `App.xaml`, and every
 Button, TextBox, DataGrid, Menu and the rest of the built-in controls pick up the theme.
 
-- Twelve themes in the box: **Dark**, **Light**, **High Contrast** and **Hardware**, plus eight that
-  match the skins of [nDAWControls](https://github.com/duskozi/nDAWControls): **Alloy**, **Alloy Night**,
-  **Alloy Ember**, **Graphite**, **Studio**, **Retro Hardware**, **Light Classic** and **High Contrast Black**.
+- Thirteen themes in the box: **Dark**, **Light**, **High Contrast**, **Hardware** and **Midnight Glass**,
+  plus eight that match the skins of [nDAWControls](https://github.com/duskozi/nDAWControls): **Alloy**,
+  **Alloy Night**, **Alloy Ember**, **Graphite**, **Studio**, **Retro Hardware**, **Light Classic** and
+  **High Contrast Black**.
 - Themes switch live while the app runs, for the whole app or for one part of a window.
 - Every theme is one `ResourceDictionary` filling the same public keys, so a custom theme is a copy of
   one file with new values.
@@ -24,6 +25,14 @@ These are rendered by CI from the gallery app on every push to `main`.
 | ![Dark theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-dark.png) | ![Light theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-light.png) |
 | **High Contrast** (shown with a dark high contrast palette) | **Hardware** |
 | ![High Contrast theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-high-contrast.png) | ![Hardware theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-hardware.png) |
+
+### Midnight Glass
+
+A dark dashboard look: deep indigo backgrounds with a soft gradient, frosted glass panels with thin
+light edges and large rounded corners, pill-shaped buttons, inputs and tabs, muted lavender accents,
+monospaced headers and slim progress bars.
+
+![Midnight Glass theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-midnight-glass.png)
 
 ### nDAWControls skins
 
@@ -138,6 +147,72 @@ In XAML, theme part of a window with the attached property:
 | `NwtFocusVisualStyle` | The keyboard focus ring, for your own controls. |
 | `NwtDataGridCheckBoxStyle`, `NwtDataGridEditingCheckBoxStyle` | `ElementStyle` and `EditingElementStyle` for a `DataGridCheckBoxColumn`, whose check boxes otherwise keep the Windows look. |
 
+## Frosted glass
+
+Panels and controls can show a blurred copy of what is behind them. Point `nwt:Glass.Backdrop` at the
+element that draws the background art, on a container of the controls:
+
+```xml
+<Grid>
+    <Image x:Name="Art" Source="wallpaper.jpg" Stretch="UniformToFill" />
+    <StackPanel nwt:Glass.Backdrop="{Binding ElementName=Art}" nwt:Glass.BlurRadius="24">
+        <GroupBox Header="Frosted">...</GroupBox>
+        <Button Content="Frosted too" />
+    </StackPanel>
+</Grid>
+```
+
+- Group boxes, expanders, tab pages, buttons, text boxes, combo boxes, drop-downs and menus are frosted.
+  Panels and popups use the `NwtGlassTintBrush` tint; buttons and inputs keep their own face colour on
+  top of the blur, so only themes with see-through faces (such as Midnight Glass) show it there.
+- Controls inside a frosted panel, list, grid, toolbar or status bar do not blur again
+  (`nwt:Glass.IsOverGlass`). Drop-downs and menus stay frosted, since they float above everything.
+- Switch it off for the whole app with `Glass.Enabled = false`, or for one part with
+  `nwt:Glass.IsEnabled="False"`. Everything then draws with its normal theme colours.
+- The blur is drawn by the library, not by Windows, so it looks the same on Windows 10 and 11.
+- It is fast: the backdrop is rendered once at a quarter of its size, blurred, and shared by every control
+  over it. Moving or scrolling only shows a different part of that image. The image is rebuilt when the
+  backdrop changes size or the theme changes; call `Glass.Refresh(backdrop)` if it changes in other ways,
+  such as an animation.
+- The backdrop must sit behind the controls, not contain them.
+- The high contrast themes use opaque tints, so they never show a blur.
+- In your own templates, add a `nwt:GlassBackdropLayer` under the content.
+
+## Window backdrop
+
+The in-app blur cannot see the desktop. For that, ask Windows for a system backdrop:
+
+```xml
+<nwt:ThemedWindow nwt:WindowBackdrop.Type="Auto" ...>
+```
+
+| Type | Where it works |
+| --- | --- |
+| `Auto` | Mica on Windows 11 22H2 and later, otherwise the normal solid background. |
+| `Mica`, `Acrylic`, `Tabbed` | Windows 11 22H2 and later. |
+| `Windows10Blur` | Windows 10 1803 and later. **Unofficial**: it uses an undocumented Windows function that may change, and on some machines the window lags while dragged. Only used when asked for by name. |
+
+Anywhere else, and while Windows high contrast is on, the window keeps its solid background. While a
+backdrop is on, the window background is the theme's `NwtWindowBackdropTintBrush` and `ThemedWindow`'s
+title bar turns see-through. `Glass.Enabled = false` turns backdrops off too. It works on any `Window`;
+`ThemedWindow` gets the see-through title bar.
+
+## Roll up
+
+`ThemedWindow` can roll up to just its title bar, like a window shade. Set `IsRollUpEnabled="True"` and
+a button appears left of the minimize button; it rolls the window up and back down. Bind
+`ThemedWindow.ToggleRollUpCommand` to a key or menu item to do the same:
+
+```xml
+<nwt:ThemedWindow IsRollUpEnabled="True" ...>
+    <nwt:ThemedWindow.InputBindings>
+        <KeyBinding Command="{x:Static nwt:ThemedWindow.ToggleRollUpCommand}" Gesture="Ctrl+Shift+U" />
+    </nwt:ThemedWindow.InputBindings>
+```
+
+`IsRolledUp` tells and sets the state. A rolled-up window cannot be resized; a maximized window is
+restored while rolled up and maximized again when rolled down.
+
 ## High contrast and accessibility
 
 - When Windows high contrast is on, `ThemeManager` uses the **High Contrast** theme everywhere and
@@ -186,15 +261,20 @@ Every theme defines all of these keys.
 | `NwtThemeName` | String | The display name of the theme. Every theme dictionary defines it; ThemeManager uses it to find the active theme. |
 | `NwtFontFamily` | FontFamily | The font used for text in controls. |
 | `NwtInputFontFamily` | FontFamily | The font used inside text inputs and displays. |
+| `NwtHeaderFontFamily` | FontFamily | The font of group box titles, expander headers and column headers. |
+| `NwtHeaderFontWeight` | FontWeight | The weight of group box titles and column headers. |
 | `NwtFontSize` | Double | The normal font size. |
 | `NwtFontSizeSmall` | Double | A smaller font size for secondary text. |
 | `NwtFontSizeLarge` | Double | A larger font size for headers. |
 | `NwtControlCornerRadius` | CornerRadius | The corner radius of buttons, inputs and other controls. |
 | `NwtOverlayCornerRadius` | CornerRadius | The corner radius of menus, popups and tooltips. |
+| `NwtPanelCornerRadius` | CornerRadius | The corner radius of panels: group boxes, expanders, lists, trees, data grids, tab pages and toolbars. |
 | `NwtControlBorderThickness` | Thickness | The border thickness of controls. |
 | `NwtControlPadding` | Thickness | The inner padding of buttons and inputs. |
 | `NwtControlMinHeight` | Double | The minimum height of buttons, inputs and combo boxes. |
+| `NwtProgressBarThickness` | Double | The height of horizontal progress bars (the width of vertical ones). |
 | `NwtFocusStrokeThickness` | Double | The stroke thickness of the keyboard focus indicator. |
+| `NwtFocusCornerRadius` | Double | The corner radius of the keyboard focus ring drawn around buttons and other controls. |
 | `NwtBackgroundColor` | Color | The window background colour. |
 | `NwtSurfaceColor` | Color | The colour of panels, menus and popups. |
 | `NwtForegroundColor` | Color | The main text colour. |
@@ -242,6 +322,10 @@ Every theme defines all of these keys.
 | `NwtThumbBrush` | Brush | Scroll bar thumbs. |
 | `NwtThumbHoverBrush` | Brush | A scroll bar thumb under the mouse. |
 | `NwtThumbPressedBrush` | Brush | A scroll bar thumb being dragged. |
+| `NwtTabSelectedBrush` | Brush | The background of the selected tab. Transparent when tabs are marked by the indicator only. |
+| `NwtTabIndicatorBrush` | Brush | The bar that marks the selected tab. Transparent when the selected tab is marked by its background only. |
+| `NwtGlassTintBrush` | Brush | The translucent fill over the blurred backdrop of glass panels (see Glass). |
+| `NwtWindowBackdropTintBrush` | Brush | The window background while a system backdrop such as Mica shows through it (see WindowBackdrop). |
 | `NwtToolTipBackgroundBrush` | Brush | The tooltip background. |
 | `NwtToolTipForegroundBrush` | Brush | The tooltip text. |
 | `NwtToolTipBorderBrush` | Brush | The tooltip border. |

@@ -285,6 +285,83 @@
                         </StackPanel>
                     </Border>
                 </GroupBox>
+
+                <!--
+                  Frosted glass: the panels and controls blur whatever the "GlassArt" layer draws behind
+                  them. Drag the "Deposits" card to see the blur follow it. The Glass check box in the
+                  title bar turns it off.
+                -->
+                <GroupBox Header="Frosted glass" Style="{StaticResource Card}">
+                    <Grid Height="236" ClipToBounds="True">
+                        <Canvas x:Name="GlassArt" Background="{DynamicResource NwtBackgroundBrush}">
+                            <Ellipse Canvas.Left="-30" Canvas.Top="-40" Width="220" Height="220">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="0" Color="#CC7B6CF6" />
+                                        <GradientStop Offset="1" Color="#007B6CF6" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse Canvas.Left="200" Canvas.Top="70" Width="200" Height="200">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="0" Color="#B33BC9DB" />
+                                        <GradientStop Offset="1" Color="#003BC9DB" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse Canvas.Left="110" Canvas.Top="130" Width="150" Height="150">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="0" Color="#B3F06595" />
+                                        <GradientStop Offset="1" Color="#00F06595" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Polyline Points="0,190 40,170 80,182 120,140 160,150 200,100 240,118 280,70 320,86 360,40 400,52"
+                                      Stroke="{DynamicResource NwtForegroundBrush}"
+                                      StrokeThickness="3" />
+                            <TextBlock Canvas.Left="210"
+                                       Canvas.Top="8"
+                                       FontFamily="{DynamicResource NwtHeaderFontFamily}"
+                                       FontSize="40"
+                                       Foreground="{DynamicResource NwtForegroundBrush}"
+                                       Text="61.2%" />
+                        </Canvas>
+
+                        <Canvas x:Name="GlassLayer" nwt:Glass.Backdrop="{Binding ElementName=GlassArt}">
+                            <GroupBox x:Name="GlassCard"
+                                      Canvas.Left="14"
+                                      Canvas.Top="20"
+                                      Width="180"
+                                      Cursor="SizeAll"
+                                      Header="Deposits"
+                                      ToolTip="Drag me">
+                                <StackPanel>
+                                    <TextBlock FontFamily="{DynamicResource NwtHeaderFontFamily}" FontSize="24" Text="$40.7B" />
+                                    <ProgressBar Margin="0,8,0,0" Value="64" />
+                                </StackPanel>
+                            </GroupBox>
+                            <Button Canvas.Left="14"
+                                    Canvas.Top="186"
+                                    Content="Glass button" />
+                            <ComboBox Canvas.Left="124"
+                                      Canvas.Top="186"
+                                      Width="74"
+                                      SelectedIndex="0">
+                                <ComboBoxItem Content="365D" />
+                                <ComboBoxItem Content="30D" />
+                            </ComboBox>
+                            <Expander Canvas.Left="206"
+                                      Canvas.Top="96"
+                                      Width="176"
+                                      Header="Glass expander"
+                                      IsExpanded="True">
+                                <TextBlock Text="The blur is drawn by the app, so it looks the same on Windows 10 and 11." TextWrapping="Wrap" />
+                            </Expander>
+                        </Canvas>
+                    </Grid>
+                </GroupBox>
             </StackPanel>
         </Grid>
     </DockPanel>

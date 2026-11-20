@@ -1,7 +1,8 @@
 <!-- GroupBox, Expander, StatusBar, ToolBar and ResizeGrip. -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:nwt="clr-namespace:NWpfThemes">
 
     <Style TargetType="GroupBox">
         <Setter Property="Background" Value="{DynamicResource NwtSurfaceBrush}" />
@@ -23,19 +24,24 @@
                         <ContentPresenter Margin="2,0,0,6"
                                           ContentSource="Header"
                                           RecognizesAccessKey="True"
-                                          TextElement.FontWeight="SemiBold"
+                                          TextElement.FontFamily="{DynamicResource NwtHeaderFontFamily}"
+                                          TextElement.FontWeight="{DynamicResource NwtHeaderFontWeight}"
                                           TextElement.Foreground="{DynamicResource NwtForegroundSecondaryBrush}" />
                         <Border Grid.Row="1"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{DynamicResource NwtControlCornerRadius}">
-                            <Border Padding="{TemplateBinding Padding}"
-                                    BorderBrush="{DynamicResource NwtControlBevelBrush}"
-                                    BorderThickness="{DynamicResource NwtControlBevelThickness}"
-                                    CornerRadius="{DynamicResource NwtControlCornerRadius}">
-                                <ContentPresenter />
-                            </Border>
+                                CornerRadius="{DynamicResource NwtPanelCornerRadius}">
+                            <Grid>
+                                <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtPanelCornerRadius}" Tint="{DynamicResource NwtGlassTintBrush}" />
+                                <Border Padding="{TemplateBinding Padding}"
+                                        nwt:Glass.IsOverGlass="True"
+                                        BorderBrush="{DynamicResource NwtControlBevelBrush}"
+                                        BorderThickness="{DynamicResource NwtControlBevelThickness}"
+                                        CornerRadius="{DynamicResource NwtPanelCornerRadius}">
+                                    <ContentPresenter />
+                                </Border>
+                            </Grid>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -116,28 +122,31 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
-                        <DockPanel>
-                            <ToggleButton x:Name="HeaderSite"
-                                          Padding="10,8"
-                                          HorizontalContentAlignment="Left"
-                                          Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
-                                          DockPanel.Dock="Top"
-                                          FontFamily="{TemplateBinding FontFamily}"
-                                          FontSize="{TemplateBinding FontSize}"
-                                          Foreground="{TemplateBinding Foreground}"
-                                          IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          Style="{StaticResource NwtExpanderHeaderStyle}" />
-                            <ContentPresenter x:Name="ExpandSite"
-                                              Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Focusable="False"
-                                              Visibility="Collapsed" />
-                        </DockPanel>
+                        <Grid>
+                            <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtPanelCornerRadius}" Tint="{DynamicResource NwtGlassTintBrush}" />
+                            <DockPanel nwt:Glass.IsOverGlass="True">
+                                <ToggleButton x:Name="HeaderSite"
+                                              Padding="10,8"
+                                              HorizontalContentAlignment="Left"
+                                              Content="{TemplateBinding Header}"
+                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                                              DockPanel.Dock="Top"
+                                              FontFamily="{DynamicResource NwtHeaderFontFamily}"
+                                              FontSize="{TemplateBinding FontSize}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Style="{StaticResource NwtExpanderHeaderStyle}" />
+                                <ContentPresenter x:Name="ExpandSite"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Focusable="False"
+                                                  Visibility="Collapsed" />
+                            </DockPanel>
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="True">
@@ -174,6 +183,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="StatusBar">
                     <Border Padding="{TemplateBinding Padding}"
+                            nwt:Glass.IsOverGlass="True"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -310,9 +320,10 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
-                        <DockPanel>
+                        <!-- Toolbars are solid, so controls on them must not cut a frosted hole. -->
+                        <DockPanel nwt:Glass.IsOverGlass="True">
                             <Grid x:Name="OverflowGrid" DockPanel.Dock="Right">
                                 <ToggleButton x:Name="OverflowButton"
                                               ClickMode="Press"
@@ -328,7 +339,6 @@
                                        StaysOpen="False">
                                     <Border x:Name="DropDownBorder"
                                             Margin="0,2,8,8"
-                                            Padding="4"
                                             Background="{DynamicResource NwtSurfaceBrush}"
                                             BorderBrush="{DynamicResource NwtBorderBrush}"
                                             BorderThickness="1"
@@ -339,12 +349,17 @@
                                                               ShadowDepth="2"
                                                               Color="{DynamicResource NwtShadowColor}" />
                                         </Border.Effect>
-                                        <ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel"
-                                                              FocusVisualStyle="{x:Null}"
-                                                              Focusable="True"
-                                                              KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                              KeyboardNavigation.TabNavigation="Cycle"
-                                                              WrapWidth="200" />
+                                        <Grid>
+                                            <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
+                                            <ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel"
+                                                                  Margin="4"
+                                                                  nwt:Glass.IsOverGlass="True"
+                                                                  FocusVisualStyle="{x:Null}"
+                                                                  Focusable="True"
+                                                                  KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                                  KeyboardNavigation.TabNavigation="Cycle"
+                                                                  WrapWidth="200" />
+                                        </Grid>
                                     </Border>
                                 </Popup>
                             </Grid>

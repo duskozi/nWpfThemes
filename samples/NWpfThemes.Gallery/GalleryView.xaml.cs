@@ -1,4 +1,7 @@
+using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace NWpfThemes.Gallery;
 
@@ -24,6 +27,34 @@ public partial class GalleryView : UserControl
             new Person("Edsger", 72, true),
             new Person("Barbara", 47, false),
         };
+
+        GlassCard.MouseLeftButtonDown += OnGlassCardPressed;
+        GlassCard.MouseMove += OnGlassCardMoved;
+        GlassCard.MouseLeftButtonUp += (_, _) => GlassCard.ReleaseMouseCapture();
+    }
+
+    private Point _dragOffset;
+
+    private void OnGlassCardPressed(object sender, MouseButtonEventArgs e)
+    {
+        _dragOffset = e.GetPosition(GlassCard);
+        GlassCard.CaptureMouse();
+        e.Handled = true;
+    }
+
+    // Moving the card only changes Canvas.Left and Canvas.Top; the blur behind it follows on its own.
+    private void OnGlassCardMoved(object sender, MouseEventArgs e)
+    {
+        if (!GlassCard.IsMouseCaptured)
+        {
+            return;
+        }
+
+        Point position = e.GetPosition(GlassLayer);
+        double left = Math.Clamp(position.X - _dragOffset.X, 0, Math.Max(0, GlassLayer.ActualWidth - GlassCard.ActualWidth));
+        double top = Math.Clamp(position.Y - _dragOffset.Y, 0, Math.Max(0, GlassLayer.ActualHeight - GlassCard.ActualHeight));
+        Canvas.SetLeft(GlassCard, left);
+        Canvas.SetTop(GlassCard, top);
     }
 
     private sealed record Person(string Name, int Age, bool Active);

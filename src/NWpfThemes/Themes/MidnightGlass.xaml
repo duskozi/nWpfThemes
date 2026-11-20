@@ -1,0 +1,126 @@
+<!--
+  Midnight Glass theme
+
+  Deep indigo-black backgrounds with a soft diagonal gradient, frosted glass panels with thin light
+  edges and large rounded corners, pill-shaped buttons, inputs and tabs, muted lavender accents,
+  monospaced headers and slim progress bars.
+  Control faces, hover and selection fills are translucent white or lavender, so they read as glass
+  on both the window background and on panels.
+  Every theme defines the same keys (see ThemeKeys.cs). To make your own theme, copy this
+  file into your app, change the values, and apply it with ThemeManager.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- Identity -->
+    <sys:String x:Key="NwtThemeName">Midnight Glass</sys:String>
+
+    <!-- Typography -->
+    <FontFamily x:Key="NwtFontFamily">Segoe UI Variable Text, Segoe UI</FontFamily>
+    <FontFamily x:Key="NwtInputFontFamily">Cascadia Mono, Consolas</FontFamily>
+    <FontFamily x:Key="NwtHeaderFontFamily">Cascadia Mono, Consolas</FontFamily>
+    <FontWeight x:Key="NwtHeaderFontWeight">Normal</FontWeight>
+    <sys:Double x:Key="NwtFontSize">13</sys:Double>
+    <sys:Double x:Key="NwtFontSizeSmall">11.5</sys:Double>
+    <sys:Double x:Key="NwtFontSizeLarge">18</sys:Double>
+
+    <!-- Shape and spacing: pills for controls, large soft corners for panels and popups -->
+    <CornerRadius x:Key="NwtControlCornerRadius">15</CornerRadius>
+    <CornerRadius x:Key="NwtOverlayCornerRadius">12</CornerRadius>
+    <CornerRadius x:Key="NwtPanelCornerRadius">14</CornerRadius>
+    <Thickness x:Key="NwtControlBorderThickness">1</Thickness>
+    <Thickness x:Key="NwtControlPadding">14,4</Thickness>
+    <sys:Double x:Key="NwtControlMinHeight">30</sys:Double>
+    <sys:Double x:Key="NwtProgressBarThickness">4</sys:Double>
+    <sys:Double x:Key="NwtFocusStrokeThickness">2</sys:Double>
+    <sys:Double x:Key="NwtFocusCornerRadius">17</sys:Double>
+
+    <!-- Colours -->
+    <Color x:Key="NwtBackgroundColor">#FF0C0E1D</Color>
+    <Color x:Key="NwtSurfaceColor">#FF181A30</Color>
+    <Color x:Key="NwtForegroundColor">#FFE6E8F5</Color>
+    <Color x:Key="NwtAccentColor">#FFAEB5F2</Color>
+    <Color x:Key="NwtBorderColor">#33A5ACE0</Color>
+    <Color x:Key="NwtShadowColor">#B3030410</Color>
+
+    <!-- Window and text -->
+    <LinearGradientBrush x:Key="NwtBackgroundBrush" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#FF101226" Offset="0" /><GradientStop Color="#FF0A0B18" Offset="0.55" /><GradientStop Color="#FF0E1022" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtSurfaceBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF1B1E36" Offset="0" /><GradientStop Color="#FF14162A" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtSurfaceAltBrush" Color="#FF1D2039" />
+    <SolidColorBrush x:Key="NwtForegroundBrush" Color="#FFE6E8F5" />
+    <SolidColorBrush x:Key="NwtForegroundSecondaryBrush" Color="#FF9EA3C4" />
+    <SolidColorBrush x:Key="NwtForegroundDisabledBrush" Color="#FF5D6185" />
+    <SolidColorBrush x:Key="NwtBorderBrush" Color="#33A5ACE0" />
+    <SolidColorBrush x:Key="NwtBorderHoverBrush" Color="#66B4BAF0" />
+    <SolidColorBrush x:Key="NwtSeparatorBrush" Color="#1FA5ACE0" />
+
+    <!-- Control faces: frosted glass with a thin light edge along the top -->
+    <LinearGradientBrush x:Key="NwtControlBackgroundBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#1FFFFFFF" Offset="0" /><GradientStop Color="#0FFFFFFF" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtControlHoverBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#2EFFFFFF" Offset="0" /><GradientStop Color="#1AFFFFFF" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtControlPressedBrush" Color="#0AFFFFFF" />
+    <SolidColorBrush x:Key="NwtControlDisabledBrush" Color="#0AFFFFFF" />
+    <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="#FFE6E8F5" />
+    <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtControlBorderBrush" Color="#2EFFFFFF" />
+    <SolidColorBrush x:Key="NwtControlBevelBrush" Color="#29FFFFFF" />
+    <SolidColorBrush x:Key="NwtControlPressedBevelBrush" Color="#0FFFFFFF" />
+    <SolidColorBrush x:Key="NwtControlCheckedBevelBrush" Color="#80FFFFFF" />
+    <Thickness x:Key="NwtControlBevelThickness">0,1,0,0</Thickness>
+
+    <!-- Inputs and displays: dark recessed glass -->
+    <SolidColorBrush x:Key="NwtInputBackgroundBrush" Color="#73060713" />
+    <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="#FFE6E8F5" />
+    <SolidColorBrush x:Key="NwtInputBorderBrush" Color="#FF5A5F94" />
+    <SolidColorBrush x:Key="NwtInputBevelBrush" Color="#40000000" />
+    <Thickness x:Key="NwtInputBevelThickness">0,1,0,0</Thickness>
+
+    <!-- Accent: muted lavender with a soft vertical sheen -->
+    <LinearGradientBrush x:Key="NwtAccentBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFC2C7F8" Offset="0" /><GradientStop Color="#FF9DA5EC" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtAccentHoverBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFD3D7FB" Offset="0" /><GradientStop Color="#FFAEB5F2" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtAccentPressedBrush" Color="#FF8E96E0" />
+    <SolidColorBrush x:Key="NwtAccentForegroundBrush" Color="#FF15172B" />
+
+    <!-- Selection, hover and focus -->
+    <SolidColorBrush x:Key="NwtSelectionBrush" Color="#409CA4EE" />
+    <SolidColorBrush x:Key="NwtSelectionForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveBrush" Color="#24FFFFFF" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveForegroundBrush" Color="#FFE6E8F5" />
+    <SolidColorBrush x:Key="NwtHoverBrush" Color="#1AFFFFFF" />
+    <SolidColorBrush x:Key="NwtHoverForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtFocusBrush" Color="#FFB8BEF7" />
+    <SolidColorBrush x:Key="NwtGlyphBrush" Color="#FFC5C9E8" />
+
+    <!-- Tracks and thumbs -->
+    <SolidColorBrush x:Key="NwtTrackBrush" Color="#14FFFFFF" />
+    <SolidColorBrush x:Key="NwtThumbBrush" Color="#38FFFFFF" />
+    <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="#59FFFFFF" />
+    <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FFAEB5F2" />
+
+    <!-- Tabs: the selected tab is a glass pill, with no bar -->
+    <LinearGradientBrush x:Key="NwtTabSelectedBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#2EFFFFFF" Offset="0" /><GradientStop Color="#14FFFFFF" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="Transparent" />
+
+    <!-- Glass: the surface colour at about 72 %, so a blurred backdrop shows through -->
+    <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#B8181A30" />
+    <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#B30C0E1D" />
+
+    <!-- Tooltips -->
+    <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF1E2140" />
+    <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="#FFE6E8F5" />
+    <SolidColorBrush x:Key="NwtToolTipBorderBrush" Color="#4DA5ACE0" />
+
+    <!-- Window chrome -->
+    <SolidColorBrush x:Key="NwtTitleBarBackgroundBrush" Color="#FF0E1022" />
+    <SolidColorBrush x:Key="NwtTitleBarForegroundBrush" Color="#FFE6E8F5" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveBackgroundBrush" Color="#FF0B0C18" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveForegroundBrush" Color="#FF9EA3C4" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverBrush" Color="#1FFFFFFF" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverBrush" Color="#FFC4314B" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverForegroundBrush" Color="#FFFFFFFF" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="NwtErrorBrush" Color="#FFFF8A9B" />
+
+</ResourceDictionary>

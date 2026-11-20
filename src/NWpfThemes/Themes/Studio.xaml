@@ -16,6 +16,8 @@
     <!-- Typography -->
     <FontFamily x:Key="NwtFontFamily">Segoe UI</FontFamily>
     <FontFamily x:Key="NwtInputFontFamily">Consolas</FontFamily>
+    <FontFamily x:Key="NwtHeaderFontFamily">Segoe UI</FontFamily>
+    <FontWeight x:Key="NwtHeaderFontWeight">SemiBold</FontWeight>
     <sys:Double x:Key="NwtFontSize">13</sys:Double>
     <sys:Double x:Key="NwtFontSizeSmall">11.5</sys:Double>
     <sys:Double x:Key="NwtFontSizeLarge">16</sys:Double>
@@ -23,10 +25,13 @@
     <!-- Shape and spacing -->
     <CornerRadius x:Key="NwtControlCornerRadius">3</CornerRadius>
     <CornerRadius x:Key="NwtOverlayCornerRadius">3</CornerRadius>
+    <CornerRadius x:Key="NwtPanelCornerRadius">3</CornerRadius>
     <Thickness x:Key="NwtControlBorderThickness">1</Thickness>
     <Thickness x:Key="NwtControlPadding">10,4</Thickness>
     <sys:Double x:Key="NwtControlMinHeight">28</sys:Double>
+    <sys:Double x:Key="NwtProgressBarThickness">10</sys:Double>
     <sys:Double x:Key="NwtFocusStrokeThickness">2</sys:Double>
+    <sys:Double x:Key="NwtFocusCornerRadius">3</sys:Double>
 
     <!-- Colours -->
     <Color x:Key="NwtBackgroundColor">#FF131417</Color>
@@ -88,6 +93,14 @@
     <LinearGradientBrush x:Key="NwtThumbBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF5A5D66" Offset="0" /><GradientStop Color="#FF33353C" Offset="1" /></LinearGradientBrush>
     <LinearGradientBrush x:Key="NwtThumbHoverBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF6E7078" Offset="0" /><GradientStop Color="#FF4B4D53" Offset="1" /></LinearGradientBrush>
     <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FF2D8CFF" />
+
+    <!-- Tabs -->
+    <SolidColorBrush x:Key="NwtTabSelectedBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="#FF2D8CFF" />
+
+    <!-- Glass: the surface colour at 80 %, used only when an app sets a blurred backdrop -->
+    <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#CC1B1C20" />
+    <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#CC131417" />
 
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF24252A" />

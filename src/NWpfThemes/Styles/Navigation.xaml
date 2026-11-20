@@ -1,7 +1,8 @@
 <!-- TabControl, TabItem, Menu, MenuItem and ContextMenu. -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:nwt="clr-namespace:NWpfThemes">
 
     <Style TargetType="TabControl">
         <Setter Property="Background" Value="{DynamicResource NwtSurfaceBrush}" />
@@ -37,20 +38,24 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                                CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                                 KeyboardNavigation.DirectionalNavigation="Contained"
                                 KeyboardNavigation.TabIndex="2"
                                 KeyboardNavigation.TabNavigation="Local">
-                            <Border BorderBrush="{DynamicResource NwtControlBevelBrush}"
-                                    BorderThickness="{DynamicResource NwtControlBevelThickness}"
-                                    CornerRadius="{DynamicResource NwtControlCornerRadius}">
-                                <ContentPresenter x:Name="PART_SelectedContentHost"
-                                                  Margin="{TemplateBinding Padding}"
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  ContentSource="SelectedContent"
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </Border>
+                            <Grid>
+                                <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtPanelCornerRadius}" Tint="{DynamicResource NwtGlassTintBrush}" />
+                                <Border nwt:Glass.IsOverGlass="True"
+                                        BorderBrush="{DynamicResource NwtControlBevelBrush}"
+                                        BorderThickness="{DynamicResource NwtControlBevelThickness}"
+                                        CornerRadius="{DynamicResource NwtPanelCornerRadius}">
+                                    <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      ContentSource="SelectedContent"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Border>
+                            </Grid>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -92,7 +97,7 @@
         </Setter>
     </Style>
 
-    <!-- Tabs are marked by an accent bar on the side that faces the content. -->
+    <!-- Tabs are marked by a bar on the side that faces the content, a filled background, or both, as the theme sets. -->
     <Style TargetType="TabItem">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtFocusVisualStyle}" />
         <Setter Property="Background" Value="Transparent" />
@@ -120,11 +125,15 @@
                                 Height="3"
                                 Margin="8,0"
                                 VerticalAlignment="Bottom"
-                                Background="{DynamicResource NwtAccentBrush}"
+                                Background="{DynamicResource NwtTabIndicatorBrush}"
                                 CornerRadius="1.5"
                                 Visibility="Hidden" />
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <!-- Comes before the hover trigger so that a selected tab still lights up under the mouse. -->
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtTabSelectedBrush}" />
+                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtHoverBrush}" />
                             <Setter Property="Foreground" Value="{DynamicResource NwtHoverForegroundBrush}" />
@@ -226,7 +235,6 @@
                        VerticalOffset="6">
                     <Border x:Name="SubmenuBorder"
                                     Margin="0,0,8,8"
-                                    Padding="4"
                                     Background="{DynamicResource NwtSurfaceBrush}"
                                     BorderBrush="{DynamicResource NwtBorderBrush}"
                                     BorderThickness="1"
@@ -238,11 +246,14 @@
                                                       ShadowDepth="2"
                                                       Color="{DynamicResource NwtShadowColor}" />
                                 </Border.Effect>
-                                <ScrollViewer CanContentScroll="True">
-                                    <ItemsPresenter Grid.IsSharedSizeScope="True"
-                                                    KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                    KeyboardNavigation.TabNavigation="Cycle" />
-                                </ScrollViewer>
+                                <Grid>
+                                    <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
+                                    <ScrollViewer Margin="4" nwt:Glass.IsOverGlass="True" CanContentScroll="True">
+                                        <ItemsPresenter Grid.IsSharedSizeScope="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                        KeyboardNavigation.TabNavigation="Cycle" />
+                                    </ScrollViewer>
+                                </Grid>
                             </Border>
                 </Popup>
             </Grid>
@@ -401,7 +412,6 @@
                        VerticalOffset="-5">
                     <Border x:Name="SubmenuBorder"
                                     Margin="0,0,8,8"
-                                    Padding="4"
                                     Background="{DynamicResource NwtSurfaceBrush}"
                                     BorderBrush="{DynamicResource NwtBorderBrush}"
                                     BorderThickness="1"
@@ -413,11 +423,14 @@
                                                       ShadowDepth="2"
                                                       Color="{DynamicResource NwtShadowColor}" />
                                 </Border.Effect>
-                                <ScrollViewer CanContentScroll="True">
-                                    <ItemsPresenter Grid.IsSharedSizeScope="True"
-                                                    KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                    KeyboardNavigation.TabNavigation="Cycle" />
-                                </ScrollViewer>
+                                <Grid>
+                                    <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
+                                    <ScrollViewer Margin="4" nwt:Glass.IsOverGlass="True" CanContentScroll="True">
+                                        <ItemsPresenter Grid.IsSharedSizeScope="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                        KeyboardNavigation.TabNavigation="Cycle" />
+                                    </ScrollViewer>
+                                </Grid>
                             </Border>
                 </Popup>
             </Grid>
@@ -485,7 +498,6 @@
                 <ControlTemplate TargetType="ContextMenu">
                     <Border x:Name="Bd"
                             Margin="0,0,8,8"
-                            Padding="{TemplateBinding Padding}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -496,9 +508,12 @@
                                               ShadowDepth="2"
                                               Color="{DynamicResource NwtShadowColor}" />
                         </Border.Effect>
-                        <ScrollViewer CanContentScroll="True">
-                            <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle" />
-                        </ScrollViewer>
+                        <Grid>
+                            <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
+                            <ScrollViewer Margin="{TemplateBinding Padding}" nwt:Glass.IsOverGlass="True" CanContentScroll="True">
+                                <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle" />
+                            </ScrollViewer>
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasDropShadow" Value="False">

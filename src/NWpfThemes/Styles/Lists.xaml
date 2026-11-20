@@ -1,15 +1,17 @@
 <!-- ListBox, ListView (with GridView), TreeView and their items. -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:nwt="clr-namespace:NWpfThemes">
 
     <ControlTemplate x:Key="NwtListBoxTemplate" TargetType="ListBox">
         <Border x:Name="Bd"
+                nwt:Glass.IsOverGlass="True"
                 Padding="2"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
-                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                 SnapsToDevicePixels="True">
             <ScrollViewer Padding="{TemplateBinding Padding}" Focusable="False">
                 <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -181,7 +183,8 @@
         <Setter Property="Foreground" Value="{DynamicResource NwtForegroundSecondaryBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NwtSeparatorBrush}" />
         <Setter Property="BorderThickness" Value="0,0,1,1" />
-        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtHeaderFontFamily}" />
+        <Setter Property="FontWeight" Value="{DynamicResource NwtHeaderFontWeight}" />
         <Setter Property="Padding" Value="8,5" />
         <Setter Property="MinHeight" Value="28" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -252,11 +255,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListView">
                     <Border x:Name="Bd"
+                            nwt:Glass.IsOverGlass="True"
                             Padding="1"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
                         <ScrollViewer Padding="{TemplateBinding Padding}" Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -332,10 +336,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TreeView">
                     <Border x:Name="Bd"
+                            nwt:Glass.IsOverGlass="True"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                            CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
                         <ScrollViewer x:Name="ScrollHost"
                                       Padding="{TemplateBinding Padding}"

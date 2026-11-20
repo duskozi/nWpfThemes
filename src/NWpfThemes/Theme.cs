@@ -71,11 +71,18 @@ public sealed class Theme
     /// </summary>
     public static Theme HighContrastBlack { get; } = BuiltIn("High Contrast Black", "Themes/HighContrastBlack.xaml");
 
+    /// <summary>
+    /// Deep indigo backgrounds, frosted glass panels with large rounded corners, pill-shaped controls,
+    /// muted lavender accents and slim progress bars.
+    /// </summary>
+    public static Theme MidnightGlass { get; } = BuiltIn("Midnight Glass", "Themes/MidnightGlass.xaml");
+
     /// <summary>The themes that ship with the library.</summary>
     public static IReadOnlyList<Theme> BuiltInThemes { get; } = new[]
     {
         Dark, Light, HighContrast, Hardware,
         Alloy, AlloyNight, AlloyEmber, Graphite, Studio, RetroHardware, LightClassic, HighContrastBlack,
+        MidnightGlass,
     };
 
     /// <summary>The location of the dictionary with the control styles.</summary>

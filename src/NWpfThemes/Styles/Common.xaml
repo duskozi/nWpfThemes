@@ -9,8 +9,8 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Rectangle Margin="-3"
-                               RadiusX="3"
-                               RadiusY="3"
+                               RadiusX="{DynamicResource NwtFocusCornerRadius}"
+                               RadiusY="{DynamicResource NwtFocusCornerRadius}"
                                SnapsToDevicePixels="True"
                                Stroke="{DynamicResource NwtFocusBrush}"
                                StrokeThickness="{DynamicResource NwtFocusStrokeThickness}" />
