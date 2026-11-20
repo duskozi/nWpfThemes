@@ -1,10 +1,12 @@
 <!-- ListBox, ListView (with GridView), TreeView and their items. -->
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:nwt="clr-namespace:NWpfThemes">
 
     <ControlTemplate x:Key="NwtListBoxTemplate" TargetType="ListBox">
         <Border x:Name="Bd"
+                nwt:Glass.IsOverGlass="True"
                 Padding="2"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -253,6 +255,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListView">
                     <Border x:Name="Bd"
+                            nwt:Glass.IsOverGlass="True"
                             Padding="1"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -333,6 +336,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TreeView">
                     <Border x:Name="Bd"
+                            nwt:Glass.IsOverGlass="True"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"

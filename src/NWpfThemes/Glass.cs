@@ -15,9 +15,15 @@ namespace NWpfThemes;
 /// </summary>
 /// <remarks>
 /// <para>
-/// Set <c>nwt:Glass.Backdrop</c> on a container. Group boxes, expanders and tab pages inside it then
-/// show the blurred backdrop under a translucent tint (<c>NwtGlassTintBrush</c>). Without a backdrop
-/// nothing is blurred and panels look as usual.
+/// Set <c>nwt:Glass.Backdrop</c> on a container. Group boxes, expanders, tab pages, toolbars, buttons,
+/// text boxes, combo boxes, drop-downs and menus inside it then show the blurred backdrop under their
+/// own translucent fill: panels and popups under <c>NwtGlassTintBrush</c>, buttons and inputs under
+/// their usual face. Controls with an opaque face show no blur. Controls inside a frosted panel do not
+/// blur again (see <see cref="IsOverGlassProperty"/>). Without a backdrop nothing is blurred.
+/// </para>
+/// <para>
+/// <see cref="Enabled"/> turns glass off for the whole app and <see cref="IsEnabledProperty"/> for one
+/// part of it.
 /// </para>
 /// <para>
 /// The backdrop is rendered once at a quarter of its size, blurred, and shared by every panel that
@@ -62,6 +68,79 @@ public static class Glass
         typeof(Glass),
         new FrameworkPropertyMetadata(DefaultBlurRadius, FrameworkPropertyMetadataOptions.Inherits),
         static value => value is double d && d >= 0 && !double.IsInfinity(d));
+
+    /// <summary>
+    /// Turns frosted glass on or off in this element and everything inside it, including a window's
+    /// <see cref="WindowBackdrop">backdrop</see>. Inherited; <see langword="true"/> by default.
+    /// </summary>
+    public static readonly DependencyProperty IsEnabledProperty = DependencyProperty.RegisterAttached(
+        "IsEnabled",
+        typeof(bool),
+        typeof(Glass),
+        new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
+
+    /// <summary>
+    /// <see langword="true"/> inside something that is already frosted, such as the content of a glass group
+    /// box, so buttons and inputs there do not blur the backdrop a second time. The glass panel and popup
+    /// styles set it; set it on your own frosted containers too. Inherited.
+    /// </summary>
+    public static readonly DependencyProperty IsOverGlassProperty = DependencyProperty.RegisterAttached(
+        "IsOverGlass",
+        typeof(bool),
+        typeof(Glass),
+        new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+
+    private static bool s_enabled = true;
+
+    /// <summary>
+    /// Turns frosted glass on or off for the whole app: blurred panels and controls, and window backdrops.
+    /// <see langword="true"/> by default. When off, everything draws with its normal theme colours.
+    /// </summary>
+    public static bool Enabled
+    {
+        get => s_enabled;
+        set
+        {
+            if (s_enabled == value)
+            {
+                return;
+            }
+
+            s_enabled = value;
+            EnabledChanged?.Invoke(null, EventArgs.Empty);
+        }
+    }
+
+    /// <summary>Raised after <see cref="Enabled"/> changes.</summary>
+    public static event EventHandler? EnabledChanged;
+
+    /// <summary>Gets whether frosted glass is on at this element.</summary>
+    public static bool GetIsEnabled(DependencyObject element)
+    {
+        ArgumentNullException.ThrowIfNull(element);
+        return (bool)element.GetValue(IsEnabledProperty);
+    }
+
+    /// <summary>Turns frosted glass on or off in this element and everything inside it.</summary>
+    public static void SetIsEnabled(DependencyObject element, bool value)
+    {
+        ArgumentNullException.ThrowIfNull(element);
+        element.SetValue(IsEnabledProperty, value);
+    }
+
+    /// <summary>Gets whether this element sits on something that is already frosted.</summary>
+    public static bool GetIsOverGlass(DependencyObject element)
+    {
+        ArgumentNullException.ThrowIfNull(element);
+        return (bool)element.GetValue(IsOverGlassProperty);
+    }
+
+    /// <summary>Marks this element and everything inside it as sitting on something already frosted.</summary>
+    public static void SetIsOverGlass(DependencyObject element, bool value)
+    {
+        ArgumentNullException.ThrowIfNull(element);
+        element.SetValue(IsOverGlassProperty, value);
+    }
 
     /// <summary>Gets the backdrop of glass panels at this element.</summary>
     public static UIElement? GetBackdrop(DependencyObject element)

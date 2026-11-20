@@ -103,6 +103,7 @@
 
     <!-- Glass: the surface colour at about 72 %, so a blurred backdrop shows through -->
     <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#B8181A30" />
+    <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#B30C0E1D" />
 
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF1E2140" />

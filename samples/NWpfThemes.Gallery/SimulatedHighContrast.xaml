@@ -98,6 +98,7 @@
 
     <!-- Glass: opaque, so high contrast never shows a blurred backdrop -->
     <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#FF000000" />
 
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF000000" />

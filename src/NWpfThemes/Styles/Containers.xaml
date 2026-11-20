@@ -35,6 +35,7 @@
                             <Grid>
                                 <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtPanelCornerRadius}" Tint="{DynamicResource NwtGlassTintBrush}" />
                                 <Border Padding="{TemplateBinding Padding}"
+                                        nwt:Glass.IsOverGlass="True"
                                         BorderBrush="{DynamicResource NwtControlBevelBrush}"
                                         BorderThickness="{DynamicResource NwtControlBevelThickness}"
                                         CornerRadius="{DynamicResource NwtPanelCornerRadius}">
@@ -125,7 +126,7 @@
                             SnapsToDevicePixels="True">
                         <Grid>
                             <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtPanelCornerRadius}" Tint="{DynamicResource NwtGlassTintBrush}" />
-                            <DockPanel>
+                            <DockPanel nwt:Glass.IsOverGlass="True">
                                 <ToggleButton x:Name="HeaderSite"
                                               Padding="10,8"
                                               HorizontalContentAlignment="Left"
@@ -182,6 +183,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="StatusBar">
                     <Border Padding="{TemplateBinding Padding}"
+                            nwt:Glass.IsOverGlass="True"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -320,7 +322,8 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{DynamicResource NwtPanelCornerRadius}"
                             SnapsToDevicePixels="True">
-                        <DockPanel>
+                        <!-- Toolbars are solid, so controls on them must not cut a frosted hole. -->
+                        <DockPanel nwt:Glass.IsOverGlass="True">
                             <Grid x:Name="OverflowGrid" DockPanel.Dock="Right">
                                 <ToggleButton x:Name="OverflowButton"
                                               ClickMode="Press"
@@ -336,7 +339,6 @@
                                        StaysOpen="False">
                                     <Border x:Name="DropDownBorder"
                                             Margin="0,2,8,8"
-                                            Padding="4"
                                             Background="{DynamicResource NwtSurfaceBrush}"
                                             BorderBrush="{DynamicResource NwtBorderBrush}"
                                             BorderThickness="1"
@@ -347,12 +349,17 @@
                                                               ShadowDepth="2"
                                                               Color="{DynamicResource NwtShadowColor}" />
                                         </Border.Effect>
-                                        <ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel"
-                                                              FocusVisualStyle="{x:Null}"
-                                                              Focusable="True"
-                                                              KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                              KeyboardNavigation.TabNavigation="Cycle"
-                                                              WrapWidth="200" />
+                                        <Grid>
+                                            <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
+                                            <ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel"
+                                                                  Margin="4"
+                                                                  nwt:Glass.IsOverGlass="True"
+                                                                  FocusVisualStyle="{x:Null}"
+                                                                  Focusable="True"
+                                                                  KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                                  KeyboardNavigation.TabNavigation="Cycle"
+                                                                  WrapWidth="200" />
+                                        </Grid>
                                     </Border>
                                 </Popup>
                             </Grid>

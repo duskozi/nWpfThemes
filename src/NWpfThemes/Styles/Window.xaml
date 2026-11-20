@@ -104,6 +104,17 @@
                                                       Content="{TemplateBinding TitleBarContent}"
                                                       WindowChrome.IsHitTestVisibleInChrome="True" />
                                     <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                        <Button x:Name="RollUpButton"
+                                                AutomationProperties.Name="Roll up"
+                                                Command="{x:Static local:ThemedWindow.ToggleRollUpCommand}"
+                                                Style="{StaticResource NwtCaptionButtonStyle}"
+                                                ToolTip="Roll up"
+                                                Visibility="Collapsed">
+                                            <Path x:Name="RollUpGlyph"
+                                                  Data="M 0,5 L 5,0 L 10,5"
+                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                  StrokeThickness="1" />
+                                        </Button>
                                         <Button x:Name="MinimizeButton"
                                                 AutomationProperties.Name="Minimize"
                                                 Command="{x:Static SystemCommands.MinimizeWindowCommand}"
@@ -147,7 +158,7 @@
                                     </StackPanel>
                                 </Grid>
                             </Border>
-                            <AdornerDecorator Grid.Row="1">
+                            <AdornerDecorator x:Name="ContentArea" Grid.Row="1">
                                 <ContentPresenter />
                             </AdornerDecorator>
                             <ResizeGrip x:Name="Grip"
@@ -160,6 +171,10 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <!-- A system backdrop such as Mica shows through the title bar too. -->
+                        <Trigger Property="local:WindowBackdrop.IsActive" Value="True">
+                            <Setter TargetName="TitleBar" Property="Background" Value="Transparent" />
+                        </Trigger>
                         <Trigger Property="IsActive" Value="False">
                             <Setter TargetName="TitleBar" Property="Background" Value="{DynamicResource NwtTitleBarInactiveBackgroundBrush}" />
                             <Setter TargetName="TitleBar" Property="TextElement.Foreground" Value="{DynamicResource NwtTitleBarInactiveForegroundBrush}" />
@@ -189,6 +204,24 @@
                             </MultiTrigger.Conditions>
                             <Setter TargetName="Grip" Property="Visibility" Value="Visible" />
                         </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="local:WindowBackdrop.IsActive" Value="True" />
+                                <Condition Property="IsActive" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="TitleBar" Property="Background" Value="Transparent" />
+                        </MultiTrigger>
+                        <Trigger Property="IsRollUpEnabled" Value="True">
+                            <Setter TargetName="RollUpButton" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <!-- Rolled up: only the title bar is left, and the button rolls the window down again. -->
+                        <Trigger Property="IsRolledUp" Value="True">
+                            <Setter TargetName="ContentArea" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Grip" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RollUpGlyph" Property="Data" Value="M 0,0 L 5,5 L 10,0" />
+                            <Setter TargetName="RollUpButton" Property="ToolTip" Value="Roll down" />
+                            <Setter TargetName="RollUpButton" Property="AutomationProperties.Name" Value="Roll down" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

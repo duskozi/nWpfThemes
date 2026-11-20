@@ -8,8 +8,13 @@
                   Height="900"
                   MinWidth="640"
                   MinHeight="400"
+                  IsRollUpEnabled="True"
                   ResizeMode="CanResizeWithGrip"
                   WindowStartupLocation="CenterScreen">
+    <nwt:ThemedWindow.InputBindings>
+        <KeyBinding Command="{x:Static nwt:ThemedWindow.ToggleRollUpCommand}" Gesture="Ctrl+Shift+U" />
+    </nwt:ThemedWindow.InputBindings>
+
     <nwt:ThemedWindow.TitleBarContent>
         <StackPanel Margin="0,0,8,0" Orientation="Horizontal">
             <TextBlock Margin="0,0,8,0" VerticalAlignment="Center" Text="Theme" />
@@ -26,6 +31,20 @@
                       IsChecked="True"
                       Unchecked="OnSimulateChanged"
                       Visibility="Collapsed" />
+            <CheckBox x:Name="GlassToggle"
+                      Margin="16,0,0,0"
+                      VerticalAlignment="Center"
+                      Checked="OnGlassToggled"
+                      Content="Glass"
+                      IsChecked="True"
+                      ToolTip="Frosted glass panels and window backdrop"
+                      Unchecked="OnGlassToggled" />
+            <TextBlock Margin="16,0,8,0" VerticalAlignment="Center" Text="Window backdrop" />
+            <ComboBox x:Name="BackdropPicker"
+                      Width="140"
+                      MinHeight="24"
+                      AutomationProperties.Name="Window backdrop"
+                      SelectionChanged="OnBackdropSelected" />
         </StackPanel>
     </nwt:ThemedWindow.TitleBarContent>
 

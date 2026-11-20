@@ -123,21 +123,32 @@ public class ContrastTests
         return data;
     }
 
-    /// <summary>A glass panel can sit over any backdrop, so its tint must keep text readable over black and white alike.</summary>
+    /// <summary>
+    /// Glass panels and windows with a system backdrop can sit over anything, so their tints must keep text
+    /// readable over black and white alike.
+    /// </summary>
     [Theory]
     [MemberData(nameof(ThemesWithFixedColours))]
-    public void Glass_tint_keeps_text_readable_over_any_backdrop(string name) => UiThread.Run(() =>
+    public void Glass_tints_keep_text_readable_over_any_backdrop(string name) => UiThread.Run(() =>
     {
         ResourceDictionary dictionary = ThemeManager.Find(name)!.CreateDictionary();
-        Color tint = ((SolidColorBrush)dictionary[ThemeKeys.GlassTintBrush]).Color;
 
-        double worst = (
-            from backdrop in new[] { System.Windows.Media.Colors.Black, System.Windows.Media.Colors.White }
-            let background = Over(tint, backdrop)
-            from f in Colors((Brush)dictionary[ThemeKeys.ForegroundBrush])
-            select Ratio(Over(f, background), background)).Min();
+        var failures = new List<string>();
+        foreach (string key in new[] { ThemeKeys.GlassTintBrush, ThemeKeys.WindowBackdropTintBrush })
+        {
+            Color tint = ((SolidColorBrush)dictionary[key]).Color;
+            double worst = (
+                from backdrop in new[] { System.Windows.Media.Colors.Black, System.Windows.Media.Colors.White }
+                let background = Over(tint, backdrop)
+                from f in Colors((Brush)dictionary[ThemeKeys.ForegroundBrush])
+                select Ratio(Over(f, background), background)).Min();
+            if (worst < 4.5)
+            {
+                failures.Add($"Text on {key}: {worst:0.00} (needs 4.5)");
+            }
+        }
 
-        Assert.True(worst >= 4.5, $"Text on the glass tint: {worst:0.00} (needs 4.5)");
+        Assert.Empty(failures);
     });
 
     [Fact]

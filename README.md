@@ -149,28 +149,69 @@ In XAML, theme part of a window with the attached property:
 
 ## Frosted glass
 
-Group boxes, expanders and tab pages can show a blurred copy of what is behind them. Point
-`nwt:Glass.Backdrop` at the element that draws the background art, on a container of the panels:
+Panels and controls can show a blurred copy of what is behind them. Point `nwt:Glass.Backdrop` at the
+element that draws the background art, on a container of the controls:
 
 ```xml
 <Grid>
     <Image x:Name="Art" Source="wallpaper.jpg" Stretch="UniformToFill" />
     <StackPanel nwt:Glass.Backdrop="{Binding ElementName=Art}" nwt:Glass.BlurRadius="24">
         <GroupBox Header="Frosted">...</GroupBox>
+        <Button Content="Frosted too" />
     </StackPanel>
 </Grid>
 ```
 
-- The blur is drawn by the library, not by Windows, so it looks the same on Windows 10 and 11 and in
-  any window, with no flicker or lag while the window moves.
-- It is fast: the backdrop is rendered once at a quarter of its size, blurred, and shared by every panel
-  over it. Moving or scrolling a panel only shows a different part of that image. The image is rebuilt
-  when the backdrop changes size or the theme changes; call `Glass.Refresh(backdrop)` if it changes
-  in other ways, such as an animation.
-- The backdrop must sit behind the panels, not contain them.
-- The tint over the blur is `NwtGlassTintBrush`. Midnight Glass lets the most show through; the high
-  contrast themes use an opaque tint, so they never show a blur. Without a backdrop, panels look as usual.
+- Group boxes, expanders, tab pages, buttons, text boxes, combo boxes, drop-downs and menus are frosted.
+  Panels and popups use the `NwtGlassTintBrush` tint; buttons and inputs keep their own face colour on
+  top of the blur, so only themes with see-through faces (such as Midnight Glass) show it there.
+- Controls inside a frosted panel, list, grid, toolbar or status bar do not blur again
+  (`nwt:Glass.IsOverGlass`). Drop-downs and menus stay frosted, since they float above everything.
+- Switch it off for the whole app with `Glass.Enabled = false`, or for one part with
+  `nwt:Glass.IsEnabled="False"`. Everything then draws with its normal theme colours.
+- The blur is drawn by the library, not by Windows, so it looks the same on Windows 10 and 11.
+- It is fast: the backdrop is rendered once at a quarter of its size, blurred, and shared by every control
+  over it. Moving or scrolling only shows a different part of that image. The image is rebuilt when the
+  backdrop changes size or the theme changes; call `Glass.Refresh(backdrop)` if it changes in other ways,
+  such as an animation.
+- The backdrop must sit behind the controls, not contain them.
+- The high contrast themes use opaque tints, so they never show a blur.
 - In your own templates, add a `nwt:GlassBackdropLayer` under the content.
+
+## Window backdrop
+
+The in-app blur cannot see the desktop. For that, ask Windows for a system backdrop:
+
+```xml
+<nwt:ThemedWindow nwt:WindowBackdrop.Type="Auto" ...>
+```
+
+| Type | Where it works |
+| --- | --- |
+| `Auto` | Mica on Windows 11 22H2 and later, otherwise the normal solid background. |
+| `Mica`, `Acrylic`, `Tabbed` | Windows 11 22H2 and later. |
+| `Windows10Blur` | Windows 10 1803 and later. **Unofficial**: it uses an undocumented Windows function that may change, and on some machines the window lags while dragged. Only used when asked for by name. |
+
+Anywhere else, and while Windows high contrast is on, the window keeps its solid background. While a
+backdrop is on, the window background is the theme's `NwtWindowBackdropTintBrush` and `ThemedWindow`'s
+title bar turns see-through. `Glass.Enabled = false` turns backdrops off too. It works on any `Window`;
+`ThemedWindow` gets the see-through title bar.
+
+## Roll up
+
+`ThemedWindow` can roll up to just its title bar, like a window shade. Set `IsRollUpEnabled="True"` and
+a button appears left of the minimize button; it rolls the window up and back down. Bind
+`ThemedWindow.ToggleRollUpCommand` to a key or menu item to do the same:
+
+```xml
+<nwt:ThemedWindow IsRollUpEnabled="True" ...>
+    <nwt:ThemedWindow.InputBindings>
+        <KeyBinding Command="{x:Static nwt:ThemedWindow.ToggleRollUpCommand}" Gesture="Ctrl+Shift+U" />
+    </nwt:ThemedWindow.InputBindings>
+```
+
+`IsRolledUp` tells and sets the state. A rolled-up window cannot be resized; a maximized window is
+restored while rolled up and maximized again when rolled down.
 
 ## High contrast and accessibility
 
@@ -284,6 +325,7 @@ Every theme defines all of these keys.
 | `NwtTabSelectedBrush` | Brush | The background of the selected tab. Transparent when tabs are marked by the indicator only. |
 | `NwtTabIndicatorBrush` | Brush | The bar that marks the selected tab. Transparent when the selected tab is marked by its background only. |
 | `NwtGlassTintBrush` | Brush | The translucent fill over the blurred backdrop of glass panels (see Glass). |
+| `NwtWindowBackdropTintBrush` | Brush | The window background while a system backdrop such as Mica shows through it (see WindowBackdrop). |
 | `NwtToolTipBackgroundBrush` | Brush | The tooltip background. |
 | `NwtToolTipForegroundBrush` | Brush | The tooltip text. |
 | `NwtToolTipBorderBrush` | Brush | The tooltip border. |

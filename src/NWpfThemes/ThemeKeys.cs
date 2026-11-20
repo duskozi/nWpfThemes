@@ -216,6 +216,9 @@ public static class ThemeKeys
     /// <summary>The translucent fill over the blurred backdrop of glass panels (see <see cref="Glass"/>). Type: <see cref="Brush"/>.</summary>
     public const string GlassTintBrush = "NwtGlassTintBrush";
 
+    /// <summary>The window background while a system backdrop such as Mica shows through it (see <see cref="WindowBackdrop"/>). Type: <see cref="Brush"/>.</summary>
+    public const string WindowBackdropTintBrush = "NwtWindowBackdropTintBrush";
+
     /// <summary>The tooltip background. Type: <see cref="Brush"/>.</summary>
     public const string ToolTipBackgroundBrush = "NwtToolTipBackgroundBrush";
 
@@ -322,6 +325,7 @@ public static class ThemeKeys
         new(TabSelectedBrush, typeof(Brush)),
         new(TabIndicatorBrush, typeof(Brush)),
         new(GlassTintBrush, typeof(Brush)),
+        new(WindowBackdropTintBrush, typeof(Brush)),
         new(ToolTipBackgroundBrush, typeof(Brush)),
         new(ToolTipForegroundBrush, typeof(Brush)),
         new(ToolTipBorderBrush, typeof(Brush)),

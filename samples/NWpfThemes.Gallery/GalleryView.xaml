@@ -287,8 +287,9 @@
                 </GroupBox>
 
                 <!--
-                  Frosted glass: the panels on the right blur whatever the "GlassArt" layer draws behind
-                  them. Drag the "Deposits" card to see the blur follow it.
+                  Frosted glass: the panels and controls blur whatever the "GlassArt" layer draws behind
+                  them. Drag the "Deposits" card to see the blur follow it. The Glass check box in the
+                  title bar turns it off.
                 -->
                 <GroupBox Header="Frosted glass" Style="{StaticResource Card}">
                     <Grid Height="236" ClipToBounds="True">
@@ -341,6 +342,16 @@
                                     <ProgressBar Margin="0,8,0,0" Value="64" />
                                 </StackPanel>
                             </GroupBox>
+                            <Button Canvas.Left="14"
+                                    Canvas.Top="186"
+                                    Content="Glass button" />
+                            <ComboBox Canvas.Left="124"
+                                      Canvas.Top="186"
+                                      Width="74"
+                                      SelectedIndex="0">
+                                <ComboBoxItem Content="365D" />
+                                <ComboBoxItem Content="30D" />
+                            </ComboBox>
                             <Expander Canvas.Left="206"
                                       Canvas.Top="96"
                                       Width="176"

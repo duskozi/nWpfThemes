@@ -100,6 +100,7 @@
 
     <!-- Glass: the surface colour at 80 %, used only when an app sets a blurred backdrop -->
     <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#CC24231F" />
+    <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#CC141310" />
 
     <!-- Tooltips -->
     <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF33312C" />

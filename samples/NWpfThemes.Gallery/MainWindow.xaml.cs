@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,6 +11,21 @@ public partial class MainWindow : ThemedWindow
         InitializeComponent();
         ThemePicker.ItemsSource = ThemeManager.Themes;
         ThemePicker.SelectedItem = ThemeManager.CurrentTheme ?? Theme.Dark;
+        BackdropPicker.ItemsSource = Enum.GetValues<WindowBackdropType>();
+        BackdropPicker.SelectedItem = WindowBackdropType.None;
+    }
+
+    private void OnGlassToggled(object sender, RoutedEventArgs e) => Glass.Enabled = ((CheckBox)sender).IsChecked == true;
+
+    private void OnBackdropSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (BackdropPicker.SelectedItem is WindowBackdropType type)
+        {
+            WindowBackdrop.SetType(this, type);
+            BackdropPicker.ToolTip = WindowBackdrop.Resolve(type) == type
+                ? null
+                : "Not supported on this version of Windows, so the window keeps its solid background.";
+        }
     }
 
     private void OnThemeSelected(object sender, SelectionChangedEventArgs e)

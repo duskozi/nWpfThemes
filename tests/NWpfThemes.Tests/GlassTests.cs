@@ -84,4 +84,26 @@ public class GlassTests
 
         Assert.Equal(unchecked((int)0xFFFF0000), pixel[0]);
     });
+
+    [Fact]
+    public void Layer_draws_nothing_when_glass_is_turned_off() => UiThread.Run(() =>
+    {
+        var backdrop = new Border { Background = Brushes.Red };
+        var layer = new GlassBackdropLayer();
+        var content = new Grid { Children = { layer } };
+        Glass.SetBackdrop(content, backdrop);
+        Glass.SetIsEnabled(content, false);
+        var root = new Grid { Width = 200, Height = 100, Children = { backdrop, content } };
+
+        root.Measure(new Size(200, 100));
+        root.Arrange(new Rect(0, 0, 200, 100));
+        root.UpdateLayout();
+
+        var bitmap = new System.Windows.Media.Imaging.RenderTargetBitmap(200, 100, 96, 96, PixelFormats.Pbgra32);
+        bitmap.Render(layer);
+        int[] pixel = new int[1];
+        bitmap.CopyPixels(new Int32Rect(100, 50, 1, 1), pixel, 4, 0);
+
+        Assert.Equal(0, pixel[0]);
+    });
 }
