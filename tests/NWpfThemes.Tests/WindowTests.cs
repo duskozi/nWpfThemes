@@ -14,8 +14,10 @@ public class WindowTests
         {
             window.IsRolledUp = true;
 
-            Assert.Equal(32, window.Height);
-            Assert.Equal(32, window.MaxHeight);
+            // The 32-pixel title bar plus the frame, which the theme may draw.
+            double rolled = 32 + window.BorderThickness.Top + window.BorderThickness.Bottom;
+            Assert.Equal(rolled, window.Height);
+            Assert.Equal(rolled, window.MaxHeight);
 
             window.IsRolledUp = false;
 
