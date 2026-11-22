@@ -6,7 +6,7 @@
 Themes for the standard WPF controls. Add the package, add one line to `App.xaml`, and every
 Button, TextBox, DataGrid, Menu and the rest of the built-in controls pick up the theme.
 
-- Thirteen themes in the box: **Dark**, **Light**, **High Contrast**, **Hardware** and **Midnight Glass**,
+- Fourteen themes in the box: **Dark**, **Light**, **High Contrast**, **Hardware**, **Midnight Glass** and **Workbench**,
   plus eight that match the skins of [nDAWControls](https://github.com/duskozi/nDAWControls): **Alloy**,
   **Alloy Night**, **Alloy Ember**, **Graphite**, **Studio**, **Retro Hardware**, **Light Classic** and
   **High Contrast Black**.
@@ -33,6 +33,14 @@ light edges and large rounded corners, pill-shaped buttons, inputs and tabs, mut
 monospaced headers and slim progress bars.
 
 ![Midnight Glass theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-midnight-glass.png)
+
+### Workbench
+
+A compact, flat dark look for tool and debugging apps: neutral charcoal panels and docks, soft grey
+text, a bright blue accent, small 12 px type and dense 22 px controls with plain one-pixel borders and
+no gradients, shadows or bevels.
+
+![Workbench theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-workbench.png)
 
 ### nDAWControls skins
 

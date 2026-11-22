@@ -77,12 +77,18 @@ public sealed class Theme
     /// </summary>
     public static Theme MidnightGlass { get; } = BuiltIn("Midnight Glass", "Themes/MidnightGlass.xaml");
 
+    /// <summary>
+    /// A compact, flat dark theme for tool and debugging apps: charcoal panels, soft grey text, a bright
+    /// blue accent, 12 px type and dense controls.
+    /// </summary>
+    public static Theme Workbench { get; } = BuiltIn("Workbench", "Themes/Workbench.xaml");
+
     /// <summary>The themes that ship with the library.</summary>
     public static IReadOnlyList<Theme> BuiltInThemes { get; } = new[]
     {
         Dark, Light, HighContrast, Hardware,
         Alloy, AlloyNight, AlloyEmber, Graphite, Studio, RetroHardware, LightClassic, HighContrastBlack,
-        MidnightGlass,
+        MidnightGlass, Workbench,
     };
 
     /// <summary>The location of the dictionary with the control styles.</summary>
