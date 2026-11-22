@@ -78,8 +78,8 @@ public sealed class Theme
     public static Theme MidnightGlass { get; } = BuiltIn("Midnight Glass", "Themes/MidnightGlass.xaml");
 
     /// <summary>
-    /// A dense, dark editor theme based on PCUI: blue-teal slate panels, grey-teal text, an orange accent
-    /// for focus and active items, 12 px type and 24 px controls.
+    /// A dense, dark editor theme based on PCUI: blue-teal slate panels, grey-teal text and accents, orange
+    /// only for focus and the selected tab, 12 px type and 24 px controls.
     /// </summary>
     public static Theme Slate { get; } = BuiltIn("Slate", "Themes/Slate.xaml");
 

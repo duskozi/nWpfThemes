@@ -2,7 +2,7 @@
   Slate theme
 
   A dense, dark editor look based on the PCUI component library (MIT): blue-teal slate panels,
-  soft grey-teal text, white headers, a sparing orange accent for focus and active items,
+  soft grey-teal text, white headers, grey-teal accent fills, orange only for focus rings and the selected tab line,
   12 px type and compact 24 px controls with 2 px corners and dark one-pixel borders.
   Every theme defines the same keys (see ThemeKeys.cs).
 -->
@@ -37,7 +37,7 @@
     <Color x:Key="NwtBackgroundColor">#FF293538</Color>
     <Color x:Key="NwtSurfaceColor">#FF364346</Color>
     <Color x:Key="NwtForegroundColor">#FFB1B8BA</Color>
-    <Color x:Key="NwtAccentColor">#FFFF6600</Color>
+    <Color x:Key="NwtAccentColor">#FFB1B8BA</Color>
     <Color x:Key="NwtBorderColor">#FF20292B</Color>
     <Color x:Key="NwtShadowColor">#99000000</Color>
 
@@ -52,7 +52,7 @@
     <SolidColorBrush x:Key="NwtBorderHoverBrush" Color="#FF5B7073" />
     <SolidColorBrush x:Key="NwtSeparatorBrush" Color="#FF232E30" />
 
-    <!-- Control faces: flat, dark borders, white text and an orange edge on hover -->
+    <!-- Control faces: flat with dark borders and white text on hover -->
     <SolidColorBrush x:Key="NwtControlBackgroundBrush" Color="#FF2C393C" />
     <SolidColorBrush x:Key="NwtControlHoverBrush" Color="#FF2C393C" />
     <SolidColorBrush x:Key="NwtControlPressedBrush" Color="#FF20292B" />
@@ -72,10 +72,10 @@
     <SolidColorBrush x:Key="NwtInputBevelBrush" Color="Transparent" />
     <Thickness x:Key="NwtInputBevelThickness">1</Thickness>
 
-    <!-- Accent: orange, so text on accent fills is dark slate -->
-    <SolidColorBrush x:Key="NwtAccentBrush" Color="#FFFF6600" />
-    <SolidColorBrush x:Key="NwtAccentHoverBrush" Color="#FFFF7A21" />
-    <SolidColorBrush x:Key="NwtAccentPressedBrush" Color="#FFF06000" />
+    <!-- Accent fills: light grey-teal with dark slate text, like ticked check boxes; orange is kept for focus and tab lines -->
+    <SolidColorBrush x:Key="NwtAccentBrush" Color="#FFB1B8BA" />
+    <SolidColorBrush x:Key="NwtAccentHoverBrush" Color="#FFC9CFD1" />
+    <SolidColorBrush x:Key="NwtAccentPressedBrush" Color="#FF9DA6A8" />
     <SolidColorBrush x:Key="NwtAccentForegroundBrush" Color="#FF20292B" />
 
     <!-- Selection, hover and focus: selected rows go to the darkest slate with white text -->
@@ -88,11 +88,11 @@
     <SolidColorBrush x:Key="NwtFocusBrush" Color="#FFFF6600" />
     <SolidColorBrush x:Key="NwtGlyphBrush" Color="#FFB1B8BA" />
 
-    <!-- Tracks and thumbs: the thumb turns orange on hover, like the scrollbars -->
+    <!-- Tracks and thumbs -->
     <SolidColorBrush x:Key="NwtTrackBrush" Color="#FF20292B" />
     <SolidColorBrush x:Key="NwtThumbBrush" Color="#FF5B7073" />
-    <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="#FFFF6600" />
-    <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FFFF8533" />
+    <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="#FF829193" />
+    <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FFB1B8BA" />
 
     <!-- Tabs -->
     <SolidColorBrush x:Key="NwtTabSelectedBrush" Color="#FF364346" />

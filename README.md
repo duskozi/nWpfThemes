@@ -37,8 +37,8 @@ monospaced headers and slim progress bars.
 ### Slate
 
 A dense, dark editor look based on the [PCUI](https://github.com/playcanvas/pcui) component library:
-blue-teal slate panels, soft grey-teal text with white headers, an orange accent kept for focus and
-active items, 12 px Helvetica Neue / Arial type and compact 24 px controls with 2 px corners.
+blue-teal slate panels, soft grey-teal text with white headers, grey-teal accent fills, orange only for
+focus rings and the selected tab line, 12 px Helvetica Neue / Arial type and compact 24 px controls with 2 px corners.
 
 ![Slate theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-slate.png)
 
