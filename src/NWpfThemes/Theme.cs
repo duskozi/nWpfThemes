@@ -78,6 +78,12 @@ public sealed class Theme
     public static Theme MidnightGlass { get; } = BuiltIn("Midnight Glass", "Themes/MidnightGlass.xaml");
 
     /// <summary>
+    /// A dense, dark editor theme based on PCUI: blue-teal slate panels, grey-teal text and accents, orange
+    /// only for focus and the selected tab, 12 px type and 24 px controls.
+    /// </summary>
+    public static Theme Slate { get; } = BuiltIn("Slate", "Themes/Slate.xaml");
+
+    /// <summary>
     /// A compact, flat dark theme for tool and debugging apps: charcoal panels, soft grey text, a bright
     /// blue accent, 12 px type and dense controls.
     /// </summary>
@@ -88,7 +94,7 @@ public sealed class Theme
     {
         Dark, Light, HighContrast, Hardware,
         Alloy, AlloyNight, AlloyEmber, Graphite, Studio, RetroHardware, LightClassic, HighContrastBlack,
-        MidnightGlass, Workbench,
+        MidnightGlass, Slate, Workbench,
     };
 
     /// <summary>The location of the dictionary with the control styles.</summary>
