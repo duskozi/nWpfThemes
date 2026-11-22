@@ -1,0 +1,123 @@
+<!--
+  Slate theme
+
+  A dense, dark editor look based on the PCUI component library (MIT): blue-teal slate panels,
+  soft grey-teal text, white headers, grey-teal accent fills, orange only for focus rings and the selected tab line,
+  12 px type and compact 24 px controls with 2 px corners and dark one-pixel borders.
+  Every theme defines the same keys (see ThemeKeys.cs).
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- Identity -->
+    <sys:String x:Key="NwtThemeName">Slate</sys:String>
+
+    <!-- Typography: the Helvetica Neue / Arial stack -->
+    <FontFamily x:Key="NwtFontFamily">Helvetica Neue, Arial</FontFamily>
+    <FontFamily x:Key="NwtInputFontFamily">Helvetica Neue, Arial</FontFamily>
+    <FontFamily x:Key="NwtHeaderFontFamily">Helvetica Neue, Arial</FontFamily>
+    <FontWeight x:Key="NwtHeaderFontWeight">Bold</FontWeight>
+    <sys:Double x:Key="NwtFontSize">12</sys:Double>
+    <sys:Double x:Key="NwtFontSizeSmall">10.5</sys:Double>
+    <sys:Double x:Key="NwtFontSizeLarge">14</sys:Double>
+
+    <!-- Shape and spacing -->
+    <CornerRadius x:Key="NwtControlCornerRadius">2</CornerRadius>
+    <CornerRadius x:Key="NwtOverlayCornerRadius">2</CornerRadius>
+    <CornerRadius x:Key="NwtPanelCornerRadius">2</CornerRadius>
+    <Thickness x:Key="NwtControlBorderThickness">1</Thickness>
+    <Thickness x:Key="NwtControlPadding">8,2</Thickness>
+    <sys:Double x:Key="NwtControlMinHeight">24</sys:Double>
+    <sys:Double x:Key="NwtProgressBarThickness">6</sys:Double>
+    <sys:Double x:Key="NwtFocusStrokeThickness">1</sys:Double>
+    <sys:Double x:Key="NwtFocusCornerRadius">2</sys:Double>
+
+    <!-- Colours -->
+    <Color x:Key="NwtBackgroundColor">#FF293538</Color>
+    <Color x:Key="NwtSurfaceColor">#FF364346</Color>
+    <Color x:Key="NwtForegroundColor">#FFB1B8BA</Color>
+    <Color x:Key="NwtAccentColor">#FFB1B8BA</Color>
+    <Color x:Key="NwtBorderColor">#FF20292B</Color>
+    <Color x:Key="NwtShadowColor">#99000000</Color>
+
+    <!-- Window and text -->
+    <SolidColorBrush x:Key="NwtBackgroundBrush" Color="#FF293538" />
+    <SolidColorBrush x:Key="NwtSurfaceBrush" Color="#FF364346" />
+    <SolidColorBrush x:Key="NwtSurfaceAltBrush" Color="#FF2C393C" />
+    <SolidColorBrush x:Key="NwtForegroundBrush" Color="#FFB1B8BA" />
+    <SolidColorBrush x:Key="NwtForegroundSecondaryBrush" Color="#FFA7AFB1" />
+    <SolidColorBrush x:Key="NwtForegroundDisabledBrush" Color="#FF5B7073" />
+    <SolidColorBrush x:Key="NwtBorderBrush" Color="#FF20292B" />
+    <SolidColorBrush x:Key="NwtBorderHoverBrush" Color="#FF5B7073" />
+    <SolidColorBrush x:Key="NwtSeparatorBrush" Color="#FF232E30" />
+
+    <!-- Control faces: flat with dark borders and white text on hover -->
+    <SolidColorBrush x:Key="NwtControlBackgroundBrush" Color="#FF2C393C" />
+    <SolidColorBrush x:Key="NwtControlHoverBrush" Color="#FF2C393C" />
+    <SolidColorBrush x:Key="NwtControlPressedBrush" Color="#FF20292B" />
+    <SolidColorBrush x:Key="NwtControlDisabledBrush" Color="#FF303D40" />
+    <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="#FFB1B8BA" />
+    <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtControlBorderBrush" Color="#FF20292B" />
+    <SolidColorBrush x:Key="NwtControlBevelBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtControlPressedBevelBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="NwtControlCheckedBevelBrush" Color="Transparent" />
+    <Thickness x:Key="NwtControlBevelThickness">1</Thickness>
+
+    <!-- Inputs -->
+    <SolidColorBrush x:Key="NwtInputBackgroundBrush" Color="#FF2C393C" />
+    <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="#FFB1B8BA" />
+    <SolidColorBrush x:Key="NwtInputBorderBrush" Color="#FF7F9295" />
+    <SolidColorBrush x:Key="NwtInputBevelBrush" Color="Transparent" />
+    <Thickness x:Key="NwtInputBevelThickness">1</Thickness>
+
+    <!-- Accent fills: light grey-teal with dark slate text, like ticked check boxes; orange is kept for focus and tab lines -->
+    <SolidColorBrush x:Key="NwtAccentBrush" Color="#FFB1B8BA" />
+    <SolidColorBrush x:Key="NwtAccentHoverBrush" Color="#FFC9CFD1" />
+    <SolidColorBrush x:Key="NwtAccentPressedBrush" Color="#FF9DA6A8" />
+    <SolidColorBrush x:Key="NwtAccentForegroundBrush" Color="#FF20292B" />
+
+    <!-- Selection, hover and focus: selected rows go to the darkest slate with white text -->
+    <SolidColorBrush x:Key="NwtSelectionBrush" Color="#FF20292B" />
+    <SolidColorBrush x:Key="NwtSelectionForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveBrush" Color="#FF2C393C" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveForegroundBrush" Color="#FFB1B8BA" />
+    <SolidColorBrush x:Key="NwtHoverBrush" Color="#FF313E41" />
+    <SolidColorBrush x:Key="NwtHoverForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtFocusBrush" Color="#FFFF6600" />
+    <SolidColorBrush x:Key="NwtGlyphBrush" Color="#FFB1B8BA" />
+
+    <!-- Tracks and thumbs -->
+    <SolidColorBrush x:Key="NwtTrackBrush" Color="#FF20292B" />
+    <SolidColorBrush x:Key="NwtThumbBrush" Color="#FF5B7073" />
+    <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="#FF829193" />
+    <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FFB1B8BA" />
+
+    <!-- Tabs -->
+    <SolidColorBrush x:Key="NwtTabSelectedBrush" Color="#FF364346" />
+    <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="#FFFF6600" />
+
+    <!-- Glass: the surface colour at 97 % (the slate is light enough that softer tints lose contrast over white), used only when an app sets a blurred backdrop -->
+    <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#F7364346" />
+    <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#F0293538" />
+
+    <!-- Tooltips -->
+    <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF20292B" />
+    <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="#FFB1B8BA" />
+    <SolidColorBrush x:Key="NwtToolTipBorderBrush" Color="#FF364346" />
+
+    <!-- Window chrome -->
+    <SolidColorBrush x:Key="NwtTitleBarBackgroundBrush" Color="#FF20292B" />
+    <SolidColorBrush x:Key="NwtTitleBarForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveBackgroundBrush" Color="#FF20292B" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveForegroundBrush" Color="#FF829193" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverBrush" Color="#FF364346" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverBrush" Color="#FFC42B2B" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverForegroundBrush" Color="#FFFFFFFF" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="NwtErrorBrush" Color="#FFFF9A9A" />
+
+</ResourceDictionary>
