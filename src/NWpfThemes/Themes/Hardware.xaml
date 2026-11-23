@@ -103,7 +103,7 @@
     <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#CC26282B" />
 
     <!-- Shadows and depth -->
-    <LinearGradientBrush x:Key="NwtSliderThumbBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFF2F3F4" Offset="0" />
+    <LinearGradientBrush x:Key="NwtSliderThumbBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFF2F3F4" Offset="0" /><GradientStop Color="#FFD3D6DA" Offset="0.45" /><GradientStop Color="#FFC8CCD0" Offset="0.55" /><GradientStop Color="#FFB3B8BE" Offset="1" /></LinearGradientBrush>
     <DropShadowEffect x:Key="NwtPopupShadowEffect" BlurRadius="10" Opacity="1" ShadowDepth="2" Color="{StaticResource NwtShadowColor}" />
     <DropShadowEffect x:Key="NwtPanelShadowEffect" Opacity="0" />
     <DropShadowEffect x:Key="NwtAccentShadowEffect" Opacity="0" />
