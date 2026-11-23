@@ -46,11 +46,21 @@ jobs:
       - name: Pack
         run: dotnet pack src/NWpfThemes/NWpfThemes.csproj -c Release --no-build -o artifacts -p:Version=${{ env.VERSION }}
 
+      - name: Check NuGet user
+        shell: pwsh
+        env:
+          NUGET_USER: ${{ secrets.NUGET_USER || vars.NUGET_USER }}
+        run: |
+          if (-not $env:NUGET_USER) {
+            throw "NUGET_USER is not set. Add it under Settings > Secrets and variables > Actions of this repository (the nuget.org profile name, not the email)."
+          }
+
       - name: Log in to NuGet
         id: login
         uses: NuGet/login@v1
         with:
-          user: ${{ secrets.NUGET_USER }}
+          # The nuget.org profile name (not the email). Set it as the repository secret or variable NUGET_USER.
+          user: ${{ secrets.NUGET_USER || vars.NUGET_USER }}
 
       - name: Push
         run: dotnet nuget push "artifacts/*.nupkg" --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
