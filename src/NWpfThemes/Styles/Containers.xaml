@@ -27,6 +27,8 @@
                                           TextElement.FontFamily="{DynamicResource NwtHeaderFontFamily}"
                                           TextElement.FontWeight="{DynamicResource NwtHeaderFontWeight}"
                                           TextElement.Foreground="{DynamicResource NwtForegroundSecondaryBrush}" />
+                        <!-- Casts the panel shadow. -->
+                        <Border Grid.Row="1" Background="{TemplateBinding Background}" CornerRadius="{DynamicResource NwtPanelCornerRadius}" Effect="{DynamicResource NwtPanelShadowEffect}" Style="{DynamicResource NwtShadowCasterStyle}" />
                         <Border Grid.Row="1"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -119,6 +121,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Expander">
+                    <Grid>
+                    <Border Background="{TemplateBinding Background}" CornerRadius="{DynamicResource NwtPanelCornerRadius}" Effect="{DynamicResource NwtPanelShadowEffect}" Style="{DynamicResource NwtShadowCasterStyle}" />
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -148,6 +152,7 @@
                             </DockPanel>
                         </Grid>
                     </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsExpanded" Value="True">
                             <Setter TargetName="ExpandSite" Property="Visibility" Value="Visible" />
@@ -344,11 +349,8 @@
                                             BorderThickness="1"
                                             CornerRadius="{DynamicResource NwtOverlayCornerRadius}">
                                         <Border.Effect>
-                                            <DropShadowEffect BlurRadius="10"
-                                                              Opacity="1"
-                                                              ShadowDepth="2"
-                                                              Color="{DynamicResource NwtShadowColor}" />
-                                        </Border.Effect>
+<DynamicResource ResourceKey="NwtPopupShadowEffect" />
+</Border.Effect>
                                         <Grid>
                                             <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
                                             <ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel"

@@ -107,6 +107,20 @@
                     </Grid>
                 </GroupBox>
 
+                <GroupBox Header="Switches and segments" Style="{StaticResource Card}">
+                    <StackPanel>
+                        <CheckBox Content="Notifications" IsChecked="True" Style="{DynamicResource NwtToggleSwitchStyle}" Margin="0,0,0,6" />
+                        <CheckBox Content="Start with Windows" Style="{DynamicResource NwtToggleSwitchStyle}" Margin="0,0,0,10" />
+                        <Border Style="{DynamicResource NwtSegmentedPanelStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Content="Day" GroupName="Range" IsChecked="True" Style="{DynamicResource NwtSegmentedButtonStyle}" />
+                                <RadioButton Content="Week" GroupName="Range" Style="{DynamicResource NwtSegmentedButtonStyle}" />
+                                <RadioButton Content="Month" GroupName="Range" Style="{DynamicResource NwtSegmentedButtonStyle}" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </GroupBox>
+
                 <GroupBox Header="Text input" Style="{StaticResource Card}">
                     <StackPanel>
                         <Label Content="_Name" Target="{Binding ElementName=NameBox}" />

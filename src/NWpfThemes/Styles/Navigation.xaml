@@ -33,6 +33,9 @@
                                   Background="Transparent"
                                   IsItemsHost="True"
                                   KeyboardNavigation.TabIndex="1" />
+                        <Border Grid.Row="{Binding (Grid.Row), ElementName=ContentPanel}"
+                                Grid.Column="{Binding (Grid.Column), ElementName=ContentPanel}"
+                                Background="{TemplateBinding Background}" CornerRadius="{DynamicResource NwtPanelCornerRadius}" Effect="{DynamicResource NwtPanelShadowEffect}" Style="{DynamicResource NwtShadowCasterStyle}" />
                         <Border x:Name="ContentPanel"
                                 Grid.Row="1"
                                 Background="{TemplateBinding Background}"
@@ -241,11 +244,8 @@
                                     CornerRadius="{DynamicResource NwtOverlayCornerRadius}"
                                     TextElement.Foreground="{DynamicResource NwtForegroundBrush}">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10"
-                                                      Opacity="1"
-                                                      ShadowDepth="2"
-                                                      Color="{DynamicResource NwtShadowColor}" />
-                                </Border.Effect>
+<DynamicResource ResourceKey="NwtPopupShadowEffect" />
+</Border.Effect>
                                 <Grid>
                                     <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
                                     <ScrollViewer Margin="4" nwt:Glass.IsOverGlass="True" CanContentScroll="True">
@@ -418,11 +418,8 @@
                                     CornerRadius="{DynamicResource NwtOverlayCornerRadius}"
                                     TextElement.Foreground="{DynamicResource NwtForegroundBrush}">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10"
-                                                      Opacity="1"
-                                                      ShadowDepth="2"
-                                                      Color="{DynamicResource NwtShadowColor}" />
-                                </Border.Effect>
+<DynamicResource ResourceKey="NwtPopupShadowEffect" />
+</Border.Effect>
                                 <Grid>
                                     <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
                                     <ScrollViewer Margin="4" nwt:Glass.IsOverGlass="True" CanContentScroll="True">
@@ -503,11 +500,8 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{DynamicResource NwtOverlayCornerRadius}">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10"
-                                              Opacity="1"
-                                              ShadowDepth="2"
-                                              Color="{DynamicResource NwtShadowColor}" />
-                        </Border.Effect>
+<DynamicResource ResourceKey="NwtPopupShadowEffect" />
+</Border.Effect>
                         <Grid>
                             <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
                             <ScrollViewer Margin="{TemplateBinding Padding}" nwt:Glass.IsOverGlass="True" CanContentScroll="True">

@@ -61,7 +61,7 @@ public class ContrastTests
         (ThemeKeys.AccentBrush, ThemeKeys.BackgroundBrush),
     };
 
-    public static TheoryData<string> FixedPaletteThemes() => new() { Theme.Dark.Name, Theme.Light.Name, Theme.Hardware.Name, Theme.MidnightGlass.Name, Theme.Slate.Name, Theme.Workbench.Name };
+    public static TheoryData<string> FixedPaletteThemes() => new() { Theme.Dark.Name, Theme.Light.Name, Theme.Hardware.Name, Theme.MidnightGlass.Name, Theme.Slate.Name, Theme.Workbench.Name, Theme.Nocturne.Name };
 
     public static TheoryData<string> SkinThemes() => new()
     {

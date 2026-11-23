@@ -5,6 +5,13 @@
                     xmlns:nwt="clr-namespace:NWpfThemes">
 
     <ControlTemplate x:Key="NwtButtonTemplate" TargetType="ButtonBase">
+        <Grid>
+        <!-- Casts the accent glow under accent, default and checked buttons. -->
+        <Border x:Name="Glow"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                Effect="{DynamicResource NwtAccentShadowEffect}"
+                Style="{DynamicResource NwtStateShadowCasterStyle}" />
         <Border x:Name="Bd"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -28,12 +35,23 @@
                 </Border>
             </Grid>
         </Border>
+        </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtControlPressedBevelBrush}" />
             </Trigger>
             <Trigger Property="ToggleButton.IsChecked" Value="True">
                 <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtControlCheckedBevelBrush}" />
+                <Setter TargetName="Glow" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="Button.IsDefault" Value="True">
+                <Setter TargetName="Glow" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="nwt:ThemeAssist.IsAccent" Value="True">
+                <Setter TargetName="Glow" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Glow" Property="Visibility" Value="Collapsed" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -67,6 +85,7 @@
 
     <!-- A button filled with the accent colour, for the main action. Buttons with IsDefault="True" look the same. -->
     <Style x:Key="NwtAccentButtonStyle" TargetType="Button" BasedOn="{StaticResource NwtButtonBaseStyle}">
+        <Setter Property="nwt:ThemeAssist.IsAccent" Value="True" />
         <Setter Property="Background" Value="{DynamicResource NwtAccentBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource NwtAccentForegroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NwtAccentPressedBrush}" />
@@ -388,6 +407,136 @@
     <Style x:Key="NwtDataGridCheckBoxStyle" TargetType="CheckBox" BasedOn="{StaticResource NwtDataGridEditingCheckBoxStyle}">
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="Focusable" Value="False" />
+    </Style>
+
+    <!--
+      A CheckBox drawn as an on/off switch, with its label on the left:
+      <CheckBox Style="{DynamicResource NwtToggleSwitchStyle}" Content="Start with Windows" />
+    -->
+    <Style x:Key="NwtToggleSwitchStyle" TargetType="CheckBox">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtFocusVisualStyle}" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="MinHeight" Value="24" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Margin="0,0,12,0"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True" />
+                        <Border x:Name="Track"
+                                Grid.Column="1"
+                                Width="38"
+                                Height="22"
+                                VerticalAlignment="Center"
+                                Background="{DynamicResource NwtTrackBrush}"
+                                BorderBrush="{DynamicResource NwtInputBorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="11">
+                            <Ellipse x:Name="Knob"
+                                     Width="14"
+                                     Height="14"
+                                     Margin="3,0"
+                                     HorizontalAlignment="Left"
+                                     Fill="{DynamicResource NwtForegroundSecondaryBrush}" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource NwtBorderHoverBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Track" Property="Background" Value="{DynamicResource NwtAccentBrush}" />
+                            <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource NwtAccentBrush}" />
+                            <Setter TargetName="Knob" Property="HorizontalAlignment" Value="Right" />
+                            <Setter TargetName="Knob" Property="Fill" Value="{DynamicResource NwtAccentForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                            <Setter TargetName="Track" Property="Background" Value="{DynamicResource NwtControlDisabledBrush}" />
+                            <Setter TargetName="Track" Property="BorderBrush" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                            <Setter TargetName="Knob" Property="Fill" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--
+      RadioButtons drawn as a segmented control. Put them side by side in a Border styled with
+      NwtSegmentedPanelStyle:
+      <Border Style="{DynamicResource NwtSegmentedPanelStyle}">
+          <StackPanel Orientation="Horizontal">
+              <RadioButton Style="{DynamicResource NwtSegmentedButtonStyle}" Content="Day" IsChecked="True" />
+              <RadioButton Style="{DynamicResource NwtSegmentedButtonStyle}" Content="Week" />
+          </StackPanel>
+      </Border>
+    -->
+    <Style x:Key="NwtSegmentedPanelStyle" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource NwtInputBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource NwtBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource NwtPanelCornerRadius}" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <Style x:Key="NwtSegmentedButtonStyle" TargetType="RadioButton">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource NwtFocusVisualStyle}" />
+        <Setter Property="Foreground" Value="{DynamicResource NwtForegroundSecondaryBrush}" />
+        <Setter Property="FontFamily" Value="{DynamicResource NwtFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource NwtFontSize}" />
+        <Setter Property="Padding" Value="12,4" />
+        <Setter Property="MinHeight" Value="26" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border x:Name="Bd"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="1"
+                            CornerRadius="{DynamicResource NwtControlCornerRadius}">
+                        <Border x:Name="Bevel"
+                                BorderBrush="Transparent"
+                                BorderThickness="{DynamicResource NwtControlBevelThickness}"
+                                CornerRadius="{DynamicResource NwtControlCornerRadius}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              RecognizesAccessKey="True" />
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtControlBackgroundBrush}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource NwtControlBorderBrush}" />
+                            <Setter TargetName="Bevel" Property="BorderBrush" Value="{DynamicResource NwtControlBevelBrush}" />
+                            <Setter Property="Foreground" Value="{DynamicResource NwtControlForegroundBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource NwtForegroundDisabledBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

@@ -6,7 +6,7 @@
 Themes for the standard WPF controls. Add the package, add one line to `App.xaml`, and every
 Button, TextBox, DataGrid, Menu and the rest of the built-in controls pick up the theme.
 
-- Fifteen themes in the box: **Dark**, **Light**, **High Contrast**, **Hardware**, **Midnight Glass**, **Slate** and **Workbench**,
+- Sixteen themes in the box: **Dark**, **Light**, **High Contrast**, **Hardware**, **Midnight Glass**, **Slate**, **Workbench** and **Nocturne**,
   plus eight that match the skins of [nDAWControls](https://github.com/duskozi/nDAWControls): **Alloy**,
   **Alloy Night**, **Alloy Ember**, **Graphite**, **Studio**, **Retro Hardware**, **Light Classic** and
   **High Contrast Black**.
@@ -49,6 +49,15 @@ text, a bright blue accent, small 12 px type and dense 22 px controls with plain
 no gradients, shadows or bevels.
 
 ![Workbench theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-workbench.png)
+
+### Nocturne
+
+Layered dark glass in the style of current desktop apps: blue-tinted near-black with a faint accent glow,
+hairline borders, a soft light along the top edge of every raised surface, 8 / 10 / 12 px corners and one
+periwinkle accent. Cards and popups cast soft shadows, the main button and the slider thumb glow in the
+accent colour, and focused inputs get an accent halo. Uses Inter where it is installed, else Segoe UI Variable.
+
+![Nocturne theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-nocturne.png)
 
 ### nDAWControls skins
 
@@ -158,7 +167,9 @@ In XAML, theme part of a window with the attached property:
 
 | Key | Use |
 | --- | --- |
-| `NwtAccentButtonStyle` | A button filled with the accent colour. Buttons with `IsDefault="True"` look the same. |
+| `NwtAccentButtonStyle` | A button filled with the accent colour. Buttons with `IsDefault="True"` look the same, and themes with an accent glow (`NwtAccentShadowEffect`) give it to both. Set `nwt:ThemeAssist.IsAccent="True"` to give the glow to a button with your own style. |
+| `NwtToggleSwitchStyle` | A `CheckBox` drawn as an on/off switch, with its label on the left. |
+| `NwtSegmentedPanelStyle`, `NwtSegmentedButtonStyle` | `RadioButton`s drawn as a segmented control: put them side by side in a `Border` with the panel style. |
 | `NwtWindowStyle` | Theme background, text colour and font for a plain `Window`. |
 | `NwtFocusVisualStyle` | The keyboard focus ring, for your own controls. |
 | `NwtDataGridCheckBoxStyle`, `NwtDataGridEditingCheckBoxStyle` | `ElementStyle` and `EditingElementStyle` for a `DataGridCheckBoxColumn`, whose check boxes otherwise keep the Windows look. |
@@ -342,6 +353,12 @@ Every theme defines all of these keys.
 | `NwtTabIndicatorBrush` | Brush | The bar that marks the selected tab. Transparent when the selected tab is marked by its background only. |
 | `NwtGlassTintBrush` | Brush | The translucent fill over the blurred backdrop of glass panels (see Glass). |
 | `NwtWindowBackdropTintBrush` | Brush | The window background while a system backdrop such as Mica shows through it (see WindowBackdrop). |
+| `NwtSliderThumbBrush` | Brush | The face of the slider knob. |
+| `NwtPopupShadowEffect` | Effect | The shadow under menus, drop-downs and tooltips. |
+| `NwtPanelShadowEffect` | Effect | The shadow under group boxes, expanders and tab panels. A DropShadowEffect with `Opacity` 0 turns it off. |
+| `NwtAccentShadowEffect` | Effect | The glow under accent and default buttons and checked toggle buttons. A DropShadowEffect with `Opacity` 0 turns it off. |
+| `NwtInputFocusShadowEffect` | Effect | The glow around a focused text input or editable combo box. A DropShadowEffect with `Opacity` 0 turns it off. |
+| `NwtThumbShadowEffect` | Effect | The shadow or halo around the slider knob. A DropShadowEffect with `Opacity` 0 turns it off. |
 | `NwtToolTipBackgroundBrush` | Brush | The tooltip background. |
 | `NwtToolTipForegroundBrush` | Brush | The tooltip text. |
 | `NwtToolTipBorderBrush` | Brush | The tooltip border. |

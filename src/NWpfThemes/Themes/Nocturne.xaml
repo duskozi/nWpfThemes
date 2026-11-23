@@ -1,0 +1,135 @@
+<!--
+  Nocturne theme
+
+  Layered dark glass: blue-tinted near-black, hairline borders, a soft light along the top edge of every
+  raised surface, 8 / 10 / 12 px corners and one vivid periwinkle accent. Cards and popups cast soft shadows,
+  the main button and the slider thumb glow in the accent colour and focused inputs get an accent halo.
+  Every theme defines the same keys (see ThemeKeys.cs).
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- Identity -->
+    <sys:String x:Key="NwtThemeName">Nocturne</sys:String>
+
+    <!-- Typography: Inter where installed, else Segoe UI Variable; JetBrains Mono for numbers -->
+    <FontFamily x:Key="NwtFontFamily">Inter, Segoe UI Variable Text, Segoe UI</FontFamily>
+    <FontFamily x:Key="NwtInputFontFamily">Inter, Segoe UI Variable Text, Segoe UI</FontFamily>
+    <FontFamily x:Key="NwtHeaderFontFamily">Inter, Segoe UI Variable Display, Segoe UI</FontFamily>
+    <FontWeight x:Key="NwtHeaderFontWeight">SemiBold</FontWeight>
+    <sys:Double x:Key="NwtFontSize">13</sys:Double>
+    <sys:Double x:Key="NwtFontSizeSmall">11</sys:Double>
+    <sys:Double x:Key="NwtFontSizeLarge">16</sys:Double>
+
+    <!-- Shape and spacing -->
+    <CornerRadius x:Key="NwtControlCornerRadius">8</CornerRadius>
+    <CornerRadius x:Key="NwtOverlayCornerRadius">10</CornerRadius>
+    <CornerRadius x:Key="NwtPanelCornerRadius">12</CornerRadius>
+    <Thickness x:Key="NwtControlBorderThickness">1</Thickness>
+    <Thickness x:Key="NwtControlPadding">14,5</Thickness>
+    <sys:Double x:Key="NwtControlMinHeight">32</sys:Double>
+    <sys:Double x:Key="NwtProgressBarThickness">6</sys:Double>
+    <sys:Double x:Key="NwtFocusStrokeThickness">2</sys:Double>
+    <sys:Double x:Key="NwtFocusCornerRadius">10</sys:Double>
+
+    <!-- Colours -->
+    <Color x:Key="NwtBackgroundColor">#FF0B0D11</Color>
+    <Color x:Key="NwtSurfaceColor">#FF171B22</Color>
+    <Color x:Key="NwtForegroundColor">#FFE8EAF0</Color>
+    <Color x:Key="NwtAccentColor">#FF7C8CFF</Color>
+    <Color x:Key="NwtBorderColor">#FF242934</Color>
+    <Color x:Key="NwtShadowColor">#FF000000</Color>
+
+    <!-- Window and text: near-black with a faint accent glow in the top-left corner -->
+    <RadialGradientBrush x:Key="NwtBackgroundBrush" Center="0.1,0" GradientOrigin="0.1,0" RadiusX="0.9" RadiusY="0.9">
+        <GradientStop Color="#FF151A2C" Offset="0" />
+        <GradientStop Color="#FF0F1219" Offset="0.45" />
+        <GradientStop Color="#FF0B0D11" Offset="1" />
+    </RadialGradientBrush>
+    <LinearGradientBrush x:Key="NwtSurfaceBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF171B22" Offset="0" /><GradientStop Color="#FF14171D" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtSurfaceAltBrush" Color="#FF101318" />
+    <SolidColorBrush x:Key="NwtForegroundBrush" Color="#FFE8EAF0" />
+    <SolidColorBrush x:Key="NwtForegroundSecondaryBrush" Color="#FF9AA3B2" />
+    <SolidColorBrush x:Key="NwtForegroundDisabledBrush" Color="#FF596171" />
+    <SolidColorBrush x:Key="NwtBorderBrush" Color="#FF242934" />
+    <SolidColorBrush x:Key="NwtBorderHoverBrush" Color="#FF394052" />
+    <SolidColorBrush x:Key="NwtSeparatorBrush" Color="#FF1E222B" />
+
+    <!-- Control faces: soft vertical gradient, hairline border and a 7 % white light along the top edge -->
+    <LinearGradientBrush x:Key="NwtControlBackgroundBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF232833" Offset="0" /><GradientStop Color="#FF1C2028" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtControlHoverBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF2A303C" Offset="0" /><GradientStop Color="#FF222731" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtControlPressedBrush" Color="#FF181B22" />
+    <SolidColorBrush x:Key="NwtControlDisabledBrush" Color="#FF171A20" />
+    <SolidColorBrush x:Key="NwtControlForegroundBrush" Color="#FFE8EAF0" />
+    <SolidColorBrush x:Key="NwtControlHoverForegroundBrush" Color="#FFF4F6FA" />
+    <SolidColorBrush x:Key="NwtControlBorderBrush" Color="#FF2C3240" />
+    <SolidColorBrush x:Key="NwtControlBevelBrush" Color="#12FFFFFF" />
+    <SolidColorBrush x:Key="NwtControlPressedBevelBrush" Color="#73000000" />
+    <SolidColorBrush x:Key="NwtControlCheckedBevelBrush" Color="#59FFFFFF" />
+    <Thickness x:Key="NwtControlBevelThickness">0,1,0,0</Thickness>
+
+    <!-- Inputs: recessed, darker than the card, with a dark inner top edge -->
+    <SolidColorBrush x:Key="NwtInputBackgroundBrush" Color="#FF0F1217" />
+    <SolidColorBrush x:Key="NwtInputForegroundBrush" Color="#FFE8EAF0" />
+    <SolidColorBrush x:Key="NwtInputBorderBrush" Color="#FF5E677A" />
+    <SolidColorBrush x:Key="NwtInputBevelBrush" Color="#66000000" />
+    <Thickness x:Key="NwtInputBevelThickness">0,1,0,0</Thickness>
+
+    <!-- Accent fills: periwinkle with a lighter top and near-black text -->
+    <LinearGradientBrush x:Key="NwtAccentBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF95A2FF" Offset="0" /><GradientStop Color="#FF7C8CFF" Offset="1" /></LinearGradientBrush>
+    <LinearGradientBrush x:Key="NwtAccentHoverBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFA6B1FF" Offset="0" /><GradientStop Color="#FF8B99FF" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtAccentPressedBrush" Color="#FF6E7EF2" />
+    <SolidColorBrush x:Key="NwtAccentForegroundBrush" Color="#FF0B0D1A" />
+
+    <!-- Selection, hover and focus: an 18 % accent tint keeps the row text white -->
+    <SolidColorBrush x:Key="NwtSelectionBrush" Color="#2E7C8CFF" />
+    <SolidColorBrush x:Key="NwtSelectionForegroundBrush" Color="#FFF4F6FA" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveBrush" Color="#14FFFFFF" />
+    <SolidColorBrush x:Key="NwtSelectionInactiveForegroundBrush" Color="#FFE8EAF0" />
+    <SolidColorBrush x:Key="NwtHoverBrush" Color="#0DFFFFFF" />
+    <SolidColorBrush x:Key="NwtHoverForegroundBrush" Color="#FFF4F6FA" />
+    <SolidColorBrush x:Key="NwtFocusBrush" Color="#FF7C8CFF" />
+    <SolidColorBrush x:Key="NwtGlyphBrush" Color="#FFC4CAD6" />
+
+    <!-- Tracks and thumbs -->
+    <SolidColorBrush x:Key="NwtTrackBrush" Color="#FF262B36" />
+    <SolidColorBrush x:Key="NwtThumbBrush" Color="#FF394052" />
+    <SolidColorBrush x:Key="NwtThumbHoverBrush" Color="#FF4A5266" />
+    <SolidColorBrush x:Key="NwtThumbPressedBrush" Color="#FF5E677A" />
+
+    <!-- Tabs: the selected tab is a raised chip with an accent line -->
+    <LinearGradientBrush x:Key="NwtTabSelectedBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF232833" Offset="0" /><GradientStop Color="#FF1C2028" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtTabIndicatorBrush" Color="#FF7C8CFF" />
+
+    <!-- Glass: the card colour at 94 %, used only when an app sets a blurred backdrop -->
+    <SolidColorBrush x:Key="NwtGlassTintBrush" Color="#F0171B22" />
+    <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#E60B0D11" />
+
+    <!-- Shadows and depth: soft card shadows, deeper popup shadows, accent glows on the main button, focused inputs and the slider thumb -->
+    <LinearGradientBrush x:Key="NwtSliderThumbBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FFF4F6FA" Offset="0" /><GradientStop Color="#FFC9CED8" Offset="1" /></LinearGradientBrush>
+    <DropShadowEffect x:Key="NwtPopupShadowEffect" BlurRadius="18" Direction="270" Opacity="0.55" ShadowDepth="5" Color="#FF000000" />
+    <DropShadowEffect x:Key="NwtPanelShadowEffect" BlurRadius="24" Direction="270" Opacity="0.28" ShadowDepth="8" Color="#FF000000" />
+    <DropShadowEffect x:Key="NwtAccentShadowEffect" BlurRadius="14" Direction="270" Opacity="0.35" ShadowDepth="3" Color="#FF7C8CFF" />
+    <DropShadowEffect x:Key="NwtInputFocusShadowEffect" BlurRadius="8" Opacity="0.45" ShadowDepth="0" Color="#FF7C8CFF" />
+    <DropShadowEffect x:Key="NwtThumbShadowEffect" BlurRadius="10" Opacity="0.4" ShadowDepth="0" Color="#FF7C8CFF" />
+
+    <!-- Tooltips -->
+    <SolidColorBrush x:Key="NwtToolTipBackgroundBrush" Color="#FF262B36" />
+    <SolidColorBrush x:Key="NwtToolTipForegroundBrush" Color="#FFE8EAF0" />
+    <SolidColorBrush x:Key="NwtToolTipBorderBrush" Color="#FF343B4A" />
+
+    <!-- Window chrome -->
+    <LinearGradientBrush x:Key="NwtTitleBarBackgroundBrush" StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#FF151920" Offset="0" /><GradientStop Color="#FF12151B" Offset="1" /></LinearGradientBrush>
+    <SolidColorBrush x:Key="NwtTitleBarForegroundBrush" Color="#FFE8EAF0" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveBackgroundBrush" Color="#FF101318" />
+    <SolidColorBrush x:Key="NwtTitleBarInactiveForegroundBrush" Color="#FF7A8394" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverBrush" Color="#FF232833" />
+    <SolidColorBrush x:Key="NwtCaptionButtonHoverForegroundBrush" Color="#FFF4F6FA" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverBrush" Color="#FFC42B3A" />
+    <SolidColorBrush x:Key="NwtCloseButtonHoverForegroundBrush" Color="#FFFFFFFF" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="NwtErrorBrush" Color="#FFFF8A94" />
+
+</ResourceDictionary>

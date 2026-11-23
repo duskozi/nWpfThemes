@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace NWpfThemes;
 
@@ -219,6 +220,24 @@ public static class ThemeKeys
     /// <summary>The window background while a system backdrop such as Mica shows through it (see <see cref="WindowBackdrop"/>). Type: <see cref="Brush"/>.</summary>
     public const string WindowBackdropTintBrush = "NwtWindowBackdropTintBrush";
 
+    /// <summary>The face of the slider knob. Type: <see cref="Brush"/>.</summary>
+    public const string SliderThumbBrush = "NwtSliderThumbBrush";
+
+    /// <summary>The shadow under menus, drop-downs and tooltips. Type: <see cref="Effect"/>.</summary>
+    public const string PopupShadowEffect = "NwtPopupShadowEffect";
+
+    /// <summary>The shadow under group boxes, expanders and tab panels. A <see cref="DropShadowEffect"/> with <c>Opacity</c> 0 turns it off. Type: <see cref="Effect"/>.</summary>
+    public const string PanelShadowEffect = "NwtPanelShadowEffect";
+
+    /// <summary>The glow under accent and default buttons and checked toggle buttons. A <see cref="DropShadowEffect"/> with <c>Opacity</c> 0 turns it off. Type: <see cref="Effect"/>.</summary>
+    public const string AccentShadowEffect = "NwtAccentShadowEffect";
+
+    /// <summary>The glow around a focused text input or editable combo box. A <see cref="DropShadowEffect"/> with <c>Opacity</c> 0 turns it off. Type: <see cref="Effect"/>.</summary>
+    public const string InputFocusShadowEffect = "NwtInputFocusShadowEffect";
+
+    /// <summary>The shadow or halo around the slider knob. A <see cref="DropShadowEffect"/> with <c>Opacity</c> 0 turns it off. Type: <see cref="Effect"/>.</summary>
+    public const string ThumbShadowEffect = "NwtThumbShadowEffect";
+
     /// <summary>The tooltip background. Type: <see cref="Brush"/>.</summary>
     public const string ToolTipBackgroundBrush = "NwtToolTipBackgroundBrush";
 
@@ -326,6 +345,12 @@ public static class ThemeKeys
         new(TabIndicatorBrush, typeof(Brush)),
         new(GlassTintBrush, typeof(Brush)),
         new(WindowBackdropTintBrush, typeof(Brush)),
+        new(SliderThumbBrush, typeof(Brush)),
+        new(PopupShadowEffect, typeof(Effect)),
+        new(PanelShadowEffect, typeof(Effect)),
+        new(AccentShadowEffect, typeof(Effect)),
+        new(InputFocusShadowEffect, typeof(Effect)),
+        new(ThumbShadowEffect, typeof(Effect)),
         new(ToolTipBackgroundBrush, typeof(Brush)),
         new(ToolTipForegroundBrush, typeof(Brush)),
         new(ToolTipBorderBrush, typeof(Brush)),
