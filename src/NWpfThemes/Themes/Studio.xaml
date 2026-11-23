@@ -103,7 +103,7 @@
     <SolidColorBrush x:Key="NwtWindowBackdropTintBrush" Color="#CC131417" />
 
     <!-- Shadows and depth -->
-    <StaticResource x:Key="NwtSliderThumbBrush" ResourceKey="NwtControlBackgroundBrush" />
+    <SolidColorBrush x:Key="NwtSliderThumbBrush" Color="#FF24252A" />
     <DropShadowEffect x:Key="NwtPopupShadowEffect" BlurRadius="10" Opacity="1" ShadowDepth="2" Color="{StaticResource NwtShadowColor}" />
     <DropShadowEffect x:Key="NwtPanelShadowEffect" Opacity="0" />
     <DropShadowEffect x:Key="NwtAccentShadowEffect" Opacity="0" />
