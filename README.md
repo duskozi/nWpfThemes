@@ -16,70 +16,81 @@ Button, TextBox, DataGrid, Menu and the rest of the built-in controls pick up th
 - Visible keyboard focus, WCAG AA contrast, and automatic use of the Windows high contrast colours.
 - No dependencies beyond WPF. Targets .NET 8 and .NET 10.
 
-## Screenshots
-
-These are rendered by CI from the gallery app on every push to `main`.
-
-| Dark | Light |
-| --- | --- |
-| ![Dark theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-dark.png) | ![Light theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-light.png) |
-| **High Contrast** (shown with a dark high contrast palette) | **Hardware** |
-| ![High Contrast theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-high-contrast.png) | ![Hardware theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-hardware.png) |
-
-### Midnight Glass
-
-A dark dashboard look: deep indigo backgrounds with a soft gradient, frosted glass panels with thin
-light edges and large rounded corners, pill-shaped buttons, inputs and tabs, muted lavender accents,
-monospaced headers and slim progress bars.
-
-![Midnight Glass theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-midnight-glass.png)
-
-### Slate
-
-A dense, dark editor look based on the [PCUI](https://github.com/playcanvas/pcui) component library:
-blue-teal slate panels, soft grey-teal text with white headers, grey-teal accent fills, orange only for
-focus rings and the selected tab line, 12 px Helvetica Neue / Arial type and compact 24 px controls with 2 px corners.
-
-![Slate theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-slate.png)
-
-### Workbench
-
-A compact, flat dark look for tool and debugging apps: neutral charcoal panels and docks, soft grey
-text, a bright blue accent, small 12 px type and dense 22 px controls with plain one-pixel borders and
-no gradients, shadows or bevels.
-
-![Workbench theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-workbench.png)
-
-### Nocturne
-
-Layered dark glass in the style of current desktop apps: blue-tinted near-black with a faint accent glow,
-hairline borders, a soft light along the top edge of every raised surface, 8 / 10 / 12 px corners and one
-periwinkle accent. Cards and popups cast soft shadows, the main button and the slider thumb glow in the
-accent colour, and focused inputs get an accent halo. Uses Inter where it is installed, else Segoe UI Variable.
-
-![Nocturne theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-nocturne.png)
-
-### nDAWControls skins
-
-These use the same colours, gradients and button bevels as the nDAWControls skins, so standard
-controls sit next to the DAW controls without a seam. Text boxes look like the skin's recessed displays.
-
-| | |
-| --- | --- |
-| **Alloy** | **Alloy Night** |
-| ![Alloy theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-alloy.png) | ![Alloy Night theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-alloy-night.png) |
-| **Alloy Ember** | **Graphite** |
-| ![Alloy Ember theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-alloy-ember.png) | ![Graphite theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-graphite.png) |
-| **Studio** | **Retro Hardware** |
-| ![Studio theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-studio.png) | ![Retro Hardware theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-retro-hardware.png) |
-| **Light Classic** | **High Contrast Black** |
-| ![Light Classic theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-light-classic.png) | ![High Contrast Black theme](https://raw.githubusercontent.com/duskozi/nWpfThemes/screenshots/gallery-high-contrast-black.png) |
-
 ## Install
 
 ```
 dotnet add package NWpfThemes
 ```
+
+or in your project file:
+
+```xml
+<PackageReference Include="NWpfThemes" Version="1.0.0" />
+```
+
+Then add one line to `App.xaml` (see [Set up](#set-up)).
+
+## Themes
+
+Every screenshot shows the same gallery window with all the styled controls. Click one to see it full size.
+
+<table>
+  <tr>
+    <td width="50%" align="center"><a href="docs/screenshots/dark.png"><img src="docs/screenshots/dark.png" alt="Dark theme"></a><br><b>Dark</b></td>
+    <td width="50%" align="center"><a href="docs/screenshots/light.png"><img src="docs/screenshots/light.png" alt="Light theme"></a><br><b>Light</b></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="docs/screenshots/high-contrast.png"><img src="docs/screenshots/high-contrast.png" alt="High Contrast theme"></a><br><b>High Contrast</b></td>
+    <td width="50%" align="center"><a href="docs/screenshots/hardware.png"><img src="docs/screenshots/hardware.png" alt="Hardware theme"></a><br><b>Hardware</b></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="docs/screenshots/midnight-glass.png"><img src="docs/screenshots/midnight-glass.png" alt="Midnight Glass theme"></a><br><b>Midnight Glass</b></td>
+    <td width="50%" align="center"><a href="docs/screenshots/slate.png"><img src="docs/screenshots/slate.png" alt="Slate theme"></a><br><b>Slate</b></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="docs/screenshots/workbench.png"><img src="docs/screenshots/workbench.png" alt="Workbench theme"></a><br><b>Workbench</b></td>
+    <td width="50%" align="center"><a href="docs/screenshots/nocturne.png"><img src="docs/screenshots/nocturne.png" alt="Nocturne theme"></a><br><b>Nocturne</b></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="docs/screenshots/alloy.png"><img src="docs/screenshots/alloy.png" alt="Alloy theme"></a><br><b>Alloy</b></td>
+    <td width="50%" align="center"><a href="docs/screenshots/alloy-night.png"><img src="docs/screenshots/alloy-night.png" alt="Alloy Night theme"></a><br><b>Alloy Night</b></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="docs/screenshots/alloy-ember.png"><img src="docs/screenshots/alloy-ember.png" alt="Alloy Ember theme"></a><br><b>Alloy Ember</b></td>
+    <td width="50%" align="center"><a href="docs/screenshots/graphite.png"><img src="docs/screenshots/graphite.png" alt="Graphite theme"></a><br><b>Graphite</b></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="docs/screenshots/studio.png"><img src="docs/screenshots/studio.png" alt="Studio theme"></a><br><b>Studio</b></td>
+    <td width="50%" align="center"><a href="docs/screenshots/retro-hardware.png"><img src="docs/screenshots/retro-hardware.png" alt="Retro Hardware theme"></a><br><b>Retro Hardware</b></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="docs/screenshots/light-classic.png"><img src="docs/screenshots/light-classic.png" alt="Light Classic theme"></a><br><b>Light Classic</b></td>
+    <td width="50%" align="center"><a href="docs/screenshots/high-contrast-black.png"><img src="docs/screenshots/high-contrast-black.png" alt="High Contrast Black theme"></a><br><b>High Contrast Black</b></td>
+  </tr>
+</table>
+
+- **Dark** and **Light**: clean, neutral everyday themes.
+- **High Contrast**: takes every colour from the Windows high contrast palette the user picked
+  (shown here with a dark palette).
+- **Hardware**: lit metal, bevelled buttons and amber recessed displays.
+- **Midnight Glass**: a dark dashboard look with deep indigo gradients, frosted glass panels with large
+  rounded corners, pill-shaped buttons, inputs and tabs, muted lavender accents, monospaced headers and
+  slim progress bars.
+- **Slate**: a dense, dark editor look based on the [PCUI](https://github.com/playcanvas/pcui) component
+  library: blue-teal slate panels, grey-teal accent fills, orange only for focus rings and the selected
+  tab line, 12 px type and compact 24 px controls with 2 px corners.
+- **Workbench**: a compact, flat dark look for tool and debugging apps: charcoal panels, a bright blue
+  accent, 12 px type and dense 22 px controls with plain one-pixel borders and no gradients or bevels.
+- **Nocturne**: layered dark glass in the style of current desktop apps: blue-tinted near-black, hairline
+  borders, a soft light along the top edge of raised surfaces and one periwinkle accent. Cards and popups
+  cast soft shadows, the main button and slider thumb glow, and focused inputs get an accent halo. Uses
+  Inter where it is installed, else Segoe UI Variable.
+- **Alloy**, **Alloy Night**, **Alloy Ember**, **Graphite**, **Studio**, **Retro Hardware**,
+  **Light Classic** and **High Contrast Black** use the same colours, gradients and button bevels as the
+  [nDAWControls](https://github.com/duskozi/nDAWControls) skins, so standard controls sit next to the DAW
+  controls without a seam. Text boxes look like the skin's recessed displays.
+
+The screenshots are rendered by CI from the gallery app (see [Build and run the gallery](#build-and-run-the-gallery)).
 
 ## Set up
 
@@ -394,6 +405,11 @@ The gallery shows every control with a theme picker in the title bar. To render 
 ```
 samples/NWpfThemes.Gallery/bin/Debug/net10.0-windows/NWpfThemes.Gallery.exe --screenshots out
 ```
+
+CI renders them on every push and keeps the latest set for `main` on the `screenshots` branch
+(download the **screenshots** artifact of a run to get them as a zip). The README shows the copies
+in [`docs/screenshots`](docs/screenshots); after a visual change, copy the new files there, dropping the
+`gallery-` prefix from the names.
 
 ## Releasing
 
