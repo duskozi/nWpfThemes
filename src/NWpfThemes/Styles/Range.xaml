@@ -56,8 +56,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
+                    <Grid>
+                    <Border Background="{DynamicResource NwtSliderThumbBrush}"
+                            CornerRadius="9"
+                            Effect="{DynamicResource NwtThumbShadowEffect}"
+                            Style="{DynamicResource NwtShadowCasterStyle}" />
                     <Border x:Name="Knob"
-                            Background="{DynamicResource NwtControlBackgroundBrush}"
+                            Background="{DynamicResource NwtSliderThumbBrush}"
                             BorderBrush="{DynamicResource NwtInputBorderBrush}"
                             BorderThickness="{DynamicResource NwtControlBorderThickness}"
                             CornerRadius="9"
@@ -72,13 +77,12 @@
                                      Fill="{DynamicResource NwtAccentBrush}" />
                         </Grid>
                     </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Knob" Property="Background" Value="{DynamicResource NwtControlHoverBrush}" />
                             <Setter TargetName="Knob" Property="BorderBrush" Value="{DynamicResource NwtBorderHoverBrush}" />
                         </Trigger>
                         <Trigger Property="IsDragging" Value="True">
-                            <Setter TargetName="Knob" Property="Background" Value="{DynamicResource NwtControlPressedBrush}" />
                             <Setter TargetName="Centre" Property="Fill" Value="{DynamicResource NwtAccentPressedBrush}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">

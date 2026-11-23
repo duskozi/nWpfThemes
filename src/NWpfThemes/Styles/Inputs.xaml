@@ -25,6 +25,13 @@
       keyboard focus indicator for text inputs.
     -->
     <ControlTemplate x:Key="NwtTextInputTemplate" TargetType="Control">
+        <Grid>
+        <!-- Casts the focus glow. -->
+        <Border x:Name="FocusGlow"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{DynamicResource NwtControlCornerRadius}"
+                Effect="{DynamicResource NwtInputFocusShadowEffect}"
+                Style="{DynamicResource NwtStateShadowCasterStyle}" />
         <Border x:Name="Bd"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -49,6 +56,7 @@
                               VerticalScrollBarVisibility="Hidden" />
             </Grid>
         </Border>
+        </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource NwtBorderHoverBrush}" />
@@ -56,6 +64,7 @@
             <Trigger Property="IsKeyboardFocusWithin" Value="True">
                 <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource NwtAccentBrush}" />
                 <Setter TargetName="FocusLine" Property="Visibility" Value="Visible" />
+                <Setter TargetName="FocusGlow" Property="Visibility" Value="Visible" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="Bd" Property="Background" Value="{DynamicResource NwtControlDisabledBrush}" />
@@ -240,11 +249,8 @@
                                     TextElement.FontFamily="{DynamicResource NwtFontFamily}"
                                     TextElement.Foreground="{DynamicResource NwtForegroundBrush}">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="10"
-                                                      Opacity="1"
-                                                      ShadowDepth="2"
-                                                      Color="{DynamicResource NwtShadowColor}" />
-                                </Border.Effect>
+<DynamicResource ResourceKey="NwtPopupShadowEffect" />
+</Border.Effect>
                                 <Grid>
                                     <nwt:GlassBackdropLayer CornerRadius="{DynamicResource NwtOverlayCornerRadius}" IsOverlay="True" Tint="{DynamicResource NwtGlassTintBrush}" />
                                     <ScrollViewer Margin="2" nwt:Glass.IsOverGlass="True" SnapsToDevicePixels="True">

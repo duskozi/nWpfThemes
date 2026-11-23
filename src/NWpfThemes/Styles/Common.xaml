@@ -3,6 +3,27 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 
+    <!--
+      A shape behind a control that only casts its Effect (a theme shadow key). Hidden when the theme
+      turns the shadow off with Opacity 0, so themes without shadows pay nothing.
+    -->
+    <Style x:Key="NwtShadowCasterStyle" TargetType="Border">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Effect.Opacity, RelativeSource={RelativeSource Self}}" Value="0">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Like NwtShadowCasterStyle, but hidden until a template trigger shows it. -->
+    <Style x:Key="NwtStateShadowCasterStyle" TargetType="Border">
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Visibility" Value="Collapsed" />
+    </Style>
+
     <!-- Keyboard focus: a solid ring just outside the control. -->
     <Style x:Key="NwtFocusVisualStyle">
         <Setter Property="Control.Template">

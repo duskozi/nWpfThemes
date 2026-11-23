@@ -83,12 +83,18 @@ public sealed class Theme
     /// </summary>
     public static Theme Slate { get; } = BuiltIn("Slate", "Themes/Slate.xaml");
 
+    /// <summary>
+    /// Layered dark glass: blue-tinted near-black, hairline borders, a soft light along the top edge of raised
+    /// surfaces, 8 to 12 px corners, a periwinkle accent, soft card and popup shadows and accent glows.
+    /// </summary>
+    public static Theme Nocturne { get; } = BuiltIn("Nocturne", "Themes/Nocturne.xaml");
+
     /// <summary>The themes that ship with the library.</summary>
     public static IReadOnlyList<Theme> BuiltInThemes { get; } = new[]
     {
         Dark, Light, HighContrast, Hardware,
         Alloy, AlloyNight, AlloyEmber, Graphite, Studio, RetroHardware, LightClassic, HighContrastBlack,
-        MidnightGlass, Slate,
+        MidnightGlass, Slate, Nocturne,
     };
 
     /// <summary>The location of the dictionary with the control styles.</summary>
