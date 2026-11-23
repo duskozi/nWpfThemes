@@ -84,6 +84,12 @@ public sealed class Theme
     public static Theme Slate { get; } = BuiltIn("Slate", "Themes/Slate.xaml");
 
     /// <summary>
+    /// A compact, flat dark theme for tool and debugging apps: charcoal panels, soft grey text, a bright
+    /// blue accent, 12 px type and dense controls.
+    /// </summary>
+    public static Theme Workbench { get; } = BuiltIn("Workbench", "Themes/Workbench.xaml");
+
+    /// <summary>
     /// Layered dark glass: blue-tinted near-black, hairline borders, a soft light along the top edge of raised
     /// surfaces, 8 to 12 px corners, a periwinkle accent, soft card and popup shadows and accent glows.
     /// </summary>
@@ -94,7 +100,7 @@ public sealed class Theme
     {
         Dark, Light, HighContrast, Hardware,
         Alloy, AlloyNight, AlloyEmber, Graphite, Studio, RetroHardware, LightClassic, HighContrastBlack,
-        MidnightGlass, Slate, Nocturne,
+        MidnightGlass, Slate, Workbench, Nocturne,
     };
 
     /// <summary>The location of the dictionary with the control styles.</summary>
